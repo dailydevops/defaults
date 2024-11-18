@@ -11,16 +11,16 @@
 
   <PropertyGroup Label="Package settings">
     <Title>$(MSBuildProjectName)</Title>
-    <Description></Description>
-    <RepositoryUrl></RepositoryUrl>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageTags></PackageTags>
+    <Description>Source Only package, which provides the standard configurations and settings for the NetEvolve projects. Such as `.editorconfig`, build props and targets.</Description>
+    <RepositoryUrl>https://github.com/dailydevops/defaults.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/dailydevops/defaults</PackageProjectUrl>
+    <PackageTags>editorconfig;configuration;settings;props;targets</PackageTags>
     <CopyrightYearStart>2024</CopyrightYearStart>
   </PropertyGroup>
 
   <PropertyGroup>
-    <!-- Workaround, until https://github.com/GitTools/GitVersion/pull/4206 is released -->
-    <GitVersionTargetFramework>net8.0</GitVersionTargetFramework>
+    <NetEvolve_ProjectTargetFrameworks>netstandard2.0</NetEvolve_ProjectTargetFrameworks>
+    <NetEvolve_TestTargetFrameworks>net8.0</NetEvolve_TestTargetFrameworks>
   </PropertyGroup>
 
 </Project>
