@@ -1,0 +1,45 @@
+# Every time I update this file without changing the content, I increment this counter.
+# Counter: 2
+
+additional:
+  - analyzer
+  - archiduct
+  - arguments
+  - article.benchmarks
+  - editorconfig
+  - extensions.data
+  - extensions.hosting.winforms
+  - extensions.strings
+  - extensions.tasks
+  - extensions.test
+  - fluentvalue
+  - guard
+  - healthchecks
+  - http.correlation
+  - logging.abstractions
+  - logging.file
+  - logging.measurement
+  - logging.mstest
+  - logging.xunit
+  - projectbuilders
+  - sequentialguid
+
+files:
+  - "!**/*"
+  - ".commitlintrc"
+  - ".editorconfig"
+  - ".gitattributes"
+  - ".gitignore"
+  - "GitVersion.yml"
+  - ".github/CODEOWNERS"
+  - ".github/dependabot.yml"
+  - ".github/FUNDING.yml"
+  - ".github/release-drafter.yml"
+  - ".github/ISSUE_TEMPLATE/**/*"
+  - ".github/PULL_REQUEST_TEMPLATE/**/*"
+  - ".github/workflows/update-license.yml"
+
+  # you probably want to exclude these files:
+  - "!.github/workflows/dependabot-merge.yml"
+  - "!.github/workflows/template-sync.yml"
+  - "!.github/template-sync.yml"
