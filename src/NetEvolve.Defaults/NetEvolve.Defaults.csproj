@@ -14,12 +14,14 @@
 
   <ItemGroup>
     <None Include="build\**" Pack="true" PackagePath="build\" />
-    <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\" IncludeInPackage="true" />
+    <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\" />
     <None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.csproj" />
+    <ProjectReference Include="..\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.csproj">
+      <PrivateAssets>None</PrivateAssets>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>
