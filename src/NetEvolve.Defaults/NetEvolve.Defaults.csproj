@@ -18,4 +18,8 @@
     <None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.csproj" />
+  </ItemGroup>
+
 </Project>
