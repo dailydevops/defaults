@@ -70,83 +70,11 @@ namespace NetEvolve.Defaults.Analyzer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag. This tag is crucial as it uniquely identifies the package within the project, ensuring proper management and deployment. Without a valid &lt;PackageId /&gt;, the build process may fail, leading to potential issues in package restoration and versioning..
-        /// </summary>
-        internal static string NED0001Description4 {
-            get {
-                return ResourceManager.GetString("NED0001Description4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag. This tag is crucial as it uniquely identifies the package within the project, ensuring proper management and deployment. Without a valid &lt;PackageId /&gt;, the build process may fail, leading to potential issues in package restoration and versioning..
-        /// </summary>
-        internal static string NED0001Description5 {
-            get {
-                return ResourceManager.GetString("NED0001Description5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag. This tag is crucial as it uniquely identifies the package within the project, ensuring proper management and deployment. Without a valid &lt;PackageId /&gt;, the build process may fail, leading to potential issues in package restoration and versioning..
-        /// </summary>
-        internal static string NED0001Description6 {
-            get {
-                return ResourceManager.GetString("NED0001Description6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag. This tag is crucial as it uniquely identifies the package within the project, ensuring proper management and deployment. Without a valid &lt;PackageId /&gt;, the build process may fail, leading to potential issues in package restoration and versioning..
-        /// </summary>
-        internal static string NED0001Description7 {
-            get {
-                return ResourceManager.GetString("NED0001Description7", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag..
         /// </summary>
         internal static string NED0001Message {
             get {
                 return ResourceManager.GetString("NED0001Message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag..
-        /// </summary>
-        internal static string NED0001Message4 {
-            get {
-                return ResourceManager.GetString("NED0001Message4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag..
-        /// </summary>
-        internal static string NED0001Message5 {
-            get {
-                return ResourceManager.GetString("NED0001Message5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag..
-        /// </summary>
-        internal static string NED0001Message6 {
-            get {
-                return ResourceManager.GetString("NED0001Message6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag..
-        /// </summary>
-        internal static string NED0001Message7 {
-            get {
-                return ResourceManager.GetString("NED0001Message7", resourceCulture);
             }
         }
         
@@ -241,11 +169,47 @@ namespace NetEvolve.Defaults.Analyzer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;PackageProjectUrl /&gt; tag. This tag is vital as it specifies the URL for the project’s homepage or repository, allowing users to easily find more information, documentation, or source code. An incomplete or absent &lt;PackageProjectUrl /&gt; can hinder user engagement and limit the project’s visibility..
+        /// </summary>
+        internal static string NED0005Description {
+            get {
+                return ResourceManager.GetString("NED0005Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;PackageProjectUrl /&gt; tag..
+        /// </summary>
+        internal static string NED0005Message {
+            get {
+                return ResourceManager.GetString("NED0005Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Configuration Error: &lt;PackageProjectUrl /&gt; Tag Missing or Incomplete.
         /// </summary>
         internal static string NED0005Title {
             get {
                 return ResourceManager.GetString("NED0005Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;RepositoryUrl /&gt; tag. This tag is crucial as it specifies the URL of the project’s source code repository, enabling users and contributors to access the codebase, report issues, and contribute to development. An incomplete or absent &lt;RepositoryUrl /&gt; can limit collaboration and hinder user engagement..
+        /// </summary>
+        internal static string NED0006Description {
+            get {
+                return ResourceManager.GetString("NED0006Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;RepositoryUrl /&gt; tag..
+        /// </summary>
+        internal static string NED0006Message {
+            get {
+                return ResourceManager.GetString("NED0006Message", resourceCulture);
             }
         }
         
@@ -259,11 +223,47 @@ namespace NetEvolve.Defaults.Analyzer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;Authors /&gt; tag. This tag is essential as it specifies the authors of the project, providing credit and context for contributions. An incomplete or absent &lt;Authors /&gt; tag can lead to confusion about authorship and may affect collaboration and recognition within the community..
+        /// </summary>
+        internal static string NED0007Description {
+            get {
+                return ResourceManager.GetString("NED0007Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;Authors /&gt; tag..
+        /// </summary>
+        internal static string NED0007Message {
+            get {
+                return ResourceManager.GetString("NED0007Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Configuration Error: &lt;Authors /&gt; Tag Missing or Incomplete.
         /// </summary>
         internal static string NED0007Title {
             get {
                 return ResourceManager.GetString("NED0007Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;Company /&gt; tag. This tag is important as it specifies the name of the company or organization responsible for the project. An incomplete or absent &lt;Company /&gt; tag can lead to confusion regarding ownership and may affect branding and recognition in the community..
+        /// </summary>
+        internal static string NED0008Description {
+            get {
+                return ResourceManager.GetString("NED0008Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;Company /&gt; tag..
+        /// </summary>
+        internal static string NED0008Message {
+            get {
+                return ResourceManager.GetString("NED0008Message", resourceCulture);
             }
         }
         

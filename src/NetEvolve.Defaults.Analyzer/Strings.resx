@@ -120,17 +120,17 @@
   <data name="NED0001Description" xml:space="preserve">
     <value>The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag. This tag is crucial as it uniquely identifies the package within the project, ensuring proper management and deployment. Without a valid &lt;PackageId /&gt;, the build process may fail, leading to potential issues in package restoration and versioning.</value>
   </data>
-  <data name="NED0001Description7" xml:space="preserve">
-    <value>The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag. This tag is crucial as it uniquely identifies the package within the project, ensuring proper management and deployment. Without a valid &lt;PackageId /&gt;, the build process may fail, leading to potential issues in package restoration and versioning.</value>
+  <data name="NED0008Description" xml:space="preserve">
+    <value>The project file is missing or has an incomplete configuration for the &lt;Company /&gt; tag. This tag is important as it specifies the name of the company or organization responsible for the project. An incomplete or absent &lt;Company /&gt; tag can lead to confusion regarding ownership and may affect branding and recognition in the community.</value>
   </data>
-  <data name="NED0001Description6" xml:space="preserve">
-    <value>The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag. This tag is crucial as it uniquely identifies the package within the project, ensuring proper management and deployment. Without a valid &lt;PackageId /&gt;, the build process may fail, leading to potential issues in package restoration and versioning.</value>
+  <data name="NED0007Description" xml:space="preserve">
+    <value>The project file is missing or has an incomplete configuration for the &lt;Authors /&gt; tag. This tag is essential as it specifies the authors of the project, providing credit and context for contributions. An incomplete or absent &lt;Authors /&gt; tag can lead to confusion about authorship and may affect collaboration and recognition within the community.</value>
   </data>
-  <data name="NED0001Description5" xml:space="preserve">
-    <value>The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag. This tag is crucial as it uniquely identifies the package within the project, ensuring proper management and deployment. Without a valid &lt;PackageId /&gt;, the build process may fail, leading to potential issues in package restoration and versioning.</value>
+  <data name="NED0006Description" xml:space="preserve">
+    <value>The project file is missing or has an incomplete configuration for the &lt;RepositoryUrl /&gt; tag. This tag is crucial as it specifies the URL of the project’s source code repository, enabling users and contributors to access the codebase, report issues, and contribute to development. An incomplete or absent &lt;RepositoryUrl /&gt; can limit collaboration and hinder user engagement.</value>
   </data>
-  <data name="NED0001Description4" xml:space="preserve">
-    <value>The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag. This tag is crucial as it uniquely identifies the package within the project, ensuring proper management and deployment. Without a valid &lt;PackageId /&gt;, the build process may fail, leading to potential issues in package restoration and versioning.</value>
+  <data name="NED0005Description" xml:space="preserve">
+    <value>The project file is missing or has an incomplete configuration for the &lt;PackageProjectUrl /&gt; tag. This tag is vital as it specifies the URL for the project’s homepage or repository, allowing users to easily find more information, documentation, or source code. An incomplete or absent &lt;PackageProjectUrl /&gt; can hinder user engagement and limit the project’s visibility.</value>
   </data>
   <data name="NED0004Description" xml:space="preserve">
     <value>The project file is missing or has an incomplete configuration for the &lt;PackageTags /&gt; tag. This tag is essential for categorizing your package and improving its discoverability in package repositories. Without a properly configured &lt;PackageTags /&gt;, users may find it challenging to locate your project, which can impact its adoption and usage.</value>
@@ -144,17 +144,17 @@
   <data name="NED0001Message" xml:space="preserve">
     <value>The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag.</value>
   </data>
-  <data name="NED0001Message7" xml:space="preserve">
-    <value>The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag.</value>
+  <data name="NED0008Message" xml:space="preserve">
+    <value>The project file is missing or has an incomplete configuration for the &lt;Company /&gt; tag.</value>
   </data>
-  <data name="NED0001Message6" xml:space="preserve">
-    <value>The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag.</value>
+  <data name="NED0007Message" xml:space="preserve">
+    <value>The project file is missing or has an incomplete configuration for the &lt;Authors /&gt; tag.</value>
   </data>
-  <data name="NED0001Message5" xml:space="preserve">
-    <value>The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag.</value>
+  <data name="NED0006Message" xml:space="preserve">
+    <value>The project file is missing or has an incomplete configuration for the &lt;RepositoryUrl /&gt; tag.</value>
   </data>
-  <data name="NED0001Message4" xml:space="preserve">
-    <value>The project file is missing or has an incomplete configuration for the &lt;PackageId /&gt; tag.</value>
+  <data name="NED0005Message" xml:space="preserve">
+    <value>The project file is missing or has an incomplete configuration for the &lt;PackageProjectUrl /&gt; tag.</value>
   </data>
   <data name="NED0004Message" xml:space="preserve">
     <value>The project file is missing or has an incomplete configuration for the &lt;PackageTags /&gt; tag.</value>
