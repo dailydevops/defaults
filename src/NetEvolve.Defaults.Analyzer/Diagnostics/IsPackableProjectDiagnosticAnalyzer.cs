@@ -13,35 +13,35 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
 {
     internal static readonly DiagnosticDescriptor _ruleNED0001 = Helper.CreateUsageDescriptor(
         "NED0001",
-        customTags: [WellKnownDiagnosticTags.CompilationEnd]
+        customTags: WellKnownDiagnosticTags.CompilationEnd
     );
     internal static readonly DiagnosticDescriptor _ruleNED0002 = Helper.CreateUsageDescriptor(
         "NED0002",
-        customTags: [WellKnownDiagnosticTags.CompilationEnd]
+        customTags: WellKnownDiagnosticTags.CompilationEnd
     );
     internal static readonly DiagnosticDescriptor _ruleNED0003 = Helper.CreateUsageDescriptor(
         "NED0003",
-        customTags: [WellKnownDiagnosticTags.CompilationEnd]
+        customTags: WellKnownDiagnosticTags.CompilationEnd
     );
     internal static readonly DiagnosticDescriptor _ruleNED0004 = Helper.CreateUsageDescriptor(
         "NED0004",
-        customTags: [WellKnownDiagnosticTags.CompilationEnd]
+        customTags: WellKnownDiagnosticTags.CompilationEnd
     );
     internal static readonly DiagnosticDescriptor _ruleNED0005 = Helper.CreateUsageDescriptor(
         "NED0005",
-        customTags: [WellKnownDiagnosticTags.CompilationEnd]
+        customTags: WellKnownDiagnosticTags.CompilationEnd
     );
     internal static readonly DiagnosticDescriptor _ruleNED0006 = Helper.CreateUsageDescriptor(
         "NED0006",
-        customTags: [WellKnownDiagnosticTags.CompilationEnd]
+        customTags: WellKnownDiagnosticTags.CompilationEnd
     );
     internal static readonly DiagnosticDescriptor _ruleNED0007 = Helper.CreateUsageDescriptor(
         "NED0007",
-        customTags: [WellKnownDiagnosticTags.CompilationEnd]
+        customTags: WellKnownDiagnosticTags.CompilationEnd
     );
     internal static readonly DiagnosticDescriptor _ruleNED0008 = Helper.CreateUsageDescriptor(
         "NED0008",
-        customTags: [WellKnownDiagnosticTags.CompilationEnd]
+        customTags: WellKnownDiagnosticTags.CompilationEnd
     );
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
