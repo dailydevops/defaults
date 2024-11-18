@@ -4,6 +4,9 @@
     <TargetFramework>$(NetEvolve_ProjectTargetFrameworks)</TargetFramework>
 
     <PackageTags>$(PackageTags);analyzer</PackageTags>
+    <Description>
+      NetEvolve.Defaults.Analyzer provides several diagnostic analyzers, to improve the nuget package quality and consistency.
+    </Description>
 
     <NeutralLanguage>en</NeutralLanguage>
 
@@ -39,6 +42,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
+    <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
   </ItemGroup>
 
 </Project>
