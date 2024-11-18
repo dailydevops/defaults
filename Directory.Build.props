@@ -14,6 +14,7 @@
     <Description>Source Only package, which provides the standard configurations and settings for the NetEvolve projects. Such as `.editorconfig`, build props and targets.</Description>
     <RepositoryUrl>https://github.com/dailydevops/defaults.git</RepositoryUrl>
     <PackageProjectUrl>https://github.com/dailydevops/defaults</PackageProjectUrl>
+    <PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
     <PackageTags>editorconfig;configuration;settings;props;targets</PackageTags>
     <CopyrightYearStart>2024</CopyrightYearStart>
   </PropertyGroup>
