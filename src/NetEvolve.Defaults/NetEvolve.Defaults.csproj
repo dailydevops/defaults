@@ -8,6 +8,8 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <IncludeSymbols>false</IncludeSymbols>
     <NoWarn>$(NoWarn);NU5128;</NoWarn>
+
+    <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
 
   <ItemGroup>
