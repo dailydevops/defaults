@@ -1,0 +1,13 @@
+<Project>
+
+  <ItemGroup>
+    <CompilerVisibleProperty Include="IsPackable" />
+    <CompilerVisibleProperty Include="PackageId" />
+    <CompilerVisibleProperty Include="Title" />
+    <CompilerVisibleProperty Include="Description" />
+    <CompilerVisibleProperty Include="PackageTags" />
+    <CompilerVisibleProperty Include="PackageProjectUrl" />
+    <CompilerVisibleProperty Include="RepositoryUrl" />
+  </ItemGroup>
+
+</Project>

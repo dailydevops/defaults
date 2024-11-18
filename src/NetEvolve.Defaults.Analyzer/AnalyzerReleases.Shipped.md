@@ -1,0 +1,17 @@
+; Shipped analyzer releases
+; https://github.com/dotnet/roslyn-analyzers/blob/main/src/Microsoft.CodeAnalysis.Analyzers/ReleaseTrackingAnalyzers.Help.md
+
+## Release 1.0
+
+### New Rules
+
+Rule ID | Category | Severity | Notes
+--------|----------|----------|-------
+NED0001 | Usage | Warning | The project file is missing or has an incomplete configuration for the <PackageId /> tag. This tag is crucial as it uniquely identifies the package within the project, ensuring proper management and deployment. Without a valid <PackageId />, the build process may fail, leading to potential issues in package restoration and versioning.
+NED0002 | Usage | Warning | The project file is missing or has an incomplete configuration for the <Title /> tag. This tag is essential as it defines the display name of your project, which is used in various contexts, including package management and user interfaces. An incomplete or absent <Title /> can lead to confusion during deployment and may affect how users perceive your project.
+NED0003 | Usage | Warning | The project file is missing or has an incomplete configuration for the <Description /> tag. This tag is important as it provides a brief overview of your project, helping users and developers understand its purpose and functionality. An incomplete or absent <Description /> can lead to misunderstandings about the project’s goals and may hinder effective collaboration.
+NED0004 | Usage | Warning | The project file is missing or has an incomplete configuration for the <PackageTags /> tag. This tag is essential for categorizing your package and improving its discoverability in package repositories. Without a properly configured <PackageTags />, users may find it challenging to locate your project, which can impact its adoption and usage.
+NED0005 | Usage | Warning | The project file is missing or has an incomplete configuration for the <PackageProjectUrl /> tag. This tag is vital as it specifies the URL for the project’s homepage or repository, allowing users to easily find more information, documentation, or source code. An incomplete or absent <PackageProjectUrl /> can hinder user engagement and limit the project’s visibility.
+NED0006 | Usage | Warning | The project file is missing or has an incomplete configuration for the <RepositoryUrl /> tag. This tag is crucial as it specifies the URL of the project’s source code repository, enabling users and contributors to access the codebase, report issues, and contribute to development. An incomplete or absent <RepositoryUrl /> can limit collaboration and hinder user engagement.
+NED0007 | Usage | Warning | The project file is missing or has an incomplete configuration for the <Authors /> tag. This tag is essential as it specifies the authors of the project, providing credit and context for contributions. An incomplete or absent <Authors /> tag can lead to confusion about authorship and may affect collaboration and recognition within the community.
+NED0008 | Usage | Warning | The project file is missing or has an incomplete configuration for the <Company /> tag. This tag is important as it specifies the name of the company or organization responsible for the project. An incomplete or absent <Company /> tag can lead to confusion regarding ownership and may affect branding and recognition in the community.

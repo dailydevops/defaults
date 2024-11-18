@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DB9397A5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetEvolve.Defaults.Tests.Integration", "tests\NetEvolve.Defaults.Tests.Integration\NetEvolve.Defaults.Tests.Integration.csproj", "{7A7B8583-0494-496B-A63F-C0134194D633}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetEvolve.Defaults.Analyzer", "src\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.csproj", "{04A3A934-D585-42BD-B551-501F3ED99086}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,9 +50,14 @@ Global
 		{7A7B8583-0494-496B-A63F-C0134194D633}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A7B8583-0494-496B-A63F-C0134194D633}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A7B8583-0494-496B-A63F-C0134194D633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A3A934-D585-42BD-B551-501F3ED99086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A3A934-D585-42BD-B551-501F3ED99086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A3A934-D585-42BD-B551-501F3ED99086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A3A934-D585-42BD-B551-501F3ED99086}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C9525AC4-A52E-4D52-A9A4-389D9FF6A1CE} = {4AD0D117-4F9D-4288-B0F9-D8C1C120B5E4}
 		{7A7B8583-0494-496B-A63F-C0134194D633} = {DB9397A5-7522-4CF5-B402-E4FFC93E600B}
+		{04A3A934-D585-42BD-B551-501F3ED99086} = {4AD0D117-4F9D-4288-B0F9-D8C1C120B5E4}
 	EndGlobalSection
 EndGlobal
