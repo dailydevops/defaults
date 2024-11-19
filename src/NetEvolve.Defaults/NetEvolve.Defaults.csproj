@@ -14,8 +14,7 @@
 
   <ItemGroup>
     <None Include="build\**" Pack="true" PackagePath="build\" />
-    <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\" />
-    <None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive\" />
+    <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\;buildTransitive\" />
   </ItemGroup>
 
   <ItemGroup>
