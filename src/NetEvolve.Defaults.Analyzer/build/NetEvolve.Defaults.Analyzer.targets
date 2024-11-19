@@ -8,6 +8,8 @@
     <CompilerVisibleProperty Include="PackageTags" />
     <CompilerVisibleProperty Include="PackageProjectUrl" />
     <CompilerVisibleProperty Include="RepositoryUrl" />
+    <CompilerVisibleProperty Include="Company" />
+    <CompilerVisibleProperty Include="Authors" />
   </ItemGroup>
 
 </Project>
