@@ -43,6 +43,11 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
         "NED0008",
         customTags: WellKnownDiagnosticTags.CompilationEnd
     );
+    internal static readonly DiagnosticDescriptor _ruleNED0009 = Helper.CreateUsageDescriptor(
+        "NED0009",
+        DiagnosticSeverity.Info,
+        customTags: WellKnownDiagnosticTags.CompilationEnd
+    );
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
         [
@@ -54,6 +59,7 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
             _ruleNED0006,
             _ruleNED0007,
             _ruleNED0008,
+            _ruleNED0009,
         ];
 
     public override void Initialize(AnalysisContext context)
@@ -89,6 +95,7 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
             AnalyzeIsKeySet(ctx, options, _ruleNED0006, "build_property.repositoryurl");
             AnalyzeIsKeySet(ctx, options, _ruleNED0007, "build_property.authors");
             AnalyzeIsKeySet(ctx, options, _ruleNED0008, "build_property.company");
+            AnalyzeIsKeySet(ctx, options, _ruleNED0009, "build_property.copyrightyearstart", propertyValue => int.TryParse(propertyValue, out var year) && 1900 <= year && year <= 9999);
         });
     }
 
@@ -96,20 +103,21 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
         CompilationAnalysisContext context,
         AnalyzerConfigOptions options,
         DiagnosticDescriptor descriptor,
-        string key
+        string key,
+        Func<string, bool>? isValidValue = null
     )
     {
-        if (KeyHasNoValidValue(options, key))
+        if (ValidateKey(options, key, isValidValue))
         {
             context.ReportDiagnostic(Diagnostic.Create(descriptor, null));
         }
     }
 
-    private static bool KeyHasNoValidValue(AnalyzerConfigOptions options, string key)
+    private static bool ValidateKey(AnalyzerConfigOptions options, string key, Func<string, bool>? isValidValue)
     {
         var isConfigured = options.TryGetValue(key, out var configuredValue);
 
-        return !isConfigured || string.IsNullOrWhiteSpace(configuredValue);
+        return !isConfigured || string.IsNullOrWhiteSpace(configuredValue) || isValidValue is null || !isValidValue.Invoke(configuredValue!);
     }
 
     private static bool IsPackable(AnalyzerConfigOptions options) =>
