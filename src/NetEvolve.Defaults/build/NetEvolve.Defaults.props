@@ -1,3 +1,7 @@
 <Project>
 
+  <PropertyGroup Label="NuGet Package Defaults">
+    <PackageTags>netevolve</PackageTags>
+  </PropertyGroup>
+
 </Project>
