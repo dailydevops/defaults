@@ -1,4 +1,4 @@
-﻿namespace NetEvolve.Defaults.Analyzer.Diagnostics;
+namespace NetEvolve.Defaults.Analyzer.Diagnostics;
 
 using System;
 using System.Collections.Immutable;
@@ -101,7 +101,7 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
                 _ruleNED0009,
                 "build_property.copyrightyearstart",
                 propertyValue =>
-                    int.TryParse(propertyValue, out var year) && 1900 <= year && year <= 9999
+                    int.TryParse(propertyValue, out var year) && year >= 1900 && year <= 9999
             );
         });
     }
