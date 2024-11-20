@@ -95,7 +95,14 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
             AnalyzeIsKeySet(ctx, options, _ruleNED0006, "build_property.repositoryurl");
             AnalyzeIsKeySet(ctx, options, _ruleNED0007, "build_property.authors");
             AnalyzeIsKeySet(ctx, options, _ruleNED0008, "build_property.company");
-            AnalyzeIsKeySet(ctx, options, _ruleNED0009, "build_property.copyrightyearstart", propertyValue => int.TryParse(propertyValue, out var year) && 1900 <= year && year <= 9999);
+            AnalyzeIsKeySet(
+                ctx,
+                options,
+                _ruleNED0009,
+                "build_property.copyrightyearstart",
+                propertyValue =>
+                    int.TryParse(propertyValue, out var year) && 1900 <= year && year <= 9999
+            );
         });
     }
 
@@ -113,11 +120,18 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
         }
     }
 
-    private static bool ValidateKey(AnalyzerConfigOptions options, string key, Func<string, bool>? isValidValue)
+    private static bool ValidateKey(
+        AnalyzerConfigOptions options,
+        string key,
+        Func<string, bool>? isValidValue
+    )
     {
         var isConfigured = options.TryGetValue(key, out var configuredValue);
 
-        return !isConfigured || string.IsNullOrWhiteSpace(configuredValue) || isValidValue is null || !isValidValue.Invoke(configuredValue!);
+        return !isConfigured
+            || string.IsNullOrWhiteSpace(configuredValue)
+            || isValidValue is null
+            || !isValidValue.Invoke(configuredValue!);
     }
 
     private static bool IsPackable(AnalyzerConfigOptions options) =>
