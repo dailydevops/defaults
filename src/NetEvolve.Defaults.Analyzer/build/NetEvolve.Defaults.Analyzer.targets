@@ -1,6 +1,7 @@
 <Project>
 
   <ItemGroup>
+    <!-- Define the properties that are visible to the compiler. In this case general properties that are used in the project -->
     <CompilerVisibleProperty Include="IsPackable" />
     <CompilerVisibleProperty Include="PackageId" />
     <CompilerVisibleProperty Include="Title" />
@@ -10,6 +11,9 @@
     <CompilerVisibleProperty Include="RepositoryUrl" />
     <CompilerVisibleProperty Include="Company" />
     <CompilerVisibleProperty Include="Authors" />
+
+    <!-- NetEvolve specific properties -->
+    <CompilerVisibleProperty Include="CopyrightYearStart" />
   </ItemGroup>
 
 </Project>

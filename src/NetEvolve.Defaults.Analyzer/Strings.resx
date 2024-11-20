@@ -189,4 +189,13 @@
   <data name="NED0008Title" xml:space="preserve">
     <value>Configuration Error: &lt;Company /&gt; Tag Missing or Incomplete</value>
   </data>
+  <data name="NED0009Title" xml:space="preserve">
+    <value>Configuration Information: &lt;CopyrightYearStart /&gt; Tag Missing or Incomplete</value>
+  </data>
+  <data name="NED0009Message" xml:space="preserve">
+    <value>The project file is missing or has an incomplete configuration for the &lt;CopyrightYearStart /&gt; tag.</value>
+  </data>
+  <data name="NED0009Description" xml:space="preserve">
+    <value>The project file is missing or has an incomplete configuration for the &lt;CopyrightYearStart /&gt; tag. This tag is essential as it indicates the year when the copyright for the project began. An incomplete or absent &lt;CopyrightYearStart /&gt; can lead to legal ambiguities regarding ownership and copyright claims.</value>
+  </data>
 </root>

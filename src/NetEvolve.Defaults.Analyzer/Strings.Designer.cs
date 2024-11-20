@@ -275,5 +275,32 @@ namespace NetEvolve.Defaults.Analyzer {
                 return ResourceManager.GetString("NED0008Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;CopyrightYearStart /&gt; tag. This tag is essential as it indicates the year when the copyright for the project began. An incomplete or absent &lt;CopyrightYearStart /&gt; can lead to legal ambiguities regarding ownership and copyright claims..
+        /// </summary>
+        internal static string NED0009Description {
+            get {
+                return ResourceManager.GetString("NED0009Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project file is missing or has an incomplete configuration for the &lt;CopyrightYearStart /&gt; tag..
+        /// </summary>
+        internal static string NED0009Message {
+            get {
+                return ResourceManager.GetString("NED0009Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration Information: &lt;CopyrightYearStart /&gt; Tag Missing or Incomplete.
+        /// </summary>
+        internal static string NED0009Title {
+            get {
+                return ResourceManager.GetString("NED0009Title", resourceCulture);
+            }
+        }
     }
 }
