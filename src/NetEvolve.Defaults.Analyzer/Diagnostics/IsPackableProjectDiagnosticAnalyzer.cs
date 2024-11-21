@@ -1,4 +1,4 @@
-namespace NetEvolve.Defaults.Analyzer.Diagnostics;
+﻿namespace NetEvolve.Defaults.Analyzer.Diagnostics;
 
 using System;
 using System.Collections.Immutable;
@@ -130,8 +130,7 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
 
         return !isConfigured
             || string.IsNullOrWhiteSpace(configuredValue)
-            || isValidValue is null
-            || !isValidValue.Invoke(configuredValue!);
+            || (isValidValue is not null && !isValidValue.Invoke(configuredValue!));
     }
 
     private static bool IsPackable(AnalyzerConfigOptions options) =>
