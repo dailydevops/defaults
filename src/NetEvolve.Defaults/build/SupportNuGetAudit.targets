@@ -1,10 +1,10 @@
-﻿<Project>
+<Project>
 
   <PropertyGroup Label="NuGet Audit">
-    <NuGetAudit Condition="'$(NuGetAudit)' == ''">true</NuGetAudit>
-    <NuGetAuditMode Condition="'$(NuGetAuditMode)' == ''">all</NuGetAuditMode>
-    <NuGetAuditLevel Condition="'$(NuGetAuditLevel)' == ''">low</NuGetAuditLevel>
-    <WarningsAsErrors Condition="$(ContinuousIntegrationBuild) == 'true' OR '$(Configuration)' == 'Release'">(WarningsAsErrors);NU1900;NU1901;NU1902;NU1903;NU1904</WarningsAsErrors>
+    <NuGetAudit Condition=" '$(NuGetAudit)' == '' ">true</NuGetAudit>
+    <NuGetAuditMode Condition=" '$(NuGetAuditMode)' == '' ">all</NuGetAuditMode>
+    <NuGetAuditLevel Condition=" '$(NuGetAuditLevel)' == '' ">low</NuGetAuditLevel>
+    <WarningsAsErrors Condition="$(ContinuousIntegrationBuild) == 'true' OR '$(Configuration)' == 'Release' ">(WarningsAsErrors);NU1900;NU1901;NU1902;NU1903;NU1904</WarningsAsErrors>
   </PropertyGroup>
 
 </Project>

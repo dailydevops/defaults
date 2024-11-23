@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project=".\..\NetEvolve.Defaults\build\NetEvolve.Defaults.props" />
+
   <PropertyGroup>
     <TargetFramework>$(NetEvolve_ProjectTargetFrameworks)</TargetFramework>
 
@@ -19,12 +21,14 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <IncludeSymbols>false</IncludeSymbols>
 
+    <NoWarn>$(NoWarn);RS1036</NoWarn>
+
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="build\**" Pack="true" PackagePath="build\" />
-    <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\;buildTransitive\" />
+    <None Include="buildShims\**" Pack="true" PackagePath="buildMultiTargeting\;buildTransitive\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,5 +58,7 @@
       <TfmSpecificPackageFile Include="$(OutputPath)\$(AssemblyName).dll" PackagePath="analyzers/dotnet/cs" />
     </ItemGroup>
   </Target>
+
+  <Import Project=".\..\NetEvolve.Defaults\build\NetEvolve.Defaults.targets" />
 
 </Project>

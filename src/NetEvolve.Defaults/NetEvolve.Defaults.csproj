@@ -1,4 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="build\NetEvolve.Defaults.props" />
 
   <PropertyGroup>
     <TargetFramework>$(NetEvolve_ProjectTargetFrameworks)</TargetFramework>
@@ -14,13 +16,13 @@
 
   <ItemGroup>
     <None Include="build\**" Pack="true" PackagePath="build\" />
-    <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\;buildTransitive\" />
+    <None Include="buildShims\**" Pack="true" PackagePath="buildMultiTargeting\;buildTransitive\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.csproj">
-      <PrivateAssets>None</PrivateAssets>
-    </ProjectReference>
+    <ProjectReference Include="..\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.csproj" PrivateAssets="None" />
   </ItemGroup>
+
+  <Import Project="build\NetEvolve.Defaults.targets" />
 
 </Project>

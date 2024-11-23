@@ -1,0 +1,46 @@
+<Project>
+
+  <PropertyGroup Label="Project categorisation">
+    <IsTestableProject>false</IsTestableProject>
+    <IsTestableProject Condition=" $(MSBuildProjectName.Contains('.Tests.')) ">true</IsTestableProject>
+  </PropertyGroup>
+
+  <PropertyGroup Label="General Configurations">
+    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+
+    <LangVersion>latest</LangVersion>
+    <WarningLevel>9999</WarningLevel>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <Features>strict</Features>
+
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>All</AnalysisMode>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <ReportAnalyzer>true</ReportAnalyzer>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+    <_SkipUpgradeNetAnalyzersNuGetWarning>true</_SkipUpgradeNetAnalyzersNuGetWarning>
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+
+    <CheckEolTargetFramework Condition=" '$(Configuration)' == 'Release' ">false</CheckEolTargetFramework>
+    <SuppressTfmSupportBuildWarnings Condition=" '$(Configuration)' == 'Release' ">true</SuppressTfmSupportBuildWarnings>
+
+    <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+
+    <NoWarn>$(NoWarn);CA1810;CA1031;</NoWarn>
+    <NoWarn Condition=" '$(IsTestableProject)' == 'true' ">$(NoWarn);CS8604;CA2007;S4144;1591;CA1707;IDE1006;VSTHRD200;CA1822;CA1515</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Language Configuration">
+    <NeutralLanguage>en</NeutralLanguage>
+    <PreferredUILang>en</PreferredUILang>
+  </PropertyGroup>
+
+</Project>
