@@ -28,7 +28,8 @@
 
   <ItemGroup>
     <None Include="build\**" Pack="true" PackagePath="build\$(TargetFramework)\" />
-    <None Include="buildShims\**" Pack="true" PackagePath="buildMultiTargeting\$(TargetFramework)\;buildTransitive\$(TargetFramework)\" />
+    <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\$(TargetFramework)\" />
+    <None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive\$(TargetFramework)\" />
     <None Include="_._" Pack="true" PackagePath="lib\$(TargetFramework)\" Visible="false" />
   </ItemGroup>
 
