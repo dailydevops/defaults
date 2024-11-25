@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="build\NetEvolve.Defaults.props" />
 
@@ -15,8 +15,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="build\**" Pack="true" PackagePath="build\" />
-    <None Include="buildShims\**" Pack="true" PackagePath="buildMultiTargeting\;buildTransitive\" />
+    <None Include="build\**" Pack="true" PackagePath="build\$(TargetFramework)\" />
+    <None Include="buildShims\**" Pack="true" PackagePath="buildMultiTargeting\$(TargetFramework)\;buildTransitive\$(TargetFramework)\" />
+    <None Include="_._" Pack="true" PackagePath="lib\$(TargetFramework)\" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>
