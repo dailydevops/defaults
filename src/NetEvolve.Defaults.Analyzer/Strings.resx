@@ -198,4 +198,13 @@
   <data name="NED0009Description" xml:space="preserve">
     <value>The project file is missing or has an incomplete configuration for the &lt;CopyrightYearStart /&gt; tag. This tag is essential as it indicates the year when the copyright for the project began. An incomplete or absent &lt;CopyrightYearStart /&gt; can lead to legal ambiguities regarding ownership and copyright claims.</value>
   </data>
+  <data name="OLD0001Title" xml:space="preserve">
+    <value>Configuration Error: &lt;DirEngineering /&gt; or &lt;DirEngineeringSettings /&gt; Tag imcompatible</value>
+  </data>
+  <data name="OLD0001Message" xml:space="preserve">
+    <value>The project file has an incompatible configuration for &lt;DirEngineering /&gt; or &lt;DirEngineeringSettings /&gt; tag.</value>
+  </data>
+  <data name="OLD0001Description" xml:space="preserve">
+    <value>The project file has an incompatible configuration for &lt;DirEngineering /&gt; or &lt;DirEngineeringSettings /&gt; tag. This is part of an old settings.</value>
+  </data>
 </root>

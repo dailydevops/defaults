@@ -302,5 +302,32 @@ namespace NetEvolve.Defaults.Analyzer {
                 return ResourceManager.GetString("NED0009Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project file has an incompatible configuration for &lt;DirEngineering /&gt; or &lt;DirEngineeringSettings /&gt; tag. This is part of an old settings..
+        /// </summary>
+        internal static string OLD0001Description {
+            get {
+                return ResourceManager.GetString("OLD0001Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project file has an incompatible configuration for &lt;DirEngineering /&gt; or &lt;DirEngineeringSettings /&gt; tag..
+        /// </summary>
+        internal static string OLD0001Message {
+            get {
+                return ResourceManager.GetString("OLD0001Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration Error: &lt;DirEngineering /&gt; or &lt;DirEngineeringSettings /&gt; Tag imcompatible.
+        /// </summary>
+        internal static string OLD0001Title {
+            get {
+                return ResourceManager.GetString("OLD0001Title", resourceCulture);
+            }
+        }
     }
 }
