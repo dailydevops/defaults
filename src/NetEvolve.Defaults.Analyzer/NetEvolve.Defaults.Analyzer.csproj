@@ -30,7 +30,7 @@
     <None Include="build\**" Pack="true" PackagePath="build\" />
     <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\" />
     <None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive\" />
-    <None Include="_._" Pack="true" PackagePath="lib\" Visible="false" />
+    <None Include="_._" Pack="true" PackagePath="lib\$(TargetFramework)" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>
