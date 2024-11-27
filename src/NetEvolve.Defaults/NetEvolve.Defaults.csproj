@@ -18,6 +18,7 @@
     <None Include="build\**" Pack="true" PackagePath="build\" />
     <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\" />
     <None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive\" />
+    <None Include="configurations\**" Pack="true" PackagePath="configurations\" />
     <None Include="_._" Pack="true" PackagePath="lib\$(TargetFramework)" Visible="false" />
   </ItemGroup>
 
