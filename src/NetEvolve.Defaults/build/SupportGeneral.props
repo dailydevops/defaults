@@ -35,7 +35,7 @@
     <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
 
     <NoWarn>$(NoWarn);CA1810;CA1031;</NoWarn>
-    <WarningsNotAsErrors Condition=" '$(IsTestableProject)' == 'true' ">$(NoWarn);CS8604;CA2007;S4144;1591;CA1707;IDE1006;VSTHRD200;CA1822;CA1515</WarningsNotAsErrors>
+    <NoWarn Condition=" '$(IsTestableProject)' == 'true' ">$(NoWarn);CS8604;CA2007;S4144;1591;CA1707;IDE1006;VSTHRD200;CA1822;CA1515</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Label="Error Handling" Condition=" '$(Configuration)' == 'Release' ">
