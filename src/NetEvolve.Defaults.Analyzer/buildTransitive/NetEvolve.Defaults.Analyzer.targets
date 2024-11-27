@@ -1,5 +1,6 @@
 <Project>
 
-  <Import Project="$(MSBuildThisFileDirectory)\..\build\NetEvolve.Defaults.Analyzer.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)\..\build\NetEvolve.Defaults.Analyzer.targets" Condition="Exists('$(MSBuildThisFileDirectory)\..\build\NetEvolve.Defaults.Analyzer.targets')"/>
+  <Import Project="$(MSBuildThisFileDirectory)\..\build\netstandard2.0\NetEvolve.Defaults.Analyzer.targets" Condition="Exists('$(MSBuildThisFileDirectory)\..\build\netstandard2.0\NetEvolve.Defaults.Analyzer.targets')"/>
 
 </Project>
