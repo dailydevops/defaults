@@ -1,4 +1,3 @@
 <Project>
-  <Import Project="$(MSBuildThisFileDirectory)\..\build\NetEvolve.Defaults.props" Condition="Exists('$(MSBuildThisFileDirectory)\..\build\NetEvolve.Defaults.props')" />
-  <Import Project="$(MSBuildThisFileDirectory)\..\build\netstandard2.0\NetEvolve.Defaults.props" Condition="Exists('$(MSBuildThisFileDirectory)\..\build\netstandard2.0\NetEvolve.Defaults.props')" />
+  <Import Project="$(MSBuildThisFileDirectory)\..\build\NetEvolve.Defaults.props" />
 </Project>
