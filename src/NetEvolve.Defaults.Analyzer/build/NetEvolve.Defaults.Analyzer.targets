@@ -14,6 +14,8 @@
 
     <!-- NetEvolve specific properties -->
     <CompilerVisibleProperty Include="CopyrightYearStart" />
+    <CompilerVisibleProperty Include="DirEngineering" />
+    <CompilerVisibleProperty Include="DirEngineeringSettings" />
   </ItemGroup>
 
 </Project>
