@@ -1,7 +1,7 @@
 <Project>
 
-  <PropertyGroup Label="NuGet Package Defaults">
-    <PackageTags>netevolve;$(PackageTags)</PackageTags>
-  </PropertyGroup>
+  <Import Project="$(MSBuildThisFileDirectory)SupportGeneral.props" />
+  <Import Project="$(MSBuildThisFileDirectory)SupportDetectContinuousIntegration.props" />
+  <Import Project="$(MSBuildThisFileDirectory)SupportPackageInformation.props" Condition=" '$(DisableSupportPackageInformation)' != 'true' " />
 
 </Project>

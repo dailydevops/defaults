@@ -1,0 +1,20 @@
+<Project>
+
+  <ItemGroup Label="Test compability" Condition=" '$(IsTestableProject)' == 'false' ">
+    <InternalsVisibleTo Include="$(MSBuildProjectName).Tests.Architecture" />
+    <InternalsVisibleTo Include="$(MSBuildProjectName).Tests.Unit" />
+    <InternalsVisibleTo Include="$(MSBuildProjectName).Tests.Integration" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(IsTestableProject)' == 'false' ">
+    <IsPackable>true</IsPackable>
+    <IsTestProject>false</IsTestProject>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Properties correction">
+    <IsTestProject Condition="'$(IsTestProject)' != 'true' and $(MSBuildProjectName.Contains('.Tests'))">true</IsTestProject>
+    <IsTestProject Condition="'$(IsTestProject)' != 'true'">false</IsTestProject>
+    <IsPackable Condition="'$(IsPackable)' != 'true' or '$(IsTestProject)' == 'true'">false</IsPackable>
+  </PropertyGroup>
+
+</Project>
