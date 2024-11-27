@@ -5,13 +5,6 @@
   <Import Project="$(MSBuildThisFileDirectory)SupportCopyright.targets" Condition=" '$(DisableSupportCopyrightTargets)' != 'true' " />
   <Import Project="$(MSBuildThisFileDirectory)SupportNuGetAudit.targets" Condition=" '$(DisableSupportNuGetAuditTargets)' != 'true' " />
   <Import Project="$(MSBuildThisFileDirectory)SupportTestProjects.targets" Condition=" '$(IsTestableProject)' == 'true' " />
-
-  <Target Name="UpdateEditorConfig" BeforeTargets="Build">
-    <Copy
-      SourceFiles="$(MSBuildThisFileDirectory)../configurations/editorconfig.txt"
-      DestinationFiles="$(SolutionDir).editorconfig"
-      OverwriteReadOnlyFiles="true"
-      SkipUnchangedFiles="true" />
-  </Target>
+  <Import Project="$(MSBuildThisFileDirectory)SupportAdditionalFiles.targets" />
 
 </Project>
