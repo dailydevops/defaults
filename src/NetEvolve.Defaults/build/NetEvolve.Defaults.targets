@@ -6,5 +6,8 @@
   <Import Project="$(MSBuildThisFileDirectory)SupportNuGetAudit.targets" Condition=" '$(DisableSupportNuGetAuditTargets)' != 'true' " />
   <Import Project="$(MSBuildThisFileDirectory)SupportTestProjects.targets" Condition=" '$(IsTestableProject)' == 'true' " />
   <Import Project="$(MSBuildThisFileDirectory)SupportAdditionalFiles.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)SupportSystemRuntimeExperimental.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)SupportDetectContinuousIntegration.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)SupportAssemblyAttributes.targets"/>
 
 </Project>

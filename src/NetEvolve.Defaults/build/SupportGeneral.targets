@@ -6,10 +6,6 @@
     <InternalsVisibleTo Include="$(MSBuildProjectName).Tests.Integration" />
   </ItemGroup>
 
-  <PropertyGroup Label="Error Handling" Condition=" '$(Configuration)' == 'Release' ">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-
   <PropertyGroup Condition=" '$(IsTestableProject)' == 'false' ">
     <IsPackable>true</IsPackable>
     <IsTestProject>false</IsTestProject>
