@@ -12,7 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		.gitmodules = .gitmodules
 		Directory.Build.props = Directory.Build.props
-		Directory.Build.targets = Directory.Build.targets
 		Directory.Packages.props = Directory.Packages.props
 		Directory.Solution.props = Directory.Solution.props
 		GitVersion.yml = GitVersion.yml
@@ -38,9 +37,6 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C9525AC4-A52E-4D52-A9A4-389D9FF6A1CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C9525AC4-A52E-4D52-A9A4-389D9FF6A1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -54,6 +50,9 @@ Global
 		{04A3A934-D585-42BD-B551-501F3ED99086}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04A3A934-D585-42BD-B551-501F3ED99086}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04A3A934-D585-42BD-B551-501F3ED99086}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C9525AC4-A52E-4D52-A9A4-389D9FF6A1CE} = {4AD0D117-4F9D-4288-B0F9-D8C1C120B5E4}
