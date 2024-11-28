@@ -1,6 +1,6 @@
 <Project>
 
-    <PropertyGroup Label="NuGet Package Defaults" Condition=" '$(IsPackable)' == 'true' ">
+    <PropertyGroup Label="NuGet Package Defaults" Condition=" '$(IsTestableProject)' != 'true' ">
         <PackageTags>netevolve;$(PackageTags)</PackageTags>
     </PropertyGroup>
 
