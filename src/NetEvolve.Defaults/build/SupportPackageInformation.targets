@@ -1,10 +1,11 @@
 <Project TreatAsLocalProperty="_SolutionLicense;_ProjectReadme;_SolutionReadme">
 
-  <PropertyGroup Label="Package Information" Condition=" '$(IsPackable)' == 'true' ">
+  <PropertyGroup Label="Package Information" Condition=" '$(IsTestableProject)' != 'true' ">
     <PackageId Condition=" '$(PackageId)' == '' ">$(MSBuildProjectName)</PackageId>
+    <Title Condition=" '$(Title)' == '' ">$(MSBuildProjectName)</Title>
 
-    <Authors Condition=" '$(Authors)' == '' ">NetEvolve, samtrion</Authors>
-    <Company Condition=" '$(Company)' == '' ">NetEvolve</Company>
+    <Company Condition=" '$(Company)' == '' or '$(Company)' == '$(Authors)' ">NetEvolve</Company>
+    <Authors Condition=" '$(Authors)' == '' or '$(Authors)' == '$(AssemblyName)' ">NetEvolve, samtrion</Authors>
 
     <IncludeSymbols Condition=" '$(IncludeSymbols)' == '' ">true</IncludeSymbols>
     <SymbolPackageFormat Condition=" '$(SymbolPackageFormat)' == '' ">snupkg</SymbolPackageFormat>
@@ -19,7 +20,7 @@
     <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' != 'true' ">true</GeneratePackageOnBuild>
   </PropertyGroup>
 
-  <ItemGroup Label="Package Files" Condition=" '$(IsPackable)' == 'true' ">
+  <ItemGroup Label="Package Files" Condition=" '$(IsTestableProject)' != 'true' ">
     <_SolutionLicense Include="LICENSE" Condition="Exists('LICENSE')" />
     <_SolutionLicense Include="$(SolutionDir)LICENSE" Condition="@(_SolutionLicense) == '' and Exists('$(SolutionDir)LICENSE')" />
     <None Include="@(_SolutionLicense)" Pack="true" PackagePath="" Visible="false" Condition="Exists(@(_SolutionLicense))" />
