@@ -9,7 +9,7 @@
     <RootNamespace>$(MSBuildProjectName)</RootNamespace>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
 
-    <LangVersion>latest</LangVersion>
+    <LangVersion Condition=" '$(LangVersion)' != 'preview' ">latest</LangVersion>
     <WarningLevel>9999</WarningLevel>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
