@@ -27,6 +27,6 @@ jobs:
     with:
       dotnet-logging: ${{ inputs.dotnet-logging }}
       dotnet-version: ${{ vars.NE_DOTNET_TARGETFRAMEWORKS }}
-      enableSonarQube: true
+      enableSonarQube: ${{ vars.NE_DOTNET_SONAR }}
       solution: ./Defaults.sln
     secrets: inherit
