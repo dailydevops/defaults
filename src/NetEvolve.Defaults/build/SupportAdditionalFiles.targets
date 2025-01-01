@@ -1,6 +1,10 @@
-<Project InitialTargets="UpdateEditorConfig">
+<Project TreatAsLocalProperty="IsCrossTargetingProject">
 
-  <Target Name="UpdateEditorConfig">
+  <PropertyGroup>
+    <IsCrossTargetingProject Condition="$(TargetFrameworks) != ''">true</IsCrossTargetingProject>
+  </PropertyGroup>
+
+  <Target Name="UpdateEditorConfig" BeforeTargets="DispatchToInnerBuilds;BeforeBuild" Condition=" '$(IsCrossTargetingProject)' == '$(IsCrossTargetingBuild)' ">
     <Copy
       SourceFiles="$(MSBuildThisFileDirectory)../configurations/editorconfig.txt"
       DestinationFiles="$(SolutionDir).editorconfig"
