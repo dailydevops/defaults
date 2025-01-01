@@ -1,6 +1,6 @@
-<Project>
+<Project InitialTargets="UpdateEditorConfig">
 
-  <Target Name="UpdateEditorConfig" BeforeTargets="Build">
+  <Target Name="UpdateEditorConfig">
     <Copy
       SourceFiles="$(MSBuildThisFileDirectory)../configurations/editorconfig.txt"
       DestinationFiles="$(SolutionDir).editorconfig"
