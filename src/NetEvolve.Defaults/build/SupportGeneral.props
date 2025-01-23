@@ -48,4 +48,10 @@
     <PreferredUILang>en</PreferredUILang>
   </PropertyGroup>
 
+  <PropertyGroup Label="Development Support" Condition=" '$(SolutionDir)' != '' ">
+    <DirectoryBuildPropsPath>$(SolutionDir)Directory.Build.props</DirectoryBuildPropsPath>
+    <DirectoryBuildTargetsPath>$(SolutionDir)Directory.Build.targets</DirectoryBuildTargetsPath>
+    <DirectoryPackagesPropsPath>$(SolutionDir)Directory.Packages.props</DirectoryPackagesPropsPath>
+  </PropertyGroup>
+
 </Project>
