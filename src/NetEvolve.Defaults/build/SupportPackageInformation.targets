@@ -17,7 +17,11 @@
     <PublishRepositoryUrl Condition=" '$(PublishRepositoryUrl)' == '' ">true</PublishRepositoryUrl>
     <RepositoryType Condition=" '$(RepositoryType)' == '' ">git</RepositoryType>
 
-    <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' != 'true' ">true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' ">true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Label="NuGet Package Defaults" Condition=" '$(IsTestableProject)' != 'true' or '$(DisableNetEvolve)' != 'true' ">
+    <PackageTags>netevolve;$(PackageTags)</PackageTags>
   </PropertyGroup>
 
   <ItemGroup Label="Package Files" Condition=" '$(IsTestableProject)' != 'true' ">

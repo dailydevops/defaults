@@ -11,10 +11,4 @@
     <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
-  <PropertyGroup Label="Properties correction">
-    <IsTestProject Condition="'$(IsTestProject)' != 'true' and $(MSBuildProjectName.Contains('.Tests'))">true</IsTestProject>
-    <IsTestProject Condition="'$(IsTestProject)' != 'true'">false</IsTestProject>
-    <IsPackable Condition="'$(IsPackable)' != 'true' or '$(IsTestProject)' == 'true'">false</IsPackable>
-  </PropertyGroup>
-
 </Project>
