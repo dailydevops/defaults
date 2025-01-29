@@ -1,3 +1,7 @@
 <Project>
 
+    <PropertyGroup Label="Package Information" Condition=" '$(IsTestableProject)' != 'true' ">
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
 </Project>
