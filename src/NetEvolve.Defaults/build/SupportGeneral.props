@@ -3,6 +3,8 @@
   <PropertyGroup Label="Project categorisation">
     <IsTestableProject>false</IsTestableProject>
     <IsTestableProject Condition=" $(MSBuildProjectName.Contains('.Tests.')) ">true</IsTestableProject>
+    <IsXampleProject>false</IsXampleProject>
+    <IsXampleProject Condition=" $(MSBuildProjectName.Contains('.Xample')) or $(MSBuildProjectName.StartsWith('Xample.')) ">true</IsXampleProject>
   </PropertyGroup>
 
   <PropertyGroup Label="General Configurations">

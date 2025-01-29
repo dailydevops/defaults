@@ -6,8 +6,13 @@
     <InternalsVisibleTo Include="$(MSBuildProjectName).Tests.Integration" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(IsTestableProject)' == 'false' ">
+  <PropertyGroup Condition=" '$(IsTestableProject)' == 'false' and '$(IsXampleProject)' == 'false' ">
     <IsPackable>true</IsPackable>
+    <IsTestProject>false</IsTestProject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(IsXampleProject)' == 'true' ">
+    <IsPackable>false</IsPackable>
     <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 

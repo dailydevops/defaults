@@ -7,7 +7,7 @@
 
     <AssemblyAttribute
       Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute"
-      Condition=" '$(IsTestableProject)' == 'true' and $([MSBuild]::IsTargetFrameworkCompatible($(TargetFramework), 'net5.0')) == 'true' " />
+      Condition=" ('$(IsTestableProject)' == 'true' or '$(IsXampleProject)' != 'true') and $([MSBuild]::IsTargetFrameworkCompatible($(TargetFramework), 'net5.0')) == 'true' " />
   </ItemGroup>
 
 </Project>
