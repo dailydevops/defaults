@@ -1,6 +1,6 @@
 <Project TreatAsLocalProperty="_SolutionLicense;_ProjectReadme;_SolutionReadme">
 
-  <PropertyGroup Label="Package Information" Condition=" '$(IsTestableProject)' != 'true' ">
+  <PropertyGroup Label="Package Information" Condition=" '$(IsTestableProject)' != 'true' and '$(IsXampleProject)' != 'true' ">
     <PackageId Condition=" '$(PackageId)' == '' ">$(MSBuildProjectName)</PackageId>
     <Title Condition=" '$(Title)' == '' ">$(MSBuildProjectName)</Title>
 
@@ -20,11 +20,11 @@
     <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' ">true</GeneratePackageOnBuild>
   </PropertyGroup>
 
-  <PropertyGroup Label="NuGet Package Defaults" Condition=" '$(IsTestableProject)' != 'true' or '$(DisableNetEvolve)' != 'true' ">
+  <PropertyGroup Label="NuGet Package Defaults" Condition=" '$(IsTestableProject)' != 'true' and '$(IsXampleProject)' != 'true' and '$(DisableNetEvolve)' != 'true' ">
     <PackageTags>netevolve;$(PackageTags)</PackageTags>
   </PropertyGroup>
 
-  <ItemGroup Label="Package Files" Condition=" '$(IsTestableProject)' != 'true' ">
+  <ItemGroup Label="Package Files" Condition=" '$(IsTestableProject)' != 'true' and '$(IsXampleProject)' != 'true' ">
     <_SolutionLicense Include="LICENSE" Condition="Exists('LICENSE')" />
     <_SolutionLicense Include="$(SolutionDir)LICENSE" Condition="@(_SolutionLicense) == '' and Exists('$(SolutionDir)LICENSE')" />
     <None Include="@(_SolutionLicense)" Pack="true" PackagePath="" Visible="false" Condition="Exists(@(_SolutionLicense))" />
