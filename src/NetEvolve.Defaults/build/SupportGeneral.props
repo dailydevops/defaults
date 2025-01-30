@@ -51,7 +51,7 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <GeneratedFolder>_Generated</GeneratedFolder>
+    <GeneratedFolder>generated</GeneratedFolder>
     <CompilerGeneratedFilesOutputPath>$(GeneratedFolder)\$(TargetFramework)</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
   
