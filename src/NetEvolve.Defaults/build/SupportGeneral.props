@@ -49,5 +49,14 @@
     <NeutralLanguage>en</NeutralLanguage>
     <PreferredUILang>en</PreferredUILang>
   </PropertyGroup>
+  
+  <PropertyGroup>
+    <GeneratedFolder>_Generated</GeneratedFolder>
+    <CompilerGeneratedFilesOutputPath>$(GeneratedFolder)\$(TargetFramework)</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Remove="$(GeneratedFolder)/**/*.cs" />
+  </ItemGroup>
 
 </Project>
