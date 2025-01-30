@@ -50,13 +50,13 @@
     <PreferredUILang>en</PreferredUILang>
   </PropertyGroup>
   
-  <PropertyGroup>
+  <PropertyGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' ">
     <GeneratedFolder>_generated</GeneratedFolder>
     <CompilerGeneratedFilesOutputPath>$(GeneratedFolder)/$(TargetFramework)</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="$(GeneratedFolder)/**/*.cs" Condition=" Exists('$(GeneratedFolder)') " />
+  <ItemGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' ">
+    <Compile Remove="$(GeneratedFolder)/**/*.cs" />
   </ItemGroup>
 
 </Project>
