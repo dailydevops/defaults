@@ -14,6 +14,7 @@
   <PropertyGroup Condition=" '$(IsXampleProject)' == 'true' ">
     <IsPackable>false</IsPackable>
     <IsTestProject>false</IsTestProject>
+    <WarnOnPackingNonPackableProject>false</WarnOnPackingNonPackableProject>
   </PropertyGroup>
 
 </Project>
