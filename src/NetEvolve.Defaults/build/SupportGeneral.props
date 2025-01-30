@@ -50,12 +50,12 @@
     <PreferredUILang>en</PreferredUILang>
   </PropertyGroup>
   
-  <PropertyGroup>
-    <GeneratedFolder>generated</GeneratedFolder>
+  <PropertyGroup Condition=" '$(EmitCompilerGeneratedFiles)' == 'true' ">
+    <GeneratedFolder>_generated</GeneratedFolder>
     <CompilerGeneratedFilesOutputPath>$(GeneratedFolder)\$(TargetFramework)</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
-  
-  <ItemGroup>
+
+  <ItemGroup Condition=" '$(EmitCompilerGeneratedFiles)' == 'true' ">
     <Compile Remove="$(GeneratedFolder)/**/*.cs" />
   </ItemGroup>
 
