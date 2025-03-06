@@ -10,7 +10,7 @@
     <IncludeSymbols Condition=" '$(IncludeSymbols)' == '' ">true</IncludeSymbols>
     <SymbolPackageFormat Condition=" '$(SymbolPackageFormat)' == '' ">snupkg</SymbolPackageFormat>
 
-    <PackageLicenseExpression Condition=" '$(PackageLicenseExpression)' == '' ">MIT</PackageLicenseExpression>
+    <PackageLicenseExpression Condition=" '$(PackageLicenseExpression)' == '' and '$(PackageLicenseFile)' == '' ">MIT</PackageLicenseExpression>
     <PackageReadmeFile Condition=" '$(PackageReadmeFile)' == '' ">README.md</PackageReadmeFile>
     <PackageIcon Condition=" '$(PackageIcon)' == '' ">logo.png</PackageIcon>
 
