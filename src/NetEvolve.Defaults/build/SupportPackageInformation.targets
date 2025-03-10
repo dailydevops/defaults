@@ -36,8 +36,8 @@
 
     <_ProjectLogo Include="$(ProjectDir)logo.png" Condition="Exists('$(ProjectDir)logo.png')" />
     <_SolutionLogo Include="$(SolutionDir)logo.png" Condition="@(_ProjectLogo) == '' and Exists('$(SolutionDir)logo.png')" />
-    <None Include="@(_ProjectLogo)" Pack="true" PackagePath="" Visible="true" Condition="Exists(@(_ProjectLogo))" />
-    <None Include="@(_SolutionLogo)" Pack="true" PackagePath="" Visible="false" Condition="!Exists(@(_ProjectLogo)) and Exists(@(_SolutionLogo))" />
+    <None Include="@(_ProjectLogo)" Pack="true" PackagePath="" Visible="true" Condition="'$(DisablePackageLogo)' != 'true' and Exists(@(_ProjectLogo))" />
+    <None Include="@(_SolutionLogo)" Pack="true" PackagePath="" Visible="false" Condition="'$(DisablePackageLogo)' != 'true' and !Exists(@(_ProjectLogo)) and Exists(@(_SolutionLogo))" />
   </ItemGroup>
 
 </Project>
