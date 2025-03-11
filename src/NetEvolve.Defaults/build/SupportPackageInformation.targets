@@ -11,7 +11,7 @@
     <SymbolPackageFormat Condition=" '$(SymbolPackageFormat)' == '' ">snupkg</SymbolPackageFormat>
 
     <PackageLicenseExpression Condition=" '$(PackageLicenseExpression)' == '' and '$(PackageLicenseFile)' == '' ">MIT</PackageLicenseExpression>
-    <PackageReadmeFile Condition=" '$(PackageReadmeFile)' == '' ">README.md</PackageReadmeFile>
+    <PackageReadmeFile Condition="'$(DisableReadme)' != 'true' and '$(PackageReadmeFile)' == '' ">README.md</PackageReadmeFile>
     <PackageIcon Condition="'$(DisablePackageLogo)' != 'true' and '$(PackageIcon)' == '' ">logo.png</PackageIcon>
 
     <PublishRepositoryUrl Condition=" '$(PublishRepositoryUrl)' == '' ">true</PublishRepositoryUrl>
@@ -31,8 +31,8 @@
 
     <_ProjectReadme Include="$(ProjectDir)README.md" Condition="Exists('$(ProjectDir)README.md')" />
     <_SolutionReadme Include="$(SolutionDir)README.md" Condition="@(_ProjectReadme) == '' and Exists('$(SolutionDir)README.md')" />
-    <None Include="@(_ProjectReadme)" Pack="true" PackagePath="" Visible="true" Condition="Exists(@(_ProjectReadme))" />
-    <None Include="@(_SolutionReadme)" Pack="true" PackagePath="" Visible="false" Condition="!Exists(@(_ProjectReadme)) and Exists(@(_SolutionReadme))" />
+    <None Include="@(_ProjectReadme)" Pack="true" PackagePath="" Visible="true" Condition="'$(DisableReadme)' != 'true' and Exists(@(_ProjectReadme))" />
+    <None Include="@(_SolutionReadme)" Pack="true" PackagePath="" Visible="false" Condition="'$(DisableReadme)' != 'true' and !Exists(@(_ProjectReadme)) and Exists(@(_SolutionReadme))" />
 
     <_ProjectLogo Include="$(ProjectDir)logo.png" Condition="Exists('$(ProjectDir)logo.png')" />
     <_SolutionLogo Include="$(SolutionDir)logo.png" Condition="@(_ProjectLogo) == '' and Exists('$(SolutionDir)logo.png')" />
