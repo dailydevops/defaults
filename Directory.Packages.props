@@ -11,7 +11,13 @@
     <GlobalPackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
     <GlobalPackageReference
       Include="Microsoft.VisualStudio.Threading.Analyzers"
-      Version="17.12.19"
+      Version="17.13.61"
+    />
+    <GlobalPackageReference Include="Roslynator.Analyzers" Version="4.13.1" />
+    <GlobalPackageReference
+      Include="SonarAnalyzer.CSharp"
+      Version="10.9.0.115408"
+      Condition=" '$(BuildingInsideVisualStudio)' == 'true' "
     />
   </ItemGroup>
   <ItemGroup>
