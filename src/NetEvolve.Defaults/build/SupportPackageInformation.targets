@@ -1,43 +1,91 @@
 <Project TreatAsLocalProperty="_SolutionLicense;_ProjectReadme;_SolutionReadme">
-
-  <PropertyGroup Label="Package Information" Condition=" '$(IsTestableProject)' != 'true' and '$(IsXampleProject)' != 'true' ">
+  <PropertyGroup
+    Label="Package Information"
+    Condition=" '$(IsTestableProject)' != 'true' and '$(IsXampleProject)' != 'true' "
+  >
     <PackageId Condition=" '$(PackageId)' == '' ">$(MSBuildProjectName)</PackageId>
     <Title Condition=" '$(Title)' == '' ">$(MSBuildProjectName)</Title>
-
     <Company Condition=" '$(Company)' == '' or '$(Company)' == '$(Authors)' ">NetEvolve</Company>
-    <Authors Condition=" '$(Authors)' == '' or '$(Authors)' == '$(AssemblyName)' ">NetEvolve, samtrion</Authors>
-
+    <Authors Condition=" '$(Authors)' == '' or '$(Authors)' == '$(AssemblyName)' "
+      >NetEvolve, samtrion</Authors
+    >
     <IncludeSymbols Condition=" '$(IncludeSymbols)' == '' ">true</IncludeSymbols>
     <SymbolPackageFormat Condition=" '$(SymbolPackageFormat)' == '' ">snupkg</SymbolPackageFormat>
-
-    <PackageLicenseExpression Condition=" '$(PackageLicenseExpression)' == '' and '$(PackageLicenseFile)' == '' ">MIT</PackageLicenseExpression>
-    <PackageReadmeFile Condition="'$(DisableReadme)' != 'true' and '$(PackageReadmeFile)' == '' ">README.md</PackageReadmeFile>
-    <PackageIcon Condition="'$(DisablePackageLogo)' != 'true' and '$(PackageIcon)' == '' ">logo.png</PackageIcon>
-
+    <PackageLicenseExpression
+      Condition=" '$(PackageLicenseExpression)' == '' and '$(PackageLicenseFile)' == '' "
+      >MIT</PackageLicenseExpression
+    >
+    <PackageReadmeFile Condition="'$(DisableReadme)' != 'true' and '$(PackageReadmeFile)' == '' "
+      >README.md</PackageReadmeFile
+    >
+    <PackageIcon Condition="'$(DisablePackageLogo)' != 'true' and '$(PackageIcon)' == '' "
+      >logo.png</PackageIcon
+    >
     <PublishRepositoryUrl Condition=" '$(PublishRepositoryUrl)' == '' ">true</PublishRepositoryUrl>
     <RepositoryType Condition=" '$(RepositoryType)' == '' ">git</RepositoryType>
-
-    <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' ">true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' "
+      >true</GeneratePackageOnBuild
+    >
   </PropertyGroup>
-
-  <PropertyGroup Label="NuGet Package Defaults" Condition=" '$(IsTestableProject)' != 'true' and '$(IsXampleProject)' != 'true' and '$(DisableNetEvolve)' != 'true' ">
+  <PropertyGroup
+    Label="NuGet Package Defaults"
+    Condition=" '$(IsTestableProject)' != 'true' and '$(IsXampleProject)' != 'true' and '$(DisableNetEvolve)' != 'true' "
+  >
     <PackageTags>netevolve;$(PackageTags)</PackageTags>
   </PropertyGroup>
-
-  <ItemGroup Label="Package Files" Condition=" '$(IsTestableProject)' != 'true' and '$(IsXampleProject)' != 'true' ">
+  <ItemGroup
+    Label="Package Files"
+    Condition=" '$(IsTestableProject)' != 'true' and '$(IsXampleProject)' != 'true' "
+  >
     <_SolutionLicense Include="LICENSE" Condition="Exists('LICENSE')" />
-    <_SolutionLicense Include="$(SolutionDir)LICENSE" Condition="@(_SolutionLicense) == '' and Exists('$(SolutionDir)LICENSE')" />
-    <None Include="@(_SolutionLicense)" Pack="true" PackagePath="" Visible="false" Condition="Exists(@(_SolutionLicense))" />
-
+    <_SolutionLicense
+      Include="$(SolutionDir)LICENSE"
+      Condition="@(_SolutionLicense) == '' and Exists('$(SolutionDir)LICENSE')"
+    />
+    <None
+      Include="@(_SolutionLicense)"
+      Pack="true"
+      PackagePath=""
+      Visible="false"
+      Condition="Exists(@(_SolutionLicense))"
+    />
     <_ProjectReadme Include="$(ProjectDir)README.md" Condition="Exists('$(ProjectDir)README.md')" />
-    <_SolutionReadme Include="$(SolutionDir)README.md" Condition="@(_ProjectReadme) == '' and Exists('$(SolutionDir)README.md')" />
-    <None Include="@(_ProjectReadme)" Pack="true" PackagePath="" Visible="true" Condition="'$(DisableReadme)' != 'true' and Exists(@(_ProjectReadme))" />
-    <None Include="@(_SolutionReadme)" Pack="true" PackagePath="" Visible="false" Condition="'$(DisableReadme)' != 'true' and !Exists(@(_ProjectReadme)) and Exists(@(_SolutionReadme))" />
-
+    <_SolutionReadme
+      Include="$(SolutionDir)README.md"
+      Condition="@(_ProjectReadme) == '' and Exists('$(SolutionDir)README.md')"
+    />
+    <None
+      Include="@(_ProjectReadme)"
+      Pack="true"
+      PackagePath=""
+      Visible="true"
+      Condition="'$(DisableReadme)' != 'true' and Exists(@(_ProjectReadme))"
+    />
+    <None
+      Include="@(_SolutionReadme)"
+      Pack="true"
+      PackagePath=""
+      Visible="false"
+      Condition="'$(DisableReadme)' != 'true' and !Exists(@(_ProjectReadme)) and Exists(@(_SolutionReadme))"
+    />
     <_ProjectLogo Include="$(ProjectDir)logo.png" Condition="Exists('$(ProjectDir)logo.png')" />
-    <_SolutionLogo Include="$(SolutionDir)logo.png" Condition="@(_ProjectLogo) == '' and Exists('$(SolutionDir)logo.png')" />
-    <None Include="@(_ProjectLogo)" Pack="true" PackagePath="" Visible="true" Condition="'$(DisablePackageLogo)' != 'true' and Exists(@(_ProjectLogo))" />
-    <None Include="@(_SolutionLogo)" Pack="true" PackagePath="" Visible="false" Condition="'$(DisablePackageLogo)' != 'true' and !Exists(@(_ProjectLogo)) and Exists(@(_SolutionLogo))" />
+    <_SolutionLogo
+      Include="$(SolutionDir)logo.png"
+      Condition="@(_ProjectLogo) == '' and Exists('$(SolutionDir)logo.png')"
+    />
+    <None
+      Include="@(_ProjectLogo)"
+      Pack="true"
+      PackagePath=""
+      Visible="true"
+      Condition="'$(DisablePackageLogo)' != 'true' and Exists(@(_ProjectLogo))"
+    />
+    <None
+      Include="@(_SolutionLogo)"
+      Pack="true"
+      PackagePath=""
+      Visible="false"
+      Condition="'$(DisablePackageLogo)' != 'true' and !Exists(@(_ProjectLogo)) and Exists(@(_SolutionLogo))"
+    />
   </ItemGroup>
-
 </Project>

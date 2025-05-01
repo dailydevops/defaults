@@ -1,5 +1,4 @@
 <Project>
-
   <PropertyGroup Label="Package settings">
     <Title>$(MSBuildProjectName)</Title>
     <Description>Source Only package, which provides the standard configurations and settings for the NetEvolve projects. Such as `.editorconfig`, build props and targets.</Description>
@@ -9,10 +8,8 @@
     <PackageTags>editorconfig;configuration;settings;props;targets</PackageTags>
     <CopyrightYearStart>2024</CopyrightYearStart>
   </PropertyGroup>
-
   <PropertyGroup>
     <NetEvolve_ProjectTargetFrameworks>netstandard2.0</NetEvolve_ProjectTargetFrameworks>
     <NetEvolve_TestTargetFrameworks>net8.0</NetEvolve_TestTargetFrameworks>
   </PropertyGroup>
-
 </Project>

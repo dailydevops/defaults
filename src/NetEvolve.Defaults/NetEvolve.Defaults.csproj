@@ -1,19 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <Import Project="build\NetEvolve.Defaults.props" />
-
   <PropertyGroup>
     <TargetFramework>$(NetEvolve_ProjectTargetFrameworks)</TargetFramework>
-
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <IsPackable>true</IsPackable>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <IncludeSymbols>false</IncludeSymbols>
     <NoWarn>$(NoWarn);NU5128;</NoWarn>
-
     <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
-
   <ItemGroup>
     <None Include="build\**" Pack="true" PackagePath="build\" />
     <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\" />
@@ -21,11 +16,11 @@
     <None Include="configurations\**" Pack="true" PackagePath="configurations\" />
     <None Include="_._" Pack="true" PackagePath="lib\$(TargetFramework)" Visible="false" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.csproj" PrivateAssets="None" />
+    <ProjectReference
+      Include="..\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.csproj"
+      PrivateAssets="None"
+    />
   </ItemGroup>
-
   <Import Project="build\NetEvolve.Defaults.targets" />
-
 </Project>
