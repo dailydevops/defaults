@@ -1,13 +1,23 @@
 <Project>
-
   <Import Project="$(MSBuildThisFileDirectory)SupportGeneral.targets" />
-  <Import Project="$(MSBuildThisFileDirectory)SupportPackageInformation.targets" Condition=" '$(DisableSupportPackageInformation)' != 'true' " />
-  <Import Project="$(MSBuildThisFileDirectory)SupportCopyright.targets" Condition=" '$(DisableSupportCopyrightTargets)' != 'true' " />
-  <Import Project="$(MSBuildThisFileDirectory)SupportNuGetAudit.targets" Condition=" '$(DisableSupportNuGetAuditTargets)' != 'true' " />
-  <Import Project="$(MSBuildThisFileDirectory)SupportTestProjects.targets" Condition=" '$(IsTestableProject)' == 'true' " />
+  <Import
+    Project="$(MSBuildThisFileDirectory)SupportPackageInformation.targets"
+    Condition=" '$(DisableSupportPackageInformation)' != 'true' "
+  />
+  <Import
+    Project="$(MSBuildThisFileDirectory)SupportCopyright.targets"
+    Condition=" '$(DisableSupportCopyrightTargets)' != 'true' "
+  />
+  <Import
+    Project="$(MSBuildThisFileDirectory)SupportNuGetAudit.targets"
+    Condition=" '$(DisableSupportNuGetAuditTargets)' != 'true' "
+  />
+  <Import
+    Project="$(MSBuildThisFileDirectory)SupportTestProjects.targets"
+    Condition=" '$(IsTestableProject)' == 'true' "
+  />
   <Import Project="$(MSBuildThisFileDirectory)SupportAdditionalFiles.targets" />
   <Import Project="$(MSBuildThisFileDirectory)SupportSystemRuntimeExperimental.targets" />
   <Import Project="$(MSBuildThisFileDirectory)SupportDetectContinuousIntegration.targets" />
-  <Import Project="$(MSBuildThisFileDirectory)SupportAssemblyAttributes.targets"/>
-
+  <Import Project="$(MSBuildThisFileDirectory)SupportAssemblyAttributes.targets" />
 </Project>

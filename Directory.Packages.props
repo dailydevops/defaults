@@ -4,12 +4,15 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <GlobalPackageReference Include="CSharpier.MSBuild" Version="0.30.6" />
+    <GlobalPackageReference Include="CSharpier.MSBuild" Version="1.0.1" />
     <GlobalPackageReference Include="GitVersion.MsBuild" Version="6.1.0" />
     <GlobalPackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4" />
     <GlobalPackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0" />
     <GlobalPackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
-    <GlobalPackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.12.19" />
+    <GlobalPackageReference
+      Include="Microsoft.VisualStudio.Threading.Analyzers"
+      Version="17.12.19"
+    />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="coverlet.collector" Version="6.0.4">

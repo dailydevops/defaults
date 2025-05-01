@@ -1,25 +1,24 @@
 <Project>
-
   <PropertyGroup Label="Project categorisation">
     <IsTestableProject>false</IsTestableProject>
-    <IsTestableProject Condition=" $(MSBuildProjectName.Contains('.Tests.')) ">true</IsTestableProject>
+    <IsTestableProject Condition=" $(MSBuildProjectName.Contains('.Tests.')) "
+      >true</IsTestableProject
+    >
     <IsXampleProject>false</IsXampleProject>
-    <IsXampleProject Condition=" $(MSBuildProjectName.Contains('.Xample')) or $(MSBuildProjectName.StartsWith('Xample.')) ">true</IsXampleProject>
+    <IsXampleProject
+      Condition=" $(MSBuildProjectName.Contains('.Xample')) or $(MSBuildProjectName.StartsWith('Xample.')) "
+      >true</IsXampleProject
+    >
   </PropertyGroup>
-
   <PropertyGroup Label="General Configurations">
     <RootNamespace>$(MSBuildProjectName)</RootNamespace>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
-
     <LangVersion Condition=" '$(LangVersion)' != 'preview' ">latest</LangVersion>
     <WarningLevel>9999</WarningLevel>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-
     <Features>strict</Features>
-
     <AnalysisLevel>latest</AnalysisLevel>
     <AnalysisMode>All</AnalysisMode>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
@@ -30,35 +29,32 @@
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     <_SkipUpgradeNetAnalyzersNuGetWarning>true</_SkipUpgradeNetAnalyzersNuGetWarning>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
-
-    <CheckEolTargetFramework Condition=" '$(Configuration)' == 'Release' ">false</CheckEolTargetFramework>
-    <SuppressTfmSupportBuildWarnings Condition=" '$(Configuration)' == 'Release' ">true</SuppressTfmSupportBuildWarnings>
-
+    <CheckEolTargetFramework Condition=" '$(Configuration)' == 'Release' "
+      >false</CheckEolTargetFramework
+    >
+    <SuppressTfmSupportBuildWarnings Condition=" '$(Configuration)' == 'Release' "
+      >true</SuppressTfmSupportBuildWarnings
+    >
     <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
-
     <NoWarn>$(NoWarn);CA1810;CA1031;</NoWarn>
-    <NoWarn Condition=" '$(IsTestableProject)' == 'true' ">$(NoWarn);CS8604;CA2007;S4144;1591;CA1707;IDE1006;VSTHRD200;CA1822;CA1515;S3011;S1192</NoWarn>
-  
+    <NoWarn Condition=" '$(IsTestableProject)' == 'true' "
+      >$(NoWarn);CS8604;CA2007;S4144;1591;CA1707;IDE1006;VSTHRD200;CA1822;CA1515;S3011;S1192</NoWarn
+    >
     <WarningsNotAsErrors>$(WarningsNotAsErrors);CA5394;NU1701;CS0618;S1133</WarningsNotAsErrors>
   </PropertyGroup>
-
   <PropertyGroup Label="Error Handling" Condition=" '$(Configuration)' == 'Release' ">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
   </PropertyGroup>
-
   <PropertyGroup Label="Language Configuration">
     <NeutralLanguage>en</NeutralLanguage>
     <PreferredUILang>en</PreferredUILang>
   </PropertyGroup>
-  
   <PropertyGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' ">
     <GeneratedFolder>_generated</GeneratedFolder>
     <CompilerGeneratedFilesOutputPath>$(GeneratedFolder)/$(TargetFramework)</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
-
   <ItemGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' ">
     <Compile Remove="$(GeneratedFolder)/**/*.cs" />
   </ItemGroup>
-
 </Project>
