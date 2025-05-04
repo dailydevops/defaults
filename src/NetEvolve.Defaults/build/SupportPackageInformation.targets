@@ -6,26 +6,19 @@
     <PackageId Condition=" '$(PackageId)' == '' ">$(MSBuildProjectName)</PackageId>
     <Title Condition=" '$(Title)' == '' ">$(MSBuildProjectName)</Title>
     <Company Condition=" '$(Company)' == '' or '$(Company)' == '$(Authors)' ">NetEvolve</Company>
-    <Authors Condition=" '$(Authors)' == '' or '$(Authors)' == '$(AssemblyName)' "
-      >NetEvolve, samtrion</Authors
-    >
+    <Authors Condition=" '$(Authors)' == '' or '$(Authors)' == '$(AssemblyName)' ">NetEvolve, samtrion</Authors>
     <IncludeSymbols Condition=" '$(IncludeSymbols)' == '' ">true</IncludeSymbols>
     <SymbolPackageFormat Condition=" '$(SymbolPackageFormat)' == '' ">snupkg</SymbolPackageFormat>
-    <PackageLicenseExpression
-      Condition=" '$(PackageLicenseExpression)' == '' and '$(PackageLicenseFile)' == '' "
+    <PackageLicenseExpression Condition=" '$(PackageLicenseExpression)' == '' and '$(PackageLicenseFile)' == '' "
       >MIT</PackageLicenseExpression
     >
     <PackageReadmeFile Condition="'$(DisableReadme)' != 'true' and '$(PackageReadmeFile)' == '' "
       >README.md</PackageReadmeFile
     >
-    <PackageIcon Condition="'$(DisablePackageLogo)' != 'true' and '$(PackageIcon)' == '' "
-      >logo.png</PackageIcon
-    >
+    <PackageIcon Condition="'$(DisablePackageLogo)' != 'true' and '$(PackageIcon)' == '' ">logo.png</PackageIcon>
     <PublishRepositoryUrl Condition=" '$(PublishRepositoryUrl)' == '' ">true</PublishRepositoryUrl>
     <RepositoryType Condition=" '$(RepositoryType)' == '' ">git</RepositoryType>
-    <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' "
-      >true</GeneratePackageOnBuild
-    >
+    <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' ">true</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup
     Label="NuGet Package Defaults"
@@ -33,10 +26,7 @@
   >
     <PackageTags>netevolve;$(PackageTags)</PackageTags>
   </PropertyGroup>
-  <ItemGroup
-    Label="Package Files"
-    Condition=" '$(IsTestableProject)' != 'true' and '$(IsXampleProject)' != 'true' "
-  >
+  <ItemGroup Label="Package Files" Condition=" '$(IsTestableProject)' != 'true' and '$(IsXampleProject)' != 'true' ">
     <_SolutionLicense Include="LICENSE" Condition="Exists('LICENSE')" />
     <_SolutionLicense
       Include="$(SolutionDir)LICENSE"

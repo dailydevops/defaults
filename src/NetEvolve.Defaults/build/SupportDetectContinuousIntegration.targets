@@ -13,8 +13,7 @@
       >$(BUILD_SOURCEBRANCH.Replace('refs/heads/', '').Replace('refs/tags/', ''))</RepositoryBranch
     >
     <!-- AppVeyor: https://www.appveyor.com/docs/environment-variables/ -->
-    <RepositoryBranch
-      Condition="'$(RepositoryBranch)' == '' and '$(APPVEYOR_PULL_REQUEST_NUMBER)' != ''"
+    <RepositoryBranch Condition="'$(RepositoryBranch)' == '' and '$(APPVEYOR_PULL_REQUEST_NUMBER)' != ''"
       >pr$(APPVEYOR_PULL_REQUEST_NUMBER)</RepositoryBranch
     >
     <RepositoryBranch Condition="'$(RepositoryBranch)' == '' and '$(APPVEYOR_REPO_TAG_NAME)' != ''"
@@ -39,9 +38,7 @@
     <RepositoryBranch Condition="'$(RepositoryBranch)' == '' and '$(CIRCLE_PR_NUMBER)' != ''"
       >pr$(CIRCLE_PR_NUMBER)</RepositoryBranch
     >
-    <RepositoryBranch Condition="'$(RepositoryBranch)' == '' and '$(CIRCLE_TAG)' != ''"
-      >$(CIRCLE_TAG)</RepositoryBranch
-    >
+    <RepositoryBranch Condition="'$(RepositoryBranch)' == '' and '$(CIRCLE_TAG)' != ''">$(CIRCLE_TAG)</RepositoryBranch>
     <RepositoryBranch Condition="'$(RepositoryBranch)' == '' and '$(CIRCLE_BRANCH)' != ''"
       >$(CIRCLE_BRANCH)</RepositoryBranch
     >
@@ -52,16 +49,14 @@
     <RepositoryBranch Condition="'$(RepositoryBranch)' == '' and '$(CI_MERGE_REQUEST_IID)' != ''"
       >pr$(CI_MERGE_REQUEST_IID)</RepositoryBranch
     >
-    <RepositoryBranch
-      Condition="'$(RepositoryBranch)' == '' and '$(CI_EXTERNAL_PULL_REQUEST_IID)' != ''"
+    <RepositoryBranch Condition="'$(RepositoryBranch)' == '' and '$(CI_EXTERNAL_PULL_REQUEST_IID)' != ''"
       >pr$(CI_EXTERNAL_PULL_REQUEST_IID)</RepositoryBranch
     >
     <RepositoryBranch Condition="'$(RepositoryBranch)' == '' and '$(CI_COMMIT_BRANCH)' != ''"
       >$(CI_COMMIT_BRANCH)</RepositoryBranch
     >
     <!-- Buddy: https://buddy.works/docs/pipelines/environment-variables#default-environment-variables -->
-    <RepositoryBranch
-      Condition="'$(RepositoryBranch)' == '' and '$(BUDDY_EXECUTION_PULL_REQUEST_NO)' != ''"
+    <RepositoryBranch Condition="'$(RepositoryBranch)' == '' and '$(BUDDY_EXECUTION_PULL_REQUEST_NO)' != ''"
       >pr$(BUDDY_EXECUTION_PULL_REQUEST_NO)</RepositoryBranch
     >
     <RepositoryBranch Condition="'$(RepositoryBranch)' == '' and '$(BUDDY_EXECUTION_TAG)' != ''"
