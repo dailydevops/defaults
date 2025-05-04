@@ -1,9 +1,7 @@
 <Project>
   <PropertyGroup Label="Project categorisation">
     <IsTestableProject>false</IsTestableProject>
-    <IsTestableProject Condition=" $(MSBuildProjectName.Contains('.Tests.')) "
-      >true</IsTestableProject
-    >
+    <IsTestableProject Condition=" $(MSBuildProjectName.Contains('.Tests.')) ">true</IsTestableProject>
     <IsXampleProject>false</IsXampleProject>
     <IsXampleProject
       Condition=" $(MSBuildProjectName.Contains('.Xample')) or $(MSBuildProjectName.StartsWith('Xample.')) "
@@ -29,9 +27,7 @@
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     <_SkipUpgradeNetAnalyzersNuGetWarning>true</_SkipUpgradeNetAnalyzersNuGetWarning>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
-    <CheckEolTargetFramework Condition=" '$(Configuration)' == 'Release' "
-      >false</CheckEolTargetFramework
-    >
+    <CheckEolTargetFramework Condition=" '$(Configuration)' == 'Release' ">false</CheckEolTargetFramework>
     <SuppressTfmSupportBuildWarnings Condition=" '$(Configuration)' == 'Release' "
       >true</SuppressTfmSupportBuildWarnings
     >

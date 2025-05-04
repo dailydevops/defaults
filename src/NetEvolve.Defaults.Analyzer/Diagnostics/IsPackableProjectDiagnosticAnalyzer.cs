@@ -100,8 +100,7 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
                 options,
                 _ruleNED0009,
                 "build_property.copyrightyearstart",
-                propertyValue =>
-                    int.TryParse(propertyValue, out var year) && year >= 1900 && year <= 9999
+                propertyValue => int.TryParse(propertyValue, out var year) && year >= 1900 && year <= 9999
             );
         });
     }
@@ -120,11 +119,7 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
         }
     }
 
-    private static bool ValidateKey(
-        AnalyzerConfigOptions options,
-        string key,
-        Func<string, bool>? isValidValue
-    )
+    private static bool ValidateKey(AnalyzerConfigOptions options, string key, Func<string, bool>? isValidValue)
     {
         var isConfigured = options.TryGetValue(key, out var configuredValue);
 
