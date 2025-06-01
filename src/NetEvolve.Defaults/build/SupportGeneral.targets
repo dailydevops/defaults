@@ -13,4 +13,9 @@
     <IsTestProject>false</IsTestProject>
     <WarnOnPackingNonPackableProject>false</WarnOnPackingNonPackableProject>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="$(ProjectDir)/*.sarif" />
+    <None Remove="$(ProjectDir)/**/*.sarif" />
+    <None Remove="$(ProjectDir)/TestResults/**" />
+  </ItemGroup>
 </Project>
