@@ -37,6 +37,7 @@
       >$(NoWarn);CS8604;CA2007;S4144;1591;CA1707;IDE1006;VSTHRD200;CA1822;CA1515;S3011;S1192</NoWarn
     >
     <WarningsNotAsErrors>$(WarningsNotAsErrors);CA5394;NU1701;CS0618;S1133</WarningsNotAsErrors>
+    <ErrorLog>diagnostics-$(MSBuildProjectName)-$(TargetFramework)-$(Configuration).sarif</ErrorLog>
   </PropertyGroup>
   <PropertyGroup Label="Error Handling" Condition=" '$(Configuration)' == 'Release' ">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
