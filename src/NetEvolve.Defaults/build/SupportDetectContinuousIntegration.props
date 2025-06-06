@@ -74,7 +74,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(IsContinuousIntegration)' == 'true' ">
     <Deterministic>true</Deterministic>
-    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 </Project>
