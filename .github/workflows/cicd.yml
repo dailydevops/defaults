@@ -5,7 +5,6 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  merge_group:
   workflow_dispatch:
     inputs:
       dotnet-logging:
@@ -21,11 +20,10 @@ on:
 
 jobs:
   all:
-    if: github.run_id != 1
     name: Build & Tests
-    uses: dailydevops/pipelines/.github/workflows/cicd-dotnet.yml@1.1.22
+    uses: dailydevops/pipelines/.github/workflows/build-dotnet-single.yml@1.1.22
     with:
-      dotnet-logging: ${{ inputs.dotnet-logging }}
-      dotnet-version: ${{ vars.NE_DOTNET_TARGETFRAMEWORKS }}
+      dotnetLogging: ${{ inputs.dotnet-logging }}
+      dotnetVersion: ${{ vars.NE_DOTNET_TARGETFRAMEWORKS }}
       solution: ./Defaults.sln
     secrets: inherit
