@@ -12,6 +12,7 @@
       DestinationFiles="$(SolutionDir).editorconfig"
       OverwriteReadOnlyFiles="true"
       SkipUnchangedFiles="true"
+      ContinueOnError="true"
     />
   </Target>
 </Project>
