@@ -34,7 +34,7 @@
     <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
     <NoWarn>$(NoWarn);CA1810;CA1031;</NoWarn>
     <NoWarn Condition=" '$(IsTestableProject)' == 'true' "
-      >$(NoWarn);CS8604;CA2007;S4144;1591;CA1707;IDE1006;VSTHRD200;CA1822;CA1515;S3011;S1192</NoWarn
+      >$(NoWarn);CS8604;CA2007;S4144;1591;CA1707;IDE1006;VSTHRD200;CA1822;CA1515;S3011;S1192;S1075;</NoWarn
     >
     <WarningsNotAsErrors>$(WarningsNotAsErrors);CA5394;NU1701;CS0618;S1133;NU1510</WarningsNotAsErrors>
     <ErrorLog>diagnostics-$(MSBuildProjectName)-$(TargetFramework)-$(Configuration).sarif,version=2.1</ErrorLog>
