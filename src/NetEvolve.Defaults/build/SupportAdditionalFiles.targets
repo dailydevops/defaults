@@ -10,9 +10,9 @@
     <Copy
       SourceFiles="$(MSBuildThisFileDirectory)../configurations/editorconfig.txt"
       DestinationFiles="$(SolutionDir).editorconfig"
-      OverwriteReadOnlyFiles="true"
+      OverwriteReadOnlyFiles="false"
       SkipUnchangedFiles="true"
-      ContinueOnError="true"
+      ContinueOnError="WarnAndContinue"
     />
   </Target>
 </Project>
