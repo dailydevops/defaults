@@ -1,6 +1,9 @@
 <Project TreatAsLocalProperty="IsCrossTargetingProject">
   <PropertyGroup>
     <IsCrossTargetingProject Condition="$(TargetFrameworks) != ''">true</IsCrossTargetingProject>
+    <SolutionDir Condition=" '$(SolutionDir)' == '' and '$(ProjectDir)' != '' "
+      >$([MSBuild]::GetDirectoryNameOfFileAbove($(ProjectDir), Directory.Packages.props))</SolutionDir
+    >
   </PropertyGroup>
   <Target
     Name="UpdateEditorConfig"
