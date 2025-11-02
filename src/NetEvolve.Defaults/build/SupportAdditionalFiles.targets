@@ -9,7 +9,7 @@
   >
     <PropertyGroup>
       <EditorConfigDir>$(SolutionDir)</EditorConfigDir>
-      <EditorConfigDir Condition=" '$(EditorConfigDir)' != '' "
+      <EditorConfigDir Condition=" '$(EditorConfigDir)' == '' or '$(EditorConfigDir)' == '*Undefined*' "
         >$([MSBuild]::GetDirectoryNameOfFileAbove($(ProjectDir), Directory.Packages.props))</EditorConfigDir
       >
     </PropertyGroup>
