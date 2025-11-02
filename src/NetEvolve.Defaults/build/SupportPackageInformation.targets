@@ -15,7 +15,10 @@
     <PackageReadmeFile Condition="'$(DisableReadme)' != 'true' and '$(PackageReadmeFile)' == '' "
       >README.md</PackageReadmeFile
     >
-    <PackageIcon Condition="'$(DisablePackageLogo)' != 'true' and '$(PackageIcon)' == '' ">logo.png</PackageIcon>
+    <PackageIcon
+      Condition="'$(DisablePackageLogo)' != 'true' and '$(PackageIcon)' == '' and (Exists('$(ProjectDir)logo.png') or Exists('$(SolutionDir)logo.png'))"
+      >logo.png</PackageIcon
+    >
     <PublishRepositoryUrl Condition=" '$(PublishRepositoryUrl)' == '' ">true</PublishRepositoryUrl>
     <RepositoryType Condition=" '$(RepositoryType)' == '' ">git</RepositoryType>
     <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' ">true</GeneratePackageOnBuild>
@@ -61,7 +64,7 @@
     <_ProjectLogo Include="$(ProjectDir)logo.png" Condition="Exists('$(ProjectDir)logo.png')" />
     <_SolutionLogo
       Include="$(SolutionDir)logo.png"
-      Condition="@(_ProjectLogo) == '' and Exists('$(SolutionDir)logo.png')"
+      Condition="@(_ProjectLogo) == '' and $(SolutionDir) != '' and Exists('$(SolutionDir)logo.png')"
     />
     <None
       Include="@(_ProjectLogo)"
