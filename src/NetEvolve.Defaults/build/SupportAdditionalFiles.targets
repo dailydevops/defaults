@@ -1,18 +1,21 @@
-<Project TreatAsLocalProperty="IsCrossTargetingProject">
+<Project TreatAsLocalProperty="IsCrossTargetingProject;EditorConfigDir">
   <PropertyGroup>
     <IsCrossTargetingProject Condition="$(TargetFrameworks) != ''">true</IsCrossTargetingProject>
-    <SolutionDir Condition=" '$(SolutionDir)' == '' and '$(ProjectDir)' != '' "
-      >$([MSBuild]::GetDirectoryNameOfFileAbove($(ProjectDir), Directory.Packages.props))</SolutionDir
-    >
   </PropertyGroup>
   <Target
     Name="UpdateEditorConfig"
     BeforeTargets="DispatchToInnerBuilds;BeforeBuild"
     Condition=" '$(IsCrossTargetingProject)' == '$(IsCrossTargetingBuild)' "
   >
+    <PropertyGroup>
+      <EditorConfigDir>$(SolutionDir)</EditorConfigDir>
+      <EditorConfigDir Condition=" '$(EditorConfigDir)' != '' "
+        >$([MSBuild]::GetDirectoryNameOfFileAbove($(ProjectDir), Directory.Packages.props))</EditorConfigDir
+      >
+    </PropertyGroup>
     <Copy
       SourceFiles="$(MSBuildThisFileDirectory)../configurations/editorconfig.txt"
-      DestinationFiles="$(SolutionDir).editorconfig"
+      DestinationFiles="$(EditorConfigDir).editorconfig"
       OverwriteReadOnlyFiles="false"
       SkipUnchangedFiles="true"
       ContinueOnError="WarnAndContinue"
