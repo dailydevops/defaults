@@ -19,6 +19,7 @@
       OverwriteReadOnlyFiles="false"
       SkipUnchangedFiles="true"
       ContinueOnError="WarnAndContinue"
+      Retries="5"
     />
   </Target>
 </Project>
