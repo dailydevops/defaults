@@ -9,10 +9,12 @@
   >
     <PropertyGroup>
       <EditorConfigDir>$(SolutionDir)</EditorConfigDir>
-      <EditorConfigDir Condition=" ('$(EditorConfigDir)' == '' or '$(EditorConfigDir)' == '*Undefined*') and '$(MSBuildProjectDirectory)' != ''"
+      <EditorConfigDir
+        Condition=" ('$(EditorConfigDir)' == '' or '$(EditorConfigDir)' == '*Undefined*') and '$(MSBuildProjectDirectory)' != ''"
         >$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), Directory.Packages.props))</EditorConfigDir
       >
-      <EditorConfigDir Condition=" ('$(EditorConfigDir)' == '' or '$(EditorConfigDir)' == '*Undefined*') and '$(ProjectDir)' != '' "
+      <EditorConfigDir
+        Condition=" ('$(EditorConfigDir)' == '' or '$(EditorConfigDir)' == '*Undefined*') and '$(ProjectDir)' != '' "
         >$([MSBuild]::GetDirectoryNameOfFileAbove($(ProjectDir), Directory.Packages.props))</EditorConfigDir
       >
     </PropertyGroup>
