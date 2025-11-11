@@ -43,10 +43,6 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
   </PropertyGroup>
-  <PropertyGroup Label="Language Configuration">
-    <NeutralLanguage>en</NeutralLanguage>
-    <PreferredUILang>en</PreferredUILang>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' ">
     <GeneratedFolder>_generated</GeneratedFolder>
     <CompilerGeneratedFilesOutputPath>$(GeneratedFolder)/$(TargetFramework)</CompilerGeneratedFilesOutputPath>
