@@ -18,13 +18,16 @@
         >$([MSBuild]::GetDirectoryNameOfFileAbove($(ProjectDir), Directory.Packages.props))</EditorConfigDir
       >
     </PropertyGroup>
-    <Copy
-      SourceFiles="$(MSBuildThisFileDirectory)../configurations/editorconfig.txt"
-      DestinationFiles="$(EditorConfigDir).editorconfig"
-      OverwriteReadOnlyFiles="false"
-      SkipUnchangedFiles="true"
-      ContinueOnError="WarnAndContinue"
-      Retries="5"
-    />
+    <PropertyGroup>
+      <EditorConfigSource>$(MSBuildThisFileDirectory)..\configurations\editorconfig.txt</EditorConfigSource>
+      <EditorConfigDest>$([MSBuild]::NormalizePath('$(EditorConfigDir)', '.editorconfig'))</EditorConfigDest>
+      <CopyCommand Condition="'$(OS)' == 'Windows_NT'"
+        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(EditorConfigSource)' -Destination '$(EditorConfigDest)' -Force -ErrorAction SilentlyContinue"</CopyCommand
+      >
+      <CopyCommand Condition="'$(OS)' != 'Windows_NT'"
+        >bash -c "cp -f '$(EditorConfigSource)' '$(EditorConfigDest)' 2&gt;/dev/null || true"</CopyCommand
+      >
+    </PropertyGroup>
+    <Exec Command="$(CopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
   </Target>
 </Project>
