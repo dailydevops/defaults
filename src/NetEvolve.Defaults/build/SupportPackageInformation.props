@@ -1,5 +1,5 @@
 <Project>
-  <PropertyGroup Label="Package Information" Condition=" '$(IsTestableProject)' != 'true' ">
+  <PropertyGroup Label="Package Information" Condition=" '$(IsTestableProject)' != 'true' and '$(BuildingInsideVisualStudio)' != 'true' ">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 </Project>
