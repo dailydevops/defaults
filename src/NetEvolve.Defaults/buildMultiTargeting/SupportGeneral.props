@@ -47,11 +47,4 @@
     <NeutralLanguage>en</NeutralLanguage>
     <PreferredUILang>en</PreferredUILang>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' ">
-    <GeneratedFolder>_generated</GeneratedFolder>
-    <CompilerGeneratedFilesOutputPath>$(GeneratedFolder)/$(TargetFramework)</CompilerGeneratedFilesOutputPath>
-  </PropertyGroup>
-  <ItemGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' ">
-    <Compile Remove="$(GeneratedFolder)/**/*.cs" />
-  </ItemGroup>
 </Project>
