@@ -17,10 +17,7 @@
     <None Include="_._" Pack="true" PackagePath="lib\$(TargetFramework)" Visible="false" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference
-      Include="..\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.csproj"
-      PrivateAssets="None"
-    />
+    <ProjectReference Include="..\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.csproj" PrivateAssets="None" />
   </ItemGroup>
   <Import Project="build\NetEvolve.Defaults.targets" />
 </Project>
