@@ -9,8 +9,8 @@
     >
   </PropertyGroup>
   <PropertyGroup Label="General Configurations">
-    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
-    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace Condition=" '$(RootNamespace)' == '' ">$(MSBuildProjectName)</RootNamespace>
+    <AssemblyName Condition=" '$(AssemblyName)' == '' ">$(MSBuildProjectName)</AssemblyName>
     <LangVersion Condition=" '$(LangVersion)' != 'preview' ">latest</LangVersion>
     <WarningLevel>9999</WarningLevel>
     <Nullable>enable</Nullable>
