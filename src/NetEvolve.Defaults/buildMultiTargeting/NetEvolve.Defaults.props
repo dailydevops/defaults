@@ -1,8 +1,5 @@
 <Project>
   <Import Project="$(MSBuildThisFileDirectory)SupportGeneral.props" />
   <Import Project="$(MSBuildThisFileDirectory)SupportDetectContinuousIntegration.props" />
-  <Import
-    Project="$(MSBuildThisFileDirectory)SupportPackageInformation.props"
-    Condition=" '$(DisableSupportPackageInformation)' != 'true' "
-  />
+  <Import Project="$(MSBuildThisFileDirectory)SupportPackageInformation.props" Condition=" '$(DisableSupportPackageInformation)' != 'true' " />
 </Project>

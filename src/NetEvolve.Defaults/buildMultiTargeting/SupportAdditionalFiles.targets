@@ -2,15 +2,10 @@
   <PropertyGroup>
     <IsCrossTargetingProject Condition="$(TargetFrameworks) != ''">true</IsCrossTargetingProject>
   </PropertyGroup>
-  <Target
-    Name="UpdateEditorConfig"
-    BeforeTargets="DispatchToInnerBuilds;BeforeBuild;CSharpierFormat"
-    Condition=" '$(IsCrossTargetingProject)' == '$(IsCrossTargetingBuild)' "
-  >
+  <Target Name="UpdateEditorConfig" BeforeTargets="DispatchToInnerBuilds;BeforeBuild;CSharpierFormat" Condition=" '$(IsCrossTargetingProject)' == '$(IsCrossTargetingBuild)' ">
     <PropertyGroup>
       <ConfigDir>$(SolutionDir)</ConfigDir>
-      <ConfigDir
-        Condition=" ('$(ConfigDir)' == '' or '$(ConfigDir)' == '*Undefined*') and '$(MSBuildProjectDirectory)' != ''"
+      <ConfigDir Condition=" ('$(ConfigDir)' == '' or '$(ConfigDir)' == '*Undefined*') and '$(MSBuildProjectDirectory)' != ''"
         >$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), Directory.Packages.props))</ConfigDir
       >
       <ConfigDir Condition=" ('$(ConfigDir)' == '' or '$(ConfigDir)' == '*Undefined*') and '$(ProjectDir)' != '' "
@@ -24,9 +19,7 @@
       <EditorConfigCopyCommand Condition="'$(OS)' == 'Windows_NT'"
         >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(EditorConfigSource)' -Destination '$(EditorConfigDest)' -Force -ErrorAction SilentlyContinue"</EditorConfigCopyCommand
       >
-      <EditorConfigCopyCommand Condition="'$(OS)' != 'Windows_NT'"
-        >bash -c "cp -f '$(EditorConfigSource)' '$(EditorConfigDest)' 2&gt;/dev/null || true"</EditorConfigCopyCommand
-      >
+      <EditorConfigCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(EditorConfigSource)' '$(EditorConfigDest)' 2&gt;/dev/null || true"</EditorConfigCopyCommand>
 
       <CSharpierIgnoreSource>$(MSBuildThisFileDirectory)..\configurations\template.csharpierignore</CSharpierIgnoreSource>
       <CSharpierIgnoreDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.csharpierignore'))</CSharpierIgnoreDest>
@@ -34,9 +27,7 @@
       <CsharpierIgnoreCopyCommand Condition="'$(OS)' == 'Windows_NT'"
         >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(CsharpierIgnoreSource)' -Destination '$(CsharpierIgnoreDest)' -Force -ErrorAction SilentlyContinue"</CsharpierIgnoreCopyCommand
       >
-      <CsharpierIgnoreCopyCommand Condition="'$(OS)' != 'Windows_NT'"
-        >bash -c "cp -f '$(CsharpierIgnoreSource)' '$(CsharpierIgnoreDest)' 2&gt;/dev/null || true"</CsharpierIgnoreCopyCommand
-      >
+      <CsharpierIgnoreCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(CsharpierIgnoreSource)' '$(CsharpierIgnoreDest)' 2&gt;/dev/null || true"</CsharpierIgnoreCopyCommand>
     </PropertyGroup>
 
     <Exec Command="$(EditorConfigCopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
