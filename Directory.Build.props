@@ -10,6 +10,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <NetEvolve_ProjectTargetFrameworks>netstandard2.0</NetEvolve_ProjectTargetFrameworks>
-    <NetEvolve_TestTargetFrameworks>net8.0</NetEvolve_TestTargetFrameworks>
+    <NetEvolve_TestTargetFrameworks>net10.0</NetEvolve_TestTargetFrameworks>
   </PropertyGroup>
 </Project>

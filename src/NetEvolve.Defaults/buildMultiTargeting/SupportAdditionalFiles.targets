@@ -1,33 +1,36 @@
-<Project TreatAsLocalProperty="IsCrossTargetingProject;EditorConfigDir">
+<Project TreatAsLocalProperty="IsCrossTargetingProject;ConfigDir">
   <PropertyGroup>
     <IsCrossTargetingProject Condition="$(TargetFrameworks) != ''">true</IsCrossTargetingProject>
   </PropertyGroup>
-  <Target
-    Name="UpdateEditorConfig"
-    BeforeTargets="DispatchToInnerBuilds;BeforeBuild;CSharpierFormat"
-    Condition=" '$(IsCrossTargetingProject)' == '$(IsCrossTargetingBuild)' "
-  >
+  <Target Name="UpdateEditorConfig" BeforeTargets="DispatchToInnerBuilds;BeforeBuild;CSharpierFormat" Condition=" '$(IsCrossTargetingProject)' == '$(IsCrossTargetingBuild)' ">
     <PropertyGroup>
-      <EditorConfigDir>$(SolutionDir)</EditorConfigDir>
-      <EditorConfigDir
-        Condition=" ('$(EditorConfigDir)' == '' or '$(EditorConfigDir)' == '*Undefined*') and '$(MSBuildProjectDirectory)' != ''"
-        >$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), Directory.Packages.props))</EditorConfigDir
+      <ConfigDir>$(SolutionDir)</ConfigDir>
+      <ConfigDir Condition=" ('$(ConfigDir)' == '' or '$(ConfigDir)' == '*Undefined*') and '$(MSBuildProjectDirectory)' != ''"
+        >$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), Directory.Packages.props))</ConfigDir
       >
-      <EditorConfigDir
-        Condition=" ('$(EditorConfigDir)' == '' or '$(EditorConfigDir)' == '*Undefined*') and '$(ProjectDir)' != '' "
-        >$([MSBuild]::GetDirectoryNameOfFileAbove($(ProjectDir), Directory.Packages.props))</EditorConfigDir
+      <ConfigDir Condition=" ('$(ConfigDir)' == '' or '$(ConfigDir)' == '*Undefined*') and '$(ProjectDir)' != '' "
+        >$([MSBuild]::GetDirectoryNameOfFileAbove($(ProjectDir), Directory.Packages.props))</ConfigDir
       >
     </PropertyGroup>
     <PropertyGroup>
-      <EditorConfigSource>$(MSBuildThisFileDirectory)..\configurations\editorconfig.txt</EditorConfigSource>
-      <EditorConfigDest>$([MSBuild]::NormalizePath('$(EditorConfigDir)', '.editorconfig'))</EditorConfigDest>
-      <CopyCommand Condition="'$(OS)' == 'Windows_NT'"
-        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(EditorConfigSource)' -Destination '$(EditorConfigDest)' -Force -ErrorAction SilentlyContinue"</CopyCommand
+      <EditorConfigSource>$(MSBuildThisFileDirectory)..\configurations\template.editorconfig</EditorConfigSource>
+      <EditorConfigDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.editorconfig'))</EditorConfigDest>
+
+      <EditorConfigCopyCommand Condition="'$(OS)' == 'Windows_NT'"
+        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(EditorConfigSource)' -Destination '$(EditorConfigDest)' -Force -ErrorAction SilentlyContinue"</EditorConfigCopyCommand
       >
-      <CopyCommand Condition="'$(OS)' != 'Windows_NT'"
-        >bash -c "cp -f '$(EditorConfigSource)' '$(EditorConfigDest)' 2&gt;/dev/null || true"</CopyCommand
+      <EditorConfigCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(EditorConfigSource)' '$(EditorConfigDest)' 2&gt;/dev/null || true"</EditorConfigCopyCommand>
+
+      <CSharpierIgnoreSource>$(MSBuildThisFileDirectory)..\configurations\template.csharpierignore</CSharpierIgnoreSource>
+      <CSharpierIgnoreDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.csharpierignore'))</CSharpierIgnoreDest>
+
+      <CsharpierIgnoreCopyCommand Condition="'$(OS)' == 'Windows_NT'"
+        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(CsharpierIgnoreSource)' -Destination '$(CsharpierIgnoreDest)' -Force -ErrorAction SilentlyContinue"</CsharpierIgnoreCopyCommand
       >
+      <CsharpierIgnoreCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(CsharpierIgnoreSource)' '$(CsharpierIgnoreDest)' 2&gt;/dev/null || true"</CsharpierIgnoreCopyCommand>
     </PropertyGroup>
-    <Exec Command="$(CopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
+
+    <Exec Command="$(EditorConfigCopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
+    <Exec Command="$(CsharpierIgnoreCopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
   </Target>
 </Project>
