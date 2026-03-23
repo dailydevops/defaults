@@ -66,13 +66,13 @@
       "groupName": "TUnit packages",
       "groupSlug": "tunit-packages",
       "matchManagers": ["nuget"],
-      "matchPackageNames": ["TUnit", "TUnit.*"]
+      "matchPackageNames": ["TUnit", "TUnit.*", "Verify.TUnit"]
     },
     {
       "groupName": "XUnit.V3 packages",
       "groupSlug": "xunit-v3-packages",
       "matchManagers": ["nuget"],
-      "matchPackageNames": ["XUnit.V3", "XUnit.V3.*"]
+      "matchPackageNames": ["XUnit.V3", "XUnit.V3.*", "Verify.XUnitV3"]
     },
     {
       "groupName": "Microsoft Entity Framework",
@@ -90,7 +90,7 @@
       "groupName": "MS Testing packages",
       "groupSlug": "ms-testing-packages",
       "matchManagers": ["nuget"],
-      "matchPackageNames": ["MSTest.TestAdapter", "MSTest.TestFramework", "MSTest.Analyzers"]
+      "matchPackageNames": ["MSTest.TestAdapter", "MSTest.TestFramework", "MSTest.Analyzers", "Verify.MSTest"]
     }
   ]
 }
