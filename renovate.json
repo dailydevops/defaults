@@ -85,6 +85,12 @@
       "groupSlug": "opentelemetry-instrumentation-packages",
       "matchManagers": ["nuget"],
       "matchPackageNames": ["OpenTelemetry.Instrumentation.*"]
+    },
+    {
+      "groupName": "MS Testing packages",
+      "groupSlug": "ms-testing-packages",
+      "matchManagers": ["nuget"],
+      "matchPackageNames": ["MSTest.TestAdapter", "MSTest.TestFramework", "MSTest.Analyzers"]
     }
   ]
 }
