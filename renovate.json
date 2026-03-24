@@ -66,13 +66,13 @@
       "groupName": "TUnit packages",
       "groupSlug": "tunit-packages",
       "matchManagers": ["nuget"],
-      "matchPackageNames": ["TUnit", "TUnit.*", "Verify.TUnit"]
+      "matchPackageNames": ["TUnit", "TUnit.*"]
     },
     {
       "groupName": "XUnit.V3 packages",
       "groupSlug": "xunit-v3-packages",
       "matchManagers": ["nuget"],
-      "matchPackageNames": ["XUnit.V3", "XUnit.V3.*", "Verify.XUnitV3"]
+      "matchPackageNames": ["XUnit.V3", "XUnit.V3.*"]
     },
     {
       "groupName": "Microsoft Entity Framework",
@@ -85,12 +85,6 @@
       "groupSlug": "opentelemetry-instrumentation-packages",
       "matchManagers": ["nuget"],
       "matchPackageNames": ["OpenTelemetry.Instrumentation.*"]
-    },
-    {
-      "groupName": "MS Testing packages",
-      "groupSlug": "ms-testing-packages",
-      "matchManagers": ["nuget"],
-      "matchPackageNames": ["MSTest.TestAdapter", "MSTest.TestFramework", "MSTest.Analyzers", "Verify.MSTest"]
     }
   ]
 }
