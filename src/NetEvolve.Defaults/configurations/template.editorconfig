@@ -272,6 +272,7 @@ dotnet_diagnostic.IDE0290.severity                                      = sugges
 
 # IDE0060: Remove unused parameter
 dotnet_diagnostic.IDE0060.severity                                      = warning
+dotnet_diagnostic.RCS1163.severity                                      = none
 dotnet_code_quality_unused_parameters                                   = all
 
 # [CSharpier] Incompatible rules deactivated
