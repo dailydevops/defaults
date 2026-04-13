@@ -16,6 +16,7 @@
     <IncludeSymbols>false</IncludeSymbols>
     <NoWarn>$(NoWarn);RS1036</NoWarn>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
+    <DisableRecommendedPackage>NetEvolve.Defaults</DisableRecommendedPackage>
   </PropertyGroup>
   <ItemGroup>
     <None Include="build\**" Pack="true" PackagePath="build\" />

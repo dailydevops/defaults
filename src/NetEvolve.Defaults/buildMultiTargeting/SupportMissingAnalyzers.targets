@@ -20,6 +20,7 @@
       <MissingRequiredAnalyzerPackage Remove="@(PackageReference)" />
       <MissingRequiredAnalyzerPackage Remove="@(GlobalPackageReference)" />
       <MissingRequiredAnalyzerPackage Remove="$(DisableRecommendedPackage)" />
+      <MissingRequiredAnalyzerPackage Remove="$(MSBuildProjectName)" />
     </ItemGroup>
 
     <Warning
