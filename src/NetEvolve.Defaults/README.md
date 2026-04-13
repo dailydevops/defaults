@@ -50,6 +50,7 @@ Projects containing `.Tests.` in their name are automatically identified as test
 - Warnings related to testing are suppressed
 
 **Customization:**
+
 ```xml
 <PropertyGroup>
   <IsTestableProject>true</IsTestableProject>
@@ -61,6 +62,7 @@ Projects containing `.Tests.` in their name are automatically identified as test
 Projects containing `.Xample` or starting with `Xample.` are identified as example/demonstration projects with similar relaxed configurations as test projects.
 
 **Customization:**
+
 ```xml
 <PropertyGroup>
   <IsXampleProject>true</IsXampleProject>
@@ -71,19 +73,20 @@ Projects containing `.Xample` or starting with `Xample.` are identified as examp
 
 ### Language and Runtime Configuration
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `LangVersion` | `latest` | C# language version. Set to `preview` to use preview features. Automatically detected in CI environments. |
-| `Nullable` | `enable` | Enables nullable reference types throughout the project. Highly recommended for C# 8.0+. |
-| `ImplicitUsings` | `enable` | Automatically imports common namespaces (introduced in .NET 6). Reduces boilerplate code. |
-| `WarningLevel` | `9999` | Enables all compiler warnings for maximum code quality. |
-| `TreatWarningsAsErrors` | `true` (Release) | In Release builds, compiler warnings are treated as build errors. |
-| `GenerateDocumentationFile` | `true` | Generates XML documentation file from code comments for API documentation. |
-| `RootNamespace` | `$(MSBuildProjectName)` | Default root namespace. Matches the project name by default. |
-| `AssemblyName` | `$(MSBuildProjectName)` | Assembly name. Matches the project name by default. |
-| `NeutralLanguage` | `en` | Default language for satellite assemblies. English (en) is the standard. |
+| Property                    | Default                 | Description                                                                                               |
+| --------------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------- |
+| `LangVersion`               | `latest`                | C# language version. Set to `preview` to use preview features. Automatically detected in CI environments. |
+| `Nullable`                  | `enable`                | Enables nullable reference types throughout the project. Highly recommended for C# 8.0+.                  |
+| `ImplicitUsings`            | `enable`                | Automatically imports common namespaces (introduced in .NET 6). Reduces boilerplate code.                 |
+| `WarningLevel`              | `9999`                  | Enables all compiler warnings for maximum code quality.                                                   |
+| `TreatWarningsAsErrors`     | `true` (Release)        | In Release builds, compiler warnings are treated as build errors.                                         |
+| `GenerateDocumentationFile` | `true`                  | Generates XML documentation file from code comments for API documentation.                                |
+| `RootNamespace`             | `$(MSBuildProjectName)` | Default root namespace. Matches the project name by default.                                              |
+| `AssemblyName`              | `$(MSBuildProjectName)` | Assembly name. Matches the project name by default.                                                       |
+| `NeutralLanguage`           | `en`                    | Default language for satellite assemblies. English (en) is the standard.                                  |
 
 **Example:**
+
 ```xml
 <PropertyGroup>
   <LangVersion>preview</LangVersion>
@@ -93,20 +96,21 @@ Projects containing `.Xample` or starting with `Xample.` are identified as examp
 
 ### Code Analysis & Compilation
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `AnalysisLevel` | `latest` | Roslyn analyzer version. Uses the latest available. |
-| `AnalysisMode` | `All` | Analyzer mode: `All`, `Minimal`, or `Recommended`. `All` provides comprehensive analysis. |
-| `EnableNETAnalyzers` | `true` | Enables built-in .NET analyzers for modern code pattern detection. |
-| `CodeAnalysisTreatWarningsAsErrors` | `true` | Code analysis warnings are treated as errors in Release builds. |
-| `EnforceCodeStyleInBuild` | `true` | Code style violations (EditorConfig rules) cause build failures. |
-| `ReportAnalyzer` | `true` | Enables analyzer performance reporting during build. |
-| `RunAnalyzersDuringBuild` | `true` | Analyzers run during build operations. |
-| `RunAnalyzersDuringLiveAnalysis` | `true` | Analyzers run during IDE analysis for real-time feedback. |
-| `Features` | `strict` | Enables strict mode for C# language features. |
-| `ErrorLog` | `diagnostics-{ProjectName}-{TargetFramework}-{Configuration}.sarif` | SARIF format error log for analysis integration. |
+| Property                            | Default                                                             | Description                                                                               |
+| ----------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `AnalysisLevel`                     | `latest`                                                            | Roslyn analyzer version. Uses the latest available.                                       |
+| `AnalysisMode`                      | `All`                                                               | Analyzer mode: `All`, `Minimal`, or `Recommended`. `All` provides comprehensive analysis. |
+| `EnableNETAnalyzers`                | `true`                                                              | Enables built-in .NET analyzers for modern code pattern detection.                        |
+| `CodeAnalysisTreatWarningsAsErrors` | `true`                                                              | Code analysis warnings are treated as errors in Release builds.                           |
+| `EnforceCodeStyleInBuild`           | `true`                                                              | Code style violations (EditorConfig rules) cause build failures.                          |
+| `ReportAnalyzer`                    | `true`                                                              | Enables analyzer performance reporting during build.                                      |
+| `RunAnalyzersDuringBuild`           | `true`                                                              | Analyzers run during build operations.                                                    |
+| `RunAnalyzersDuringLiveAnalysis`    | `true`                                                              | Analyzers run during IDE analysis for real-time feedback.                                 |
+| `Features`                          | `strict`                                                            | Enables strict mode for C# language features.                                             |
+| `ErrorLog`                          | `diagnostics-{ProjectName}-{TargetFramework}-{Configuration}.sarif` | SARIF format error log for analysis integration.                                          |
 
 **Example to customize warnings:**
+
 ```xml
 <PropertyGroup>
   <NoWarn>$(NoWarn);CA1810;CA1031</NoWarn>
@@ -114,6 +118,7 @@ Projects containing `.Xample` or starting with `Xample.` are identified as examp
 ```
 
 **Example to suppress specific warnings in test projects:**
+
 ```xml
 <ItemGroup>
   <CompilerVisibleProperty Include="IsTestableProject" />
@@ -122,10 +127,10 @@ Projects containing `.Xample` or starting with `Xample.` are identified as examp
 
 ### Build Performance
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `AccelerateBuildsInVisualStudio` | `true` | Optimizes Visual Studio build performance. |
-| `Deterministic` | `true` (CI only) | Produces identical binaries from identical source across builds. Critical for reproducible builds. |
+| Property                         | Default          | Description                                                                                        |
+| -------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------- |
+| `AccelerateBuildsInVisualStudio` | `true`           | Optimizes Visual Studio build performance.                                                         |
+| `Deterministic`                  | `true` (CI only) | Produces identical binaries from identical source across builds. Critical for reproducible builds. |
 
 ## Continuous Integration
 
@@ -152,15 +157,16 @@ The package detects execution in the following CI/CD platforms:
 
 When CI is detected, the following settings are automatically applied:
 
-| Property | Value | Purpose |
-|----------|-------|---------|
-| `IsContinuousIntegration` | `true` | Indicates CI environment execution. |
-| `ContinuousIntegrationBuild` | `true` | Enables CI-specific optimizations in the .NET SDK. |
-| `Deterministic` | `true` | Ensures reproducible builds across CI runs. |
-| `RestorePackagesWithLockFile` | `false` | Allows dependency resolution flexibility in CI. |
-| `TreatWarningsAsErrors` | `true` | All warnings must be resolved in CI builds. |
+| Property                      | Value   | Purpose                                            |
+| ----------------------------- | ------- | -------------------------------------------------- |
+| `IsContinuousIntegration`     | `true`  | Indicates CI environment execution.                |
+| `ContinuousIntegrationBuild`  | `true`  | Enables CI-specific optimizations in the .NET SDK. |
+| `Deterministic`               | `true`  | Ensures reproducible builds across CI runs.        |
+| `RestorePackagesWithLockFile` | `false` | Allows dependency resolution flexibility in CI.    |
+| `TreatWarningsAsErrors`       | `true`  | All warnings must be resolved in CI builds.        |
 
 **Manual Override:**
+
 ```xml
 <PropertyGroup>
   <IsContinuousIntegration>true</IsContinuousIntegration>
@@ -173,11 +179,12 @@ When CI is detected, the following settings are automatically applied:
 
 For non-test projects built outside Visual Studio, the package is automatically generated during build:
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `GeneratePackageOnBuild` | `true` | Automatically creates NuGet package during build (non-test, non-IDE builds). |
+| Property                 | Default | Description                                                                  |
+| ------------------------ | ------- | ---------------------------------------------------------------------------- |
+| `GeneratePackageOnBuild` | `true`  | Automatically creates NuGet package during build (non-test, non-IDE builds). |
 
 **Disable package generation:**
+
 ```xml
 <PropertyGroup>
   <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -186,13 +193,14 @@ For non-test projects built outside Visual Studio, the package is automatically 
 
 ### Version Information
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `Company` | (Not set by defaults) | Company name used in copyright and package metadata. |
-| `CopyrightYearStart` | (Current year) | Starting year for copyright notice. Auto-calculated from current year. |
-| `Copyright` | Auto-calculated | Copyright notice. Automatically generated as "Copyright @ {Company} {YearStart}" or "Copyright @ {Company} {YearStart} - {CurrentYear}" if years differ. |
+| Property             | Default               | Description                                                                                                                                              |
+| -------------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Company`            | (Not set by defaults) | Company name used in copyright and package metadata.                                                                                                     |
+| `CopyrightYearStart` | (Current year)        | Starting year for copyright notice. Auto-calculated from current year.                                                                                   |
+| `Copyright`          | Auto-calculated       | Copyright notice. Automatically generated as "Copyright @ {Company} {YearStart}" or "Copyright @ {Company} {YearStart} - {CurrentYear}" if years differ. |
 
 **Example:**
+
 ```xml
 <PropertyGroup>
   <Company>NetEvolve</Company>
@@ -206,14 +214,15 @@ For non-test projects built outside Visual Studio, the package is automatically 
 
 NetEvolve.Defaults includes comprehensive NuGet vulnerability scanning:
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `NuGetAudit` | `true` | Enables NuGet security audit checks during restore. |
-| `NuGetAuditMode` | `all` | Audit scope: `all` (runtime + direct dependencies), `direct` (direct dependencies only), `transitively` (transitive dependencies). |
-| `NuGetAuditLevel` | `low` | Minimum severity level: `low`, `moderate`, `high`, `critical`. |
-| `WarningsAsErrors` | `NU1900-NU1904` (Release/CI) | Security warnings are treated as errors in Release and CI builds. |
+| Property           | Default                      | Description                                                                                                                        |
+| ------------------ | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `NuGetAudit`       | `true`                       | Enables NuGet security audit checks during restore.                                                                                |
+| `NuGetAuditMode`   | `all`                        | Audit scope: `all` (runtime + direct dependencies), `direct` (direct dependencies only), `transitively` (transitive dependencies). |
+| `NuGetAuditLevel`  | `low`                        | Minimum severity level: `low`, `moderate`, `high`, `critical`.                                                                     |
+| `WarningsAsErrors` | `NU1900-NU1904` (Release/CI) | Security warnings are treated as errors in Release and CI builds.                                                                  |
 
 **Custom configuration:**
+
 ```xml
 <PropertyGroup>
   <NuGetAudit>true</NuGetAudit>
@@ -226,21 +235,22 @@ NetEvolve.Defaults includes comprehensive NuGet vulnerability scanning:
 
 ### Target Framework Configuration
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `CheckEolTargetFramework` | `false` (Release) | Suppresses warnings about end-of-life target frameworks in Release builds. |
-| `SuppressTfmSupportBuildWarnings` | `true` (Release) | Suppresses target framework support warnings in Release builds. |
+| Property                          | Default           | Description                                                                |
+| --------------------------------- | ----------------- | -------------------------------------------------------------------------- |
+| `CheckEolTargetFramework`         | `false` (Release) | Suppresses warnings about end-of-life target frameworks in Release builds. |
+| `SuppressTfmSupportBuildWarnings` | `true` (Release)  | Suppresses target framework support warnings in Release builds.            |
 
 ## Advanced Settings
 
 ### Diagnostic Output
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `ErrorLog` | `diagnostics-{ProjectName}-{TargetFramework}-{Configuration}.sarif` | Generates SARIF v2.1 format diagnostic reports for integration with analysis tools. |
-| `ReportAnalyzer` | `true` | Reports analyzer performance metrics during build. |
+| Property         | Default                                                             | Description                                                                         |
+| ---------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `ErrorLog`       | `diagnostics-{ProjectName}-{TargetFramework}-{Configuration}.sarif` | Generates SARIF v2.1 format diagnostic reports for integration with analysis tools. |
+| `ReportAnalyzer` | `true`                                                              | Reports analyzer performance metrics during build.                                  |
 
 **Example:**
+
 ```xml
 <PropertyGroup>
   <ErrorLog>custom-diagnostics.sarif</ErrorLog>
@@ -265,6 +275,7 @@ The following warnings are globally suppressed as they conflict with modern C# p
 
 - **CA1810**: Do not initialize static fields on type. (Initialization design pattern)
 - **CA1031**: Do not catch general exception types. (Often necessary in middleware/handlers)
+- **RCS1163**: Unused parameter. (Disabled in `.editorconfig` because `IDE0060` already covers this diagnostic)
 
 ### Test Project Suppressions
 
@@ -278,6 +289,7 @@ Test projects additionally suppress:
 - **And others** for testing-specific patterns
 
 **Override suppressions:**
+
 ```xml
 <PropertyGroup>
   <NoWarn>$(NoWarn);CA1234</NoWarn>
@@ -293,6 +305,42 @@ The following warnings are always treated as warnings, never errors:
 - **CS0618**: Obsolete members (sometimes necessary for compatibility)
 - **S1133**: Deprecated code patterns
 - **NU1510**: Package not directly referenced
+
+## Recommended Analyzer Packages
+
+NetEvolve.Defaults recommends the following analyzer packages for maximum code quality. A build warning (`NED0010`) is emitted for each recommended package that is not referenced in the project:
+
+| Package                                      | Purpose                                                   |
+| -------------------------------------------- | --------------------------------------------------------- |
+| `Meziantou.Analyzer`                         | Additional code quality and best-practice diagnostics     |
+| `Microsoft.CodeAnalysis.BannedApiAnalyzers`  | Enforces restrictions on banned APIs across the codebase  |
+| `Microsoft.CodeAnalysis.NetAnalyzers`        | Built-in .NET platform analyzers for modern code patterns |
+| `Microsoft.VisualStudio.Threading.Analyzers` | Detects threading and async/await anti-patterns           |
+| `NetEvolve.Defaults`                         | Standardized build configuration and compiler settings    |
+| `Roslynator.Analyzers`                       | Extensive Roslyn-based diagnostic rules                   |
+| `Roslynator.CodeAnalysis.Analyzers`          | Roslyn-specific code analysis diagnostics                 |
+| `Roslynator.CodeFixes`                       | Automated code fixes for Roslynator diagnostics           |
+| `Roslynator.Formatting.Analyzers`            | Code formatting diagnostics via Roslynator                |
+| `Roslynator.Refactorings`                    | Roslyn-based refactoring suggestions                      |
+| `SonarAnalyzer.CSharp`                       | SonarQube static analysis rules for C#                    |
+
+### Suppressing NED0010
+
+To suppress the warning for a specific package, add its name to the `DisableRecommendedPackage` property:
+
+```xml
+<PropertyGroup>
+  <DisableRecommendedPackage>SonarAnalyzer.CSharp</DisableRecommendedPackage>
+</PropertyGroup>
+```
+
+To suppress multiple packages, separate their names with semicolons:
+
+```xml
+<PropertyGroup>
+  <DisableRecommendedPackage>SonarAnalyzer.CSharp;Microsoft.VisualStudio.Threading.Analyzers</DisableRecommendedPackage>
+</PropertyGroup>
+```
 
 ## Common Customization Scenarios
 
@@ -363,6 +411,7 @@ All NetEvolve.Defaults settings are implemented as MSBuild properties and can be
 4. NetEvolve.Defaults package properties
 
 **Example override via command line:**
+
 ```bash
 dotnet build -p:TreatWarningsAsErrors=false
 ```
@@ -381,6 +430,7 @@ No additional NuGet dependencies are introduced to your project.
 ### Disable Specific Features
 
 Disable package information generation:
+
 ```xml
 <PropertyGroup>
   <DisableSupportPackageInformation>true</DisableSupportPackageInformation>

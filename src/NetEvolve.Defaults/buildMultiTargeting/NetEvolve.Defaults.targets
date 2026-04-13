@@ -8,4 +8,5 @@
   <Import Project="$(MSBuildThisFileDirectory)SupportSystemRuntimeExperimental.targets" />
   <Import Project="$(MSBuildThisFileDirectory)SupportDetectContinuousIntegration.targets" />
   <Import Project="$(MSBuildThisFileDirectory)SupportAssemblyAttributes.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)SupportMissingAnalyzers.targets" />
 </Project>
