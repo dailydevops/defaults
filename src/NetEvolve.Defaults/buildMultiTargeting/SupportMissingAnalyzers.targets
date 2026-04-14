@@ -1,0 +1,40 @@
+<Project>
+  <ItemGroup>
+    <RecommendedPackage Include="Meziantou.Analyzer" />
+    <RecommendedPackage Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" />
+    <RecommendedPackage Include="Microsoft.CodeAnalysis.NetAnalyzers" />
+    <RecommendedPackage Include="Microsoft.VisualStudio.Threading.Analyzers" />
+    <RecommendedPackage Include="NetEvolve.Defaults" />
+    <RecommendedPackage Include="Roslynator.Analyzers" />
+    <RecommendedPackage Include="Roslynator.Formatting.Analyzers" />
+    <RecommendedPackage Include="Roslynator.CodeAnalysis.Analyzers" />
+    <RecommendedPackage Include="Roslynator.CodeFixes" />
+    <RecommendedPackage Include="Roslynator.Refactorings" />
+    <RecommendedPackage Include="SonarAnalyzer.CSharp" />
+  </ItemGroup>
+
+  <Target Name="ValidateRequiredAnalyzerPackages" BeforeTargets="Build;_HandlePackageFileConflicts">
+    <ItemGroup>
+      <MissingRequiredAnalyzerPackage Include="@(RecommendedPackage)" />
+
+      <MissingRequiredAnalyzerPackage Remove="@(PackageReference)" />
+      <MissingRequiredAnalyzerPackage Remove="@(GlobalPackageReference)" />
+      <MissingRequiredAnalyzerPackage Remove="$(DisableRecommendedPackage)" />
+      <MissingRequiredAnalyzerPackage Remove="$(MSBuildProjectName)" />
+    </ItemGroup>
+
+    <Warning
+      Condition="'@(MissingRequiredAnalyzerPackage)' != '' and '$(TreatWarningsAsErrors)' != 'true' "
+      Code="NED0010"
+      Text="Project '$(MSBuildProjectName)' is missing recommended package '%(MissingRequiredAnalyzerPackage.Identity)'."
+      File="$(MSBuildProjectFullPath)"
+    />
+
+    <Error
+      Condition="'@(MissingRequiredAnalyzerPackage)' != '' and '$(TreatWarningsAsErrors)' == 'true' "
+      Code="NED0010"
+      Text="Project '$(MSBuildProjectName)' is missing recommended package '%(MissingRequiredAnalyzerPackage.Identity)'."
+      File="$(MSBuildProjectFullPath)"
+    />
+  </Target>
+</Project>

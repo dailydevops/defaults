@@ -4,6 +4,7 @@ using System;
 using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
@@ -100,7 +101,10 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
                 options,
                 _ruleNED0009,
                 "build_property.copyrightyearstart",
-                propertyValue => int.TryParse(propertyValue, out var year) && year >= 1900 && year <= 9999
+                propertyValue =>
+                    int.TryParse(propertyValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out var year)
+                    && year >= 1900
+                    && year <= 9999
             );
         });
     }

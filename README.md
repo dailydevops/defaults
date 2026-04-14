@@ -54,7 +54,7 @@ The `PrivateAssets="all"` attribute ensures that these build utilities are only 
 
 ## Repository Structure
 
-```
+```txt
 defaults/
 ├── src/
 │   ├── NetEvolve.Defaults/           # Core build configuration package
@@ -73,7 +73,7 @@ defaults/
 
 ## Included Packages
 
-### NetEvolve.Defaults
+### NetEvolve.Defaults (Core Build Configuration)
 
 The foundational package providing standardized build settings:
 
@@ -85,7 +85,7 @@ The foundational package providing standardized build settings:
 
 [Learn more about NetEvolve.Defaults →](https://www.nuget.org/packages/NetEvolve.Defaults)
 
-### NetEvolve.Defaults.Analyzer
+### NetEvolve.Defaults.Analyzer (NuGet Package Quality Analyzer)
 
 Comprehensive diagnostic analyzer for NuGet package quality:
 
@@ -93,7 +93,7 @@ Comprehensive diagnostic analyzer for NuGet package quality:
 - **Repository Configuration**: Validates repository URLs, issue trackers, and licensing
 - **Build Standards Enforcement**: Verifies compliance with modern build patterns
 - **Real-Time Diagnostics**: Immediate feedback during development with actionable fixes
-- **9+ Diagnostic Rules**: Covering critical package configuration aspects
+- **10+ Diagnostic Rules**: Covering critical package configuration aspects
 
 [Learn more about NetEvolve.Defaults.Analyzer →](https://www.nuget.org/packages/NetEvolve.Defaults.Analyzer)
 
@@ -101,7 +101,7 @@ Comprehensive diagnostic analyzer for NuGet package quality:
 
 The analyzer package enforces standardized quality checks via diagnostic rules. For detailed documentation on all rules and remediation steps:
 
-- [NED0001-NED0009 Rules Documentation](https://github.com/dailydevops/defaults/tree/main/docs/usage)
+- [NED0001-NED0010 Rules Documentation](https://github.com/dailydevops/defaults/tree/main/docs/usage)
 - [Diagnostic Configuration Guide](https://github.com/dailydevops/defaults/tree/main/src/NetEvolve.Defaults.Analyzer#diagnostic-rules)
 
 ## Configuration & Customization
@@ -116,6 +116,7 @@ All settings can be customized through:
 ### Common Customizations
 
 **Enable Preview Language Features:**
+
 ```xml
 <PropertyGroup>
   <LangVersion>preview</LangVersion>
@@ -123,6 +124,7 @@ All settings can be customized through:
 ```
 
 **Disable Nullable Reference Types (Not Recommended):**
+
 ```xml
 <PropertyGroup>
   <Nullable>disable</Nullable>
@@ -130,6 +132,7 @@ All settings can be customized through:
 ```
 
 **Customize Target Frameworks:**
+
 ```xml
 <PropertyGroup>
   <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
