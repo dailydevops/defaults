@@ -1,0 +1,5 @@
+<Project>
+  <Target Name="FullCleanUp" AfterTargets="Clean">
+    <RemoveDir Directories="$(BaseIntermediateOutputPath);$(BaseOutputPath)" />
+  </Target>
+</Project>
