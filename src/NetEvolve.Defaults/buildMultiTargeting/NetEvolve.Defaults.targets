@@ -9,5 +9,5 @@
   <Import Project="$(MSBuildThisFileDirectory)SupportDetectContinuousIntegration.targets" />
   <Import Project="$(MSBuildThisFileDirectory)SupportAssemblyAttributes.targets" />
   <Import Project="$(MSBuildThisFileDirectory)SupportMissingAnalyzers.targets" />
-  <Import Project="$(MSBuildThisFileDirectory)SupportFullCleanUp.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)SupportFullCleanUp.targets" Condition=" '$(DisableSupportFullCleanUpTargets)' != 'true' " />
 </Project>
