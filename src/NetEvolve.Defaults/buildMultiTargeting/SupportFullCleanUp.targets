@@ -1,5 +1,8 @@
-<Project>
-  <Target Name="FullCleanUp" AfterTargets="Clean">
+<Project TreatAsLocalProperty="IsCrossTargetingProject">
+  <PropertyGroup>
+    <IsCrossTargetingProject Condition="$(TargetFrameworks) != ''">true</IsCrossTargetingProject>
+  </PropertyGroup>
+  <Target Name="FullCleanUp" AfterTargets="Clean" Condition=" '$(IsCrossTargetingProject)' == '$(IsCrossTargetingBuild)' ">
     <RemoveDir Directories="$(BaseIntermediateOutputPath);$(BaseOutputPath)" />
   </Target>
 </Project>
