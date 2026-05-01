@@ -2,7 +2,8 @@
   <PropertyGroup>
     <IsCrossTargetingProject Condition="$(TargetFrameworks) != ''">true</IsCrossTargetingProject>
   </PropertyGroup>
-  <Target Name="FullCleanUp" AfterTargets="Clean" Condition=" '$(IsCrossTargetingProject)' == '$(IsCrossTargetingBuild)' ">
-    <RemoveDir Directories="$(BaseIntermediateOutputPath);$(BaseOutputPath)" />
+ <Target Name="FullCleanUp" AfterTargets="Clean" Condition=" '$(IsCrossTargetingProject)' == '$(IsCrossTargetingBuild)' ">
+    <!-- Multi-targeting: delete everything, the outer pass re-evaluates imports anyway -->
+    <RemoveDir Directories="$(BaseIntermediateOutputPath);$(BaseOutputPath)" Condition=" '$(IsCrossTargetingBuild)' == 'true' " />
   </Target>
 </Project>
