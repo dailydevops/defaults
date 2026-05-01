@@ -28,9 +28,27 @@
         >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(CsharpierIgnoreSource)' -Destination '$(CsharpierIgnoreDest)' -Force -ErrorAction SilentlyContinue"</CsharpierIgnoreCopyCommand
       >
       <CsharpierIgnoreCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(CsharpierIgnoreSource)' '$(CsharpierIgnoreDest)' 2&gt;/dev/null || true"</CsharpierIgnoreCopyCommand>
+
+      <GitIgnoreSource>$(MSBuildThisFileDirectory)..\configurations\template.gitignore</GitIgnoreSource>
+      <GitIgnoreDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.gitignore'))</GitIgnoreDest>
+
+      <GitIgnoreCopyCommand Condition="'$(OS)' == 'Windows_NT'"
+        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(GitIgnoreSource)' -Destination '$(GitIgnoreDest)' -Force -ErrorAction SilentlyContinue"</GitIgnoreCopyCommand
+      >
+      <GitIgnoreCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(GitIgnoreSource)' '$(GitIgnoreDest)' 2&gt;/dev/null || true"</GitIgnoreCopyCommand>
+
+      <GitAttributesSource>$(MSBuildThisFileDirectory)..\configurations\template.gitattributes</GitAttributesSource>
+      <GitAttributesDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.gitattributes'))</GitAttributesDest>
+
+      <GitAttributesCopyCommand Condition="'$(OS)' == 'Windows_NT'"
+        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(GitAttributesSource)' -Destination '$(GitAttributesDest)' -Force -ErrorAction SilentlyContinue"</GitAttributesCopyCommand
+      >
+      <GitAttributesCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(GitAttributesSource)' '$(GitAttributesDest)' 2&gt;/dev/null || true"</GitAttributesCopyCommand>
     </PropertyGroup>
 
     <Exec Command="$(EditorConfigCopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
     <Exec Command="$(CsharpierIgnoreCopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
+    <Exec Command="$(GitIgnoreCopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
+    <Exec Command="$(GitAttributesCopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
   </Target>
 </Project>
