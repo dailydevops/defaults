@@ -366,6 +366,7 @@ MigrationBackup/
 !/.editorconfig
 
 # MemPalace per-project files
+.mempalace/
 mempalace.yaml
 entities.json
 
