@@ -368,3 +368,8 @@ MigrationBackup/
 # MemPalace per-project files
 mempalace.yaml
 entities.json
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
