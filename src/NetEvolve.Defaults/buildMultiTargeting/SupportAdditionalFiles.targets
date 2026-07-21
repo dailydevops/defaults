@@ -6,43 +6,37 @@
     <PropertyGroup>
       <ConfigDir>$(SolutionDir)</ConfigDir>
       <ConfigDir Condition=" ('$(ConfigDir)' == '' or '$(ConfigDir)' == '*Undefined*') and '$(MSBuildProjectDirectory)' != ''"
-        >$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), Directory.Packages.props))</ConfigDir
-      >
+        >$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), Directory.Packages.props))</ConfigDir>
       <ConfigDir Condition=" ('$(ConfigDir)' == '' or '$(ConfigDir)' == '*Undefined*') and '$(ProjectDir)' != '' "
-        >$([MSBuild]::GetDirectoryNameOfFileAbove($(ProjectDir), Directory.Packages.props))</ConfigDir
-      >
+        >$([MSBuild]::GetDirectoryNameOfFileAbove($(ProjectDir), Directory.Packages.props))</ConfigDir>
     </PropertyGroup>
     <PropertyGroup>
       <EditorConfigSource>$(MSBuildThisFileDirectory)..\configurations\template.editorconfig</EditorConfigSource>
       <EditorConfigDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.editorconfig'))</EditorConfigDest>
 
       <EditorConfigCopyCommand Condition="'$(OS)' == 'Windows_NT'"
-        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(EditorConfigSource)' -Destination '$(EditorConfigDest)' -Force -ErrorAction SilentlyContinue"</EditorConfigCopyCommand
-      >
+        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(EditorConfigSource)' -Destination '$(EditorConfigDest)' -Force -ErrorAction SilentlyContinue"</EditorConfigCopyCommand>
       <EditorConfigCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(EditorConfigSource)' '$(EditorConfigDest)' 2&gt;/dev/null || true"</EditorConfigCopyCommand>
 
       <CSharpierIgnoreSource>$(MSBuildThisFileDirectory)..\configurations\template.csharpierignore</CSharpierIgnoreSource>
       <CSharpierIgnoreDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.csharpierignore'))</CSharpierIgnoreDest>
 
       <CsharpierIgnoreCopyCommand Condition="'$(OS)' == 'Windows_NT'"
-        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(CsharpierIgnoreSource)' -Destination '$(CsharpierIgnoreDest)' -Force -ErrorAction SilentlyContinue"</CsharpierIgnoreCopyCommand
-      >
+        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(CsharpierIgnoreSource)' -Destination '$(CsharpierIgnoreDest)' -Force -ErrorAction SilentlyContinue"</CsharpierIgnoreCopyCommand>
       <CsharpierIgnoreCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(CsharpierIgnoreSource)' '$(CsharpierIgnoreDest)' 2&gt;/dev/null || true"</CsharpierIgnoreCopyCommand>
 
       <GitIgnoreSource>$(MSBuildThisFileDirectory)..\configurations\template.gitignore</GitIgnoreSource>
       <GitIgnoreDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.gitignore'))</GitIgnoreDest>
 
       <GitIgnoreCopyCommand Condition="'$(OS)' == 'Windows_NT'"
-        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(GitIgnoreSource)' -Destination '$(GitIgnoreDest)' -Force -ErrorAction SilentlyContinue"</GitIgnoreCopyCommand
-      >
+        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(GitIgnoreSource)' -Destination '$(GitIgnoreDest)' -Force -ErrorAction SilentlyContinue"</GitIgnoreCopyCommand>
       <GitIgnoreCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(GitIgnoreSource)' '$(GitIgnoreDest)' 2&gt;/dev/null || true"</GitIgnoreCopyCommand>
 
       <GitAttributesSource>$(MSBuildThisFileDirectory)..\configurations\template.gitattributes</GitAttributesSource>
       <GitAttributesDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.gitattributes'))</GitAttributesDest>
 
       <GitAttributesCopyCommand Condition="'$(OS)' == 'Windows_NT'"
-        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(GitAttributesSource)' -Destination '$(GitAttributesDest)' -Force -ErrorAction SilentlyContinue"</GitAttributesCopyCommand
-      >
+        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(GitAttributesSource)' -Destination '$(GitAttributesDest)' -Force -ErrorAction SilentlyContinue"</GitAttributesCopyCommand>
       <GitAttributesCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(GitAttributesSource)' '$(GitAttributesDest)' 2&gt;/dev/null || true"</GitAttributesCopyCommand>
     </PropertyGroup>
 
