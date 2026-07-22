@@ -11,7 +11,7 @@ using TUnit.Assertions.Enums;
 public class IsPackableProjectDiagnosticAnalyzerTests
 {
     private static Dictionary<string, string?> CreateValidOptions() =>
-        new()
+        new(StringComparer.Ordinal)
         {
             ["build_property.ispackable"] = "true",
             ["build_property.packageid"] = "Some.Package.Id",
@@ -28,12 +28,11 @@ public class IsPackableProjectDiagnosticAnalyzerTests
     [Test]
     public async Task Analyze_IsPackableNotSet_NoDiagnostics()
     {
-        var options = new Dictionary<string, string?>();
+        var options = new Dictionary<string, string?>(StringComparer.Ordinal);
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics).IsEmpty();
     }
@@ -41,12 +40,14 @@ public class IsPackableProjectDiagnosticAnalyzerTests
     [Test]
     public async Task Analyze_IsPackableFalse_NoDiagnostics()
     {
-        var options = new Dictionary<string, string?> { ["build_property.ispackable"] = "false" };
+        var options = new Dictionary<string, string?>(StringComparer.Ordinal)
+        {
+            ["build_property.ispackable"] = "false",
+        };
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics).IsEmpty();
     }
@@ -54,12 +55,14 @@ public class IsPackableProjectDiagnosticAnalyzerTests
     [Test]
     public async Task Analyze_IsPackableUnparseable_TreatedAsNotPackable_NoDiagnostics()
     {
-        var options = new Dictionary<string, string?> { ["build_property.ispackable"] = "notabool" };
+        var options = new Dictionary<string, string?>(StringComparer.Ordinal)
+        {
+            ["build_property.ispackable"] = "notabool",
+        };
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics).IsEmpty();
     }
@@ -69,10 +72,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
     {
         var options = CreateValidOptions();
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics).IsEmpty();
     }
@@ -91,10 +93,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
         var options = CreateValidOptions();
         _ = options.Remove(key);
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics.Length).IsEqualTo(1);
         await Assert.That(diagnostics[0].Id).IsEqualTo(expectedId);
@@ -114,10 +115,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
         var options = CreateValidOptions();
         options[key] = "   ";
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics.Length).IsEqualTo(1);
         await Assert.That(diagnostics[0].Id).IsEqualTo(expectedId);
@@ -129,10 +129,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
         var options = CreateValidOptions();
         _ = options.Remove("build_property.copyrightyearstart");
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics.Length).IsEqualTo(1);
         await Assert.That(diagnostics[0].Id).IsEqualTo("NED0009");
@@ -144,10 +143,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
         var options = CreateValidOptions();
         options["build_property.copyrightyearstart"] = "abc";
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics.Length).IsEqualTo(1);
         await Assert.That(diagnostics[0].Id).IsEqualTo("NED0009");
@@ -159,10 +157,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
         var options = CreateValidOptions();
         options["build_property.copyrightyearstart"] = "1900";
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics).IsEmpty();
     }
@@ -173,10 +170,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
         var options = CreateValidOptions();
         options["build_property.copyrightyearstart"] = "9999";
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics).IsEmpty();
     }
@@ -187,10 +183,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
         var options = CreateValidOptions();
         options["build_property.copyrightyearstart"] = "1899";
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics.Length).IsEqualTo(1);
         await Assert.That(diagnostics[0].Id).IsEqualTo("NED0009");
@@ -202,10 +197,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
         var options = CreateValidOptions();
         options["build_property.copyrightyearstart"] = "10000";
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics.Length).IsEqualTo(1);
         await Assert.That(diagnostics[0].Id).IsEqualTo("NED0009");
@@ -217,10 +211,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
         var options = CreateValidOptions();
         options["build_property.copyrightyearstart"] = "  2024  ";
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics).IsEmpty();
     }
@@ -231,10 +224,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
         var options = CreateValidOptions();
         _ = options.Remove("build_property.copyrightyearstart");
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics.Length).IsEqualTo(1);
         await Assert.That(diagnostics[0].Severity).IsEqualTo(DiagnosticSeverity.Info);
@@ -247,10 +239,9 @@ public class IsPackableProjectDiagnosticAnalyzerTests
         _ = options.Remove("build_property.packageid");
         _ = options.Remove("build_property.title");
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new IsPackableProjectDiagnosticAnalyzer(),
-            options
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new IsPackableProjectDiagnosticAnalyzer(), options)
+            .ConfigureAwait(false);
 
         var ids = diagnostics.Select(d => d.Id).OrderBy(id => id, StringComparer.Ordinal).ToArray();
 
