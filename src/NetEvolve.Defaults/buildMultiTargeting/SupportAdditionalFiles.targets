@@ -1,5 +1,6 @@
 <Project TreatAsLocalProperty="IsCrossTargetingProject;ConfigDir">
   <PropertyGroup>
+    <IsCrossTargetingProject>false</IsCrossTargetingProject>
     <IsCrossTargetingProject Condition="$(TargetFrameworks) != ''">true</IsCrossTargetingProject>
   </PropertyGroup>
   <Target Name="UpdateEditorConfig" BeforeTargets="DispatchToInnerBuilds;BeforeBuild;CSharpierFormat" Condition=" '$(IsCrossTargetingProject)' == '$(IsCrossTargetingBuild)' ">

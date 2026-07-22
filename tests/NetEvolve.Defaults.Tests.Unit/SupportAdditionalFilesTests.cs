@@ -19,14 +19,10 @@ internal class SupportAdditionalFilesTests
     }
 
     [Test]
-    public async Task TargetFrameworksNotSet_IsCrossTargetingProject_ObservedBehaviorDiffersFromDocumentedIntent_StaysEmptyNotFalse()
+    public async Task TargetFrameworksNotSet_IsCrossTargetingProject_DefaultsToFalse()
     {
-        // Unlike IsTestableProject/IsXampleProject in SupportGeneral.props (which are seeded to an explicit
-        // "false" default before the conditional override), IsCrossTargetingProject here has no unconditioned
-        // default. When TargetFrameworks is unset the property is simply never assigned, so it evaluates to the
-        // empty string rather than the string "false".
         using var evaluated = MSBuildProjectFixture.Evaluate("Foo", [TargetsFile]);
 
-        await Assert.That(evaluated.GetProperty("IsCrossTargetingProject")).IsEqualTo("");
+        await Assert.That(evaluated.GetProperty("IsCrossTargetingProject")).IsEqualTo("false");
     }
 }

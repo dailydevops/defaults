@@ -73,11 +73,8 @@ internal class SupportNuGetAuditTests
     }
 
     [Test]
-    public async Task Release_WarningsAsErrors_ObservedBehaviorDiffersFromDocumentedIntent_LiteralParenthesesTokenInsteadOfPriorValue()
+    public async Task Release_WarningsAsErrors_PreservesPriorValueAndAppendsAuditCodes()
     {
-        // SupportNuGetAudit.targets:6 assigns the literal string "(WarningsAsErrors);NU1900;..." (missing the
-        // leading '$' before "(WarningsAsErrors)") instead of "$(WarningsAsErrors);NU1900;...". As a result any
-        // pre-existing WarningsAsErrors value is silently dropped/replaced rather than preserved and appended to.
         var globalProperties = new Dictionary<string, string> { ["Configuration"] = "Release" };
         var preSetProperties = new Dictionary<string, string> { ["WarningsAsErrors"] = "CS1591" };
 
@@ -85,7 +82,6 @@ internal class SupportNuGetAuditTests
 
         var warningsAsErrors = evaluated.GetProperty("WarningsAsErrors");
 
-        await Assert.That(warningsAsErrors).IsEqualTo("(WarningsAsErrors);NU1900;NU1901;NU1902;NU1903;NU1904");
-        await Assert.That(warningsAsErrors).DoesNotContain("CS1591");
+        await Assert.That(warningsAsErrors).IsEqualTo("CS1591;NU1900;NU1901;NU1902;NU1903;NU1904");
     }
 }
