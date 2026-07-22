@@ -9,6 +9,48 @@ using Microsoft.Build.Evaluation;
 
 internal static class MSBuildProjectFixture
 {
+    // MSBuild resolves an undefined $(VAR) from the process environment. The test host itself may be
+    // running under a real CI system (GitHub Actions, etc.), so every CI-detection-related variable
+    // referenced by SupportDetectContinuousIntegration.props/.targets must be neutralized by default,
+    // otherwise ambient CI env vars leak into evaluations that don't explicitly set them.
+    private static readonly string[] CiRelatedEnvironmentVariableNames =
+    [
+        "CI",
+        "TF_BUILD",
+        "BUILD_SOURCEBRANCH",
+        "GITHUB_ACTIONS",
+        "GITHUB_REF",
+        "GITLAB_CI",
+        "CI_COMMIT_BRANCH",
+        "CI_COMMIT_TAG",
+        "CI_MERGE_REQUEST_IID",
+        "CI_EXTERNAL_PULL_REQUEST_IID",
+        "TEAMCITY_VERSION",
+        "TEAMCITY_BUILD_BRANCH",
+        "BUILD_COMMAND",
+        "APPVEYOR",
+        "APPVEYOR_PULL_REQUEST_NUMBER",
+        "APPVEYOR_REPO_TAG_NAME",
+        "APPVEYOR_REPO_BRANCH",
+        "TRAVIS",
+        "TRAVIS_PULL_REQUEST",
+        "TRAVIS_BRANCH",
+        "CIRCLECI",
+        "CIRCLE_PR_NUMBER",
+        "CIRCLE_TAG",
+        "CIRCLE_BRANCH",
+        "CODEBUILD_BUILD_ID",
+        "AWS_REGION",
+        "JENKINS_URL",
+        "BUILD_ID",
+        "BUILD_URL",
+        "PROJECT_ID",
+        "JB_SPACE_API_URL",
+        "BUDDY_EXECUTION_PULL_REQUEST_NO",
+        "BUDDY_EXECUTION_TAG",
+        "BUDDY_EXECUTION_BRANCH",
+    ];
+
     private static readonly string RepoRoot = FindRepoRoot();
 
     public static readonly string BuildMultiTargetingDirectory = Path.Combine(
@@ -40,7 +82,31 @@ internal static class MSBuildProjectFixture
         tempDirectory.Create();
 
         var projectPath = Path.Combine(tempDirectory.FullName, projectName + ".csproj");
+        File.WriteAllText(projectPath, BuildProjectContent(importPaths, preSetProperties));
 
+        var effectiveGlobalProperties = BuildEffectiveGlobalProperties(globalProperties);
+        var projectCollection = new ProjectCollection(effectiveGlobalProperties);
+
+        Project project;
+        try
+        {
+            project = new Project(projectPath, effectiveGlobalProperties, toolsVersion: null, projectCollection);
+        }
+        catch
+        {
+            projectCollection.Dispose();
+            TryDeleteDirectory(tempDirectory);
+            throw;
+        }
+
+        return new EvaluatedProject(project, projectCollection, tempDirectory);
+    }
+
+    private static string BuildProjectContent(
+        IEnumerable<string> importPaths,
+        IDictionary<string, string>? preSetProperties
+    )
+    {
         var content = new StringBuilder();
         _ = content.AppendLine("<Project>");
 
@@ -71,24 +137,28 @@ internal static class MSBuildProjectFixture
         }
         _ = content.AppendLine("</Project>");
 
-        File.WriteAllText(projectPath, content.ToString());
+        return content.ToString();
+    }
 
-        var effectiveGlobalProperties = globalProperties ?? new Dictionary<string, string>();
-        var projectCollection = new ProjectCollection(effectiveGlobalProperties);
-
-        Project project;
-        try
+    private static Dictionary<string, string> BuildEffectiveGlobalProperties(
+        IDictionary<string, string>? globalProperties
+    )
+    {
+        var effectiveGlobalProperties = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var name in CiRelatedEnvironmentVariableNames)
         {
-            project = new Project(projectPath, effectiveGlobalProperties, toolsVersion: null, projectCollection);
-        }
-        catch
-        {
-            projectCollection.Dispose();
-            TryDeleteDirectory(tempDirectory);
-            throw;
+            effectiveGlobalProperties[name] = string.Empty;
         }
 
-        return new EvaluatedProject(project, projectCollection, tempDirectory);
+        if (globalProperties is not null)
+        {
+            foreach (var property in globalProperties)
+            {
+                effectiveGlobalProperties[property.Key] = property.Value;
+            }
+        }
+
+        return effectiveGlobalProperties;
     }
 
     private static void TryDeleteDirectory(DirectoryInfo directory)
