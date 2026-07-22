@@ -36,22 +36,14 @@ internal sealed class OldProjectSupportDiagnosticAnalyzer : DiagnosticAnalyzer
         {
             var options = ctx.Options.AnalyzerConfigOptionsProvider.GlobalOptions;
 
-            AnalyzeIsKeySet(ctx, options, _ruleOLD0001, "build_property.direngineering");
-            AnalyzeIsKeySet(ctx, options, _ruleOLD0001, "build_property.direngineeringsettings");
+            if (
+                IsConfigured(options, "build_property.direngineering")
+                || IsConfigured(options, "build_property.direngineeringsettings")
+            )
+            {
+                ctx.ReportDiagnostic(Diagnostic.Create(_ruleOLD0001, null));
+            }
         });
-    }
-
-    private static void AnalyzeIsKeySet(
-        CompilationAnalysisContext context,
-        AnalyzerConfigOptions options,
-        DiagnosticDescriptor descriptor,
-        string key
-    )
-    {
-        if (IsConfigured(options, key))
-        {
-            context.ReportDiagnostic(Diagnostic.Create(descriptor, null));
-        }
     }
 
     private static bool IsConfigured(AnalyzerConfigOptions options, string key)
