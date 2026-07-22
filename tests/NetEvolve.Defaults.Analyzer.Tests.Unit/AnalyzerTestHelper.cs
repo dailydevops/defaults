@@ -28,13 +28,13 @@ internal static class AnalyzerTestHelper
         );
 
         var optionsProvider = new TestAnalyzerConfigOptionsProvider(
-            new TestAnalyzerConfigOptions(globalOptions ?? new Dictionary<string, string?>())
+            new TestAnalyzerConfigOptions(globalOptions ?? new Dictionary<string, string?>(StringComparer.Ordinal))
         );
         var analyzerOptions = new AnalyzerOptions([], optionsProvider);
 
         var withAnalyzers = compilation.WithAnalyzers([analyzer], analyzerOptions);
 
-        var diagnostics = await withAnalyzers.GetAnalyzerDiagnosticsAsync();
+        var diagnostics = await withAnalyzers.GetAnalyzerDiagnosticsAsync().ConfigureAwait(false);
 
         return diagnostics;
     }

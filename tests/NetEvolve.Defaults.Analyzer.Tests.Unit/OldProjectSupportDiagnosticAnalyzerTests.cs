@@ -10,12 +10,11 @@ public class OldProjectSupportDiagnosticAnalyzerTests
     [Test]
     public async Task Analyze_NeitherKeySet_NoDiagnostics()
     {
-        var globalOptions = new Dictionary<string, string?>();
+        var globalOptions = new Dictionary<string, string?>(StringComparer.Ordinal);
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new OldProjectSupportDiagnosticAnalyzer(),
-            globalOptions
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new OldProjectSupportDiagnosticAnalyzer(), globalOptions)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics).IsEmpty();
     }
@@ -23,40 +22,46 @@ public class OldProjectSupportDiagnosticAnalyzerTests
     [Test]
     public async Task Analyze_OnlyDirEngineeringSet_ReportsSingleDiagnostic()
     {
-        var globalOptions = new Dictionary<string, string?> { ["build_property.direngineering"] = "true" };
+        var globalOptions = new Dictionary<string, string?>(StringComparer.Ordinal)
+        {
+            ["build_property.direngineering"] = "true",
+        };
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new OldProjectSupportDiagnosticAnalyzer(),
-            globalOptions
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new OldProjectSupportDiagnosticAnalyzer(), globalOptions)
+            .ConfigureAwait(false);
 
-        await Assert.That(diagnostics).HasCount().EqualTo(1);
+        await Assert.That(diagnostics).Count().IsEqualTo(1);
         await Assert.That(diagnostics[0].Id).IsEqualTo("OLD0001");
     }
 
     [Test]
     public async Task Analyze_OnlyDirEngineeringSettingsSet_ReportsSingleDiagnostic()
     {
-        var globalOptions = new Dictionary<string, string?> { ["build_property.direngineeringsettings"] = "true" };
+        var globalOptions = new Dictionary<string, string?>(StringComparer.Ordinal)
+        {
+            ["build_property.direngineeringsettings"] = "true",
+        };
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new OldProjectSupportDiagnosticAnalyzer(),
-            globalOptions
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new OldProjectSupportDiagnosticAnalyzer(), globalOptions)
+            .ConfigureAwait(false);
 
-        await Assert.That(diagnostics).HasCount().EqualTo(1);
+        await Assert.That(diagnostics).Count().IsEqualTo(1);
         await Assert.That(diagnostics[0].Id).IsEqualTo("OLD0001");
     }
 
     [Test]
     public async Task Analyze_DirEngineeringWhitespaceOnly_NoDiagnostics()
     {
-        var globalOptions = new Dictionary<string, string?> { ["build_property.direngineering"] = "   " };
+        var globalOptions = new Dictionary<string, string?>(StringComparer.Ordinal)
+        {
+            ["build_property.direngineering"] = "   ",
+        };
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new OldProjectSupportDiagnosticAnalyzer(),
-            globalOptions
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new OldProjectSupportDiagnosticAnalyzer(), globalOptions)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics).IsEmpty();
     }
@@ -64,12 +69,14 @@ public class OldProjectSupportDiagnosticAnalyzerTests
     [Test]
     public async Task Analyze_DirEngineeringSettingsWhitespaceOnly_NoDiagnostics()
     {
-        var globalOptions = new Dictionary<string, string?> { ["build_property.direngineeringsettings"] = "   " };
+        var globalOptions = new Dictionary<string, string?>(StringComparer.Ordinal)
+        {
+            ["build_property.direngineeringsettings"] = "   ",
+        };
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new OldProjectSupportDiagnosticAnalyzer(),
-            globalOptions
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new OldProjectSupportDiagnosticAnalyzer(), globalOptions)
+            .ConfigureAwait(false);
 
         await Assert.That(diagnostics).IsEmpty();
     }
@@ -77,18 +84,17 @@ public class OldProjectSupportDiagnosticAnalyzerTests
     [Test]
     public async Task BothKeysConfigured_ReportsSingleDiagnostic()
     {
-        var globalOptions = new Dictionary<string, string?>
+        var globalOptions = new Dictionary<string, string?>(StringComparer.Ordinal)
         {
             ["build_property.direngineering"] = "true",
             ["build_property.direngineeringsettings"] = "true",
         };
 
-        var diagnostics = await AnalyzerTestHelper.GetDiagnosticsAsync(
-            new OldProjectSupportDiagnosticAnalyzer(),
-            globalOptions
-        );
+        var diagnostics = await AnalyzerTestHelper
+            .GetDiagnosticsAsync(new OldProjectSupportDiagnosticAnalyzer(), globalOptions)
+            .ConfigureAwait(false);
 
-        await Assert.That(diagnostics).HasCount().EqualTo(1);
+        await Assert.That(diagnostics).Count().IsEqualTo(1);
         await Assert.That(diagnostics[0].Id).IsEqualTo("OLD0001");
     }
 
@@ -99,7 +105,7 @@ public class OldProjectSupportDiagnosticAnalyzerTests
 
         var supportedDiagnostics = analyzer.SupportedDiagnostics;
 
-        await Assert.That(supportedDiagnostics).HasCount().EqualTo(1);
+        await Assert.That(supportedDiagnostics).Count().IsEqualTo(1);
         await Assert.That(supportedDiagnostics[0].Id).IsEqualTo("OLD0001");
     }
 
