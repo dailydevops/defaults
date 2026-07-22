@@ -21,7 +21,7 @@ on:
 jobs:
   all:
     name: Build & Tests
-    uses: dailydevops/pipelines/.github/workflows/build-dotnet-single.yml@a5559550aeccdef84aaddad612e2dd6ffa0a5624 # 2.5.115
+    uses: dailydevops/pipelines/.github/workflows/build-dotnet-single.yml@a5609bae17fb2cecd1675150a7382ceae207e5d3 # 2.5.116
     with:
       dotnetLogging: ${{ inputs.dotnet-logging }}
       dotnetVersion: ${{ vars.NE_DOTNET_TARGETFRAMEWORKS }}

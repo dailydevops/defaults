@@ -19,7 +19,7 @@ jobs:
   nuget:
     name: Publish
     if: ${{ github.event.workflow_run.conclusion == 'success' && github.actor != 'dependabot[bot]' && github.actor != 'renovate[bot]' }}
-    uses: dailydevops/pipelines/.github/workflows/publish-nuget.yml@a5559550aeccdef84aaddad612e2dd6ffa0a5624 # 2.5.115
+    uses: dailydevops/pipelines/.github/workflows/publish-nuget.yml@a5609bae17fb2cecd1675150a7382ceae207e5d3 # 2.5.116
     with:
       workflowName: ${{ github.event.workflow_run.name }}
       artifactPattern: release-packages-*
