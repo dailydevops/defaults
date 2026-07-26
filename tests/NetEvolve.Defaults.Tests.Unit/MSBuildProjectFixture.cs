@@ -191,6 +191,7 @@ internal static class MSBuildProjectFixture
 
     internal sealed class EvaluatedProject : IDisposable
     {
+        private static readonly Lock BuildLock = new();
         private readonly ProjectCollection _projectCollection;
         private readonly DirectoryInfo _tempDirectory;
         private bool _disposed;
@@ -204,10 +205,22 @@ internal static class MSBuildProjectFixture
 
         public Project Project { get; }
 
+        public string Directory => _tempDirectory.FullName;
+
         public string GetProperty(string name) => Project.GetPropertyValue(name);
 
         public IReadOnlyList<string> GetItemIncludes(string itemType) =>
             [.. Project.GetItems(itemType).Select(item => item.EvaluatedInclude)];
+
+        public bool BuildTarget(string targetName)
+        {
+            // ProjectInstance.Build uses the process-wide BuildManager, which allows only one build at a
+            // time; TUnit runs tests in parallel by default, so concurrent calls must be serialized.
+            lock (BuildLock)
+            {
+                return Project.CreateProjectInstance().Build(targetName, null);
+            }
+        }
 
         public void Dispose()
         {

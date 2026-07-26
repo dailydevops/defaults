@@ -3,7 +3,9 @@
     <IsCrossTargetingProject>false</IsCrossTargetingProject>
     <IsCrossTargetingProject Condition="$(TargetFrameworks) != ''">true</IsCrossTargetingProject>
   </PropertyGroup>
-  <Target Name="UpdateEditorConfig" BeforeTargets="DispatchToInnerBuilds;BeforeBuild;CSharpierFormat" Condition=" '$(IsCrossTargetingProject)' == '$(IsCrossTargetingBuild)' ">
+  <Target Name="UpdateEditorConfig" BeforeTargets="DispatchToInnerBuilds;BeforeBuild;CSharpierFormat"
+          Condition=" ('$(IsCrossTargetingProject)' == 'true' and '$(IsCrossTargetingBuild)' == 'true')
+                    or ('$(IsCrossTargetingProject)' == 'false' and '$(IsCrossTargetingBuild)' != 'true') ">
     <PropertyGroup>
       <ConfigDir>$(SolutionDir)</ConfigDir>
       <ConfigDir Condition=" ('$(ConfigDir)' == '' or '$(ConfigDir)' == '*Undefined*') and '$(MSBuildProjectDirectory)' != ''"
