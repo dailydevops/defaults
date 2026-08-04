@@ -15,6 +15,6 @@
     <AssemblyAttribute Include="NetEvolve.Extensions.TUnit.UnitTestAttribute" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.csproj" />
+    <ProjectReference Include="..\..\src\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.Roslyn5_6.csproj" />
   </ItemGroup>
 </Project>

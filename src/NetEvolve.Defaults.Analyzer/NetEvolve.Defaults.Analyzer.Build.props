@@ -1,0 +1,57 @@
+<Project>
+  <!--
+    Shared settings for every Roslyn-version-specific project in this folder
+    (NetEvolve.Defaults.Analyzer.csproj plus the NetEvolve.Defaults.Analyzer.Roslyn*.csproj siblings).
+    Each of them sets RoslynApiVersion and imports this file; they all compile the
+    same *.cs files (default SDK globbing) into a separate obj/bin subfolder keyed
+    by the project name, so they don't collide with one another.
+  -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>NetEvolve.Defaults.Analyzer</AssemblyName>
+    <RootNamespace>NetEvolve.Defaults.Analyzer</RootNamespace>
+    <LangVersion Condition=" '$(LangVersion)' != 'preview' ">latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsRoslynComponent>true</IsRoslynComponent>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <IsPackable Condition=" '$(IsPackable)' == '' ">false</IsPackable>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Description>
+      NetEvolve.Defaults.Analyzer provides several diagnostic analyzers, to improve the nuget package quality and consistency.
+    </Description>
+    <NoWarn>$(NoWarn);RS1036</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup Label="Test access to internals">
+    <InternalsVisibleTo Include="NetEvolve.Defaults.Analyzer.Tests.Architecture" />
+    <InternalsVisibleTo Include="NetEvolve.Defaults.Analyzer.Tests.Unit" />
+    <InternalsVisibleTo Include="NetEvolve.Defaults.Analyzer.Tests.Integration" />
+  </ItemGroup>
+
+  <ItemGroup Label="Exclude sibling variants' obj/bin folders">
+    <Compile Remove="obj\**;bin\**" />
+  </ItemGroup>
+
+  <ItemGroup Label="Roslyn">
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" VersionOverride="$(RoslynApiVersion)" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="Generated resources">
+    <Compile Update="Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup Label="Analyzer release tracking (RS2008)">
+    <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
+    <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
+  </ItemGroup>
+</Project>

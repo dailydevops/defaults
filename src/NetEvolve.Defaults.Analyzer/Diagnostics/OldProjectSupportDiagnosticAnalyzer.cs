@@ -15,7 +15,7 @@ internal sealed class OldProjectSupportDiagnosticAnalyzer : DiagnosticAnalyzer
         customTags: WellKnownDiagnosticTags.CompilationEnd
     );
 
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [_ruleOLD0001];
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(_ruleOLD0001);
 
     public override void Initialize(AnalysisContext context)
     {

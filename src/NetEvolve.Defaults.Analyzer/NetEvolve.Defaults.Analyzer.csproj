@@ -8,7 +8,7 @@
     </Description>
     <NeutralLanguage>en</NeutralLanguage>
     <DevelopmentDependency>true</DevelopmentDependency>
-    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <IsPackable>true</IsPackable>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -18,34 +18,39 @@
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
     <DisableRecommendedPackage>NetEvolve.Defaults</DisableRecommendedPackage>
   </PropertyGroup>
+  <ItemGroup Label="This project only packs the outputs of the Roslyn-version-specific sibling projects">
+    <Compile Remove="**\*.cs" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="build\**" Pack="true" PackagePath="build\" />
     <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\" />
     <None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive\" />
     <None Include="_._" Pack="true" PackagePath="lib\$(TargetFramework)" Visible="false" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Strings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-    <EmbeddedResource Update="Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
-    <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
+  <ItemGroup Label="Roslyn-version builds packed into this package">
+    <ProjectReference Include="NetEvolve.Defaults.Analyzer.Roslyn4_4.csproj" ReferenceOutputAssembly="false" PrivateAssets="all" />
+    <ProjectReference Include="NetEvolve.Defaults.Analyzer.Roslyn4_7.csproj" ReferenceOutputAssembly="false" PrivateAssets="all" />
+    <ProjectReference Include="NetEvolve.Defaults.Analyzer.Roslyn4_14.csproj" ReferenceOutputAssembly="false" PrivateAssets="all" />
+    <ProjectReference Include="NetEvolve.Defaults.Analyzer.Roslyn5_6.csproj" ReferenceOutputAssembly="false" PrivateAssets="all" />
   </ItemGroup>
   <Target Name="_AddAnalyzersToOutput">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="$(OutputPath)\$(AssemblyName).dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile
+        Include="bin\NetEvolve.Defaults.Analyzer.Roslyn4_4\$(Configuration)\netstandard2.0\$(AssemblyName).dll"
+        PackagePath="analyzers/dotnet/roslyn4.4/cs/%(Filename)%(Extension)"
+      />
+      <TfmSpecificPackageFile
+        Include="bin\NetEvolve.Defaults.Analyzer.Roslyn4_7\$(Configuration)\netstandard2.0\$(AssemblyName).dll"
+        PackagePath="analyzers/dotnet/roslyn4.7/cs/%(Filename)%(Extension)"
+      />
+      <TfmSpecificPackageFile
+        Include="bin\NetEvolve.Defaults.Analyzer.Roslyn4_14\$(Configuration)\netstandard2.0\$(AssemblyName).dll"
+        PackagePath="analyzers/dotnet/roslyn4.14/cs/%(Filename)%(Extension)"
+      />
+      <TfmSpecificPackageFile
+        Include="bin\NetEvolve.Defaults.Analyzer.Roslyn5_6\$(Configuration)\netstandard2.0\$(AssemblyName).dll"
+        PackagePath="analyzers/dotnet/roslyn5.6/cs/%(Filename)%(Extension)"
+      />
     </ItemGroup>
   </Target>
   <Import Project=".\..\NetEvolve.Defaults\build\NetEvolve.Defaults.targets" />

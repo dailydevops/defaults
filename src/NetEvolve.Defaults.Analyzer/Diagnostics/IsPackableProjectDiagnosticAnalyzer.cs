@@ -51,7 +51,7 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
     );
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
-        [
+        ImmutableArray.Create(
             _ruleNED0001,
             _ruleNED0002,
             _ruleNED0003,
@@ -60,8 +60,8 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
             _ruleNED0006,
             _ruleNED0007,
             _ruleNED0008,
-            _ruleNED0009,
-        ];
+            _ruleNED0009
+        );
 
     public override void Initialize(AnalysisContext context)
     {

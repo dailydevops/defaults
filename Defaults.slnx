@@ -18,6 +18,10 @@
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/NetEvolve.Defaults.Analyzer/NetEvolve.Defaults.Analyzer.csproj" />
+    <Project Path="src/NetEvolve.Defaults.Analyzer/NetEvolve.Defaults.Analyzer.Roslyn4_4.csproj" />
+    <Project Path="src/NetEvolve.Defaults.Analyzer/NetEvolve.Defaults.Analyzer.Roslyn4_7.csproj" />
+    <Project Path="src/NetEvolve.Defaults.Analyzer/NetEvolve.Defaults.Analyzer.Roslyn4_14.csproj" />
+    <Project Path="src/NetEvolve.Defaults.Analyzer/NetEvolve.Defaults.Analyzer.Roslyn5_6.csproj" />
     <Project Path="src/NetEvolve.Defaults/NetEvolve.Defaults.csproj" />
   </Folder>
   <Folder Name="/tests/">
