@@ -4,6 +4,7 @@
     <RecommendedPackage Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" />
     <RecommendedPackage Include="Microsoft.CodeAnalysis.NetAnalyzers" />
     <RecommendedPackage Include="Microsoft.VisualStudio.Threading.Analyzers" />
+    <RecommendedPackage Include="NetEvolve.Analyzer" />
     <RecommendedPackage Include="NetEvolve.Defaults" />
     <RecommendedPackage Include="Roslynator.Analyzers" />
     <RecommendedPackage Include="Roslynator.Formatting.Analyzers" />
