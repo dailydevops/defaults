@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -16,10 +17,13 @@ internal static class AnalyzerTestHelper
     internal static async Task<ImmutableArray<Diagnostic>> GetDiagnosticsAsync(
         DiagnosticAnalyzer analyzer,
         IReadOnlyDictionary<string, string?>? globalOptions = null,
-        string source = DefaultSource
+        string source = DefaultSource,
+        CancellationToken cancellationToken = default
     )
     {
-        var syntaxTree = CSharpSyntaxTree.ParseText(source);
+        cancellationToken.ThrowIfCancellationRequested();
+
+        var syntaxTree = CSharpSyntaxTree.ParseText(source, cancellationToken: cancellationToken);
         var compilation = CSharpCompilation.Create(
             "AnalyzerTestAssembly",
             [syntaxTree],
@@ -32,11 +36,11 @@ internal static class AnalyzerTestHelper
         );
         var analyzerOptions = new AnalyzerOptions([], optionsProvider);
 
+#pragma warning disable S8949 // The overload accepting a 'CancellationToken' should be used
         var withAnalyzers = compilation.WithAnalyzers([analyzer], analyzerOptions);
+#pragma warning restore S8949 // The overload accepting a 'CancellationToken' should be used
 
-        var diagnostics = await withAnalyzers.GetAnalyzerDiagnosticsAsync().ConfigureAwait(false);
-
-        return diagnostics;
+        return await withAnalyzers.GetAnalyzerDiagnosticsAsync(cancellationToken).ConfigureAwait(false);
     }
 
     private sealed class TestAnalyzerConfigOptionsProvider(AnalyzerConfigOptions globalOptions)

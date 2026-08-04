@@ -13,17 +13,18 @@ internal class SupportMissingAnalyzersTests
 
         var recommended = evaluated.GetItemIncludes("RecommendedPackage");
 
-        await Assert.That(recommended).Contains("Meziantou.Analyzer");
-        await Assert.That(recommended).Contains("Microsoft.CodeAnalysis.BannedApiAnalyzers");
-        await Assert.That(recommended).Contains("Microsoft.CodeAnalysis.NetAnalyzers");
-        await Assert.That(recommended).Contains("Microsoft.VisualStudio.Threading.Analyzers");
-        await Assert.That(recommended).Contains("NetEvolve.Defaults");
-        await Assert.That(recommended).Contains("Roslynator.Analyzers");
-        await Assert.That(recommended).Contains("Roslynator.Formatting.Analyzers");
-        await Assert.That(recommended).Contains("Roslynator.CodeAnalysis.Analyzers");
-        await Assert.That(recommended).Contains("Roslynator.CodeFixes");
-        await Assert.That(recommended).Contains("Roslynator.Refactorings");
-        await Assert.That(recommended).Contains("SonarAnalyzer.CSharp");
-        await Assert.That(recommended.Count).IsEqualTo(11);
+        _ = await Assert.That(recommended).Contains("Meziantou.Analyzer");
+        _ = await Assert.That(recommended).Contains("Microsoft.CodeAnalysis.BannedApiAnalyzers");
+        _ = await Assert.That(recommended).Contains("Microsoft.CodeAnalysis.NetAnalyzers");
+        _ = await Assert.That(recommended).Contains("Microsoft.VisualStudio.Threading.Analyzers");
+        _ = await Assert.That(recommended).Contains("NetEvolve.Analyzer");
+        _ = await Assert.That(recommended).Contains("NetEvolve.Defaults");
+        _ = await Assert.That(recommended).Contains("Roslynator.Analyzers");
+        _ = await Assert.That(recommended).Contains("Roslynator.Formatting.Analyzers");
+        _ = await Assert.That(recommended).Contains("Roslynator.CodeAnalysis.Analyzers");
+        _ = await Assert.That(recommended).Contains("Roslynator.CodeFixes");
+        _ = await Assert.That(recommended).Contains("Roslynator.Refactorings");
+        _ = await Assert.That(recommended).Contains("SonarAnalyzer.CSharp");
+        _ = await Assert.That(recommended.Count).IsEqualTo(12);
     }
 }
