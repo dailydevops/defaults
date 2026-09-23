@@ -69,6 +69,24 @@ Projects containing `.Xample` or starting with `Xample.` are identified as examp
 </PropertyGroup>
 ```
 
+#### Tool Projects (`IsToolProject`)
+
+Projects containing `.Tools.` in their name (and that are neither test nor example projects) are identified as tool projects. These are executables that belong to the repository but are never shipped as NuGet packages, such as migration runners, maintenance jobs, load test tools or license tools.
+
+- `IsPackable` is set to `false`, so the project is never packed, even though the defaults run after the project file
+- `IsPublishable` stays `true`, so the project can still be published as an executable or container
+- `WarnOnPackingNonPackableProject` is set to `false`, so packing the whole solution produces no warning
+
+Projects with `PackAsTool` set to `true` (.NET tools distributed via NuGet) are always packed, regardless of `IsToolProject`.
+
+**Customization:**
+
+```xml
+<PropertyGroup>
+  <IsToolProject>true</IsToolProject>
+</PropertyGroup>
+```
+
 ## Build & Compilation Settings
 
 ### Language and Runtime Configuration

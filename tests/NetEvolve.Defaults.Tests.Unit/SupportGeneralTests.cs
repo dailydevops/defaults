@@ -39,6 +39,21 @@ internal class SupportGeneralTests
     }
 
     [Test]
+    [Arguments("Foo.Tools.License", true)]
+    [Arguments("NetEvolve.Tools.Migrations.Runner", true)]
+    [Arguments("Foo.Tools", false)]
+    [Arguments("FooTools.Bar", false)]
+    [Arguments("Foo", false)]
+    [Arguments("Foo.Tools.Tests.Unit", false)]
+    [Arguments("Foo.Tools.Xample", false)]
+    public async Task IsToolProject_DerivedFromProjectName(string projectName, bool expected)
+    {
+        using var evaluated = MSBuildProjectFixture.Evaluate(projectName, [PropsFile]);
+
+        await Assert.That(evaluated.GetProperty("IsToolProject")).IsEqualTo(expected ? "true" : "false");
+    }
+
+    [Test]
     public async Task DefaultProperties_AreSetAsDocumented()
     {
         using var evaluated = MSBuildProjectFixture.Evaluate("Foo", [PropsFile]);
@@ -237,6 +252,71 @@ internal class SupportGeneralTests
         await Assert.That(evaluated.GetProperty("IsPackable")).IsEqualTo("false");
         await Assert.That(evaluated.GetProperty("IsTestProject")).IsEqualTo("false");
         await Assert.That(evaluated.GetProperty("WarnOnPackingNonPackableProject")).IsEqualTo("false");
+    }
+
+    [Test]
+    public async Task IsPackableAndIsPublishable_ToolProject_IsNeverPackedButPublishable()
+    {
+        // Seeded via preSetProperties, like a consuming project setting IsToolProject in its own csproj body,
+        // which SupportGeneral.targets must honour even though it runs after the project body.
+        var preSetProperties = new Dictionary<string, string>
+        {
+            ["IsTestableProject"] = "false",
+            ["IsXampleProject"] = "false",
+            ["IsToolProject"] = "true",
+        };
+
+        using var evaluated = MSBuildProjectFixture.Evaluate(
+            "Foo.Migrations",
+            [TargetsFile],
+            preSetProperties: preSetProperties
+        );
+
+        await Assert.That(evaluated.GetProperty("IsPackable")).IsEqualTo("false");
+        await Assert.That(evaluated.GetProperty("IsPublishable")).IsEqualTo("true");
+        await Assert.That(evaluated.GetProperty("IsTestProject")).IsEqualTo("false");
+        await Assert.That(evaluated.GetProperty("WarnOnPackingNonPackableProject")).IsEqualTo("false");
+    }
+
+    [Test]
+    public async Task IsPackable_ToolProjectWithPackAsTool_RemainsPackable()
+    {
+        var preSetProperties = new Dictionary<string, string>
+        {
+            ["IsTestableProject"] = "false",
+            ["IsXampleProject"] = "false",
+            ["IsToolProject"] = "true",
+            ["PackAsTool"] = "true",
+        };
+
+        using var evaluated = MSBuildProjectFixture.Evaluate(
+            "Foo.Tools.Cli",
+            [TargetsFile],
+            preSetProperties: preSetProperties
+        );
+
+        await Assert.That(evaluated.GetProperty("IsPackable")).IsEqualTo("true");
+    }
+
+    [Test]
+    public async Task IsPublishable_ToolAndTestableProject_TestProjectDefaultsWin()
+    {
+        var globalProperties = new Dictionary<string, string>
+        {
+            ["IsTestableProject"] = "true",
+            ["IsXampleProject"] = "false",
+            ["IsToolProject"] = "true",
+        };
+
+        using var evaluated = MSBuildProjectFixture.Evaluate(
+            "Foo.Tools.Tests.Unit",
+            [TargetsFile, TestProjectsTargetsFile],
+            globalProperties
+        );
+
+        await Assert.That(evaluated.GetProperty("IsPackable")).IsEqualTo("false");
+        await Assert.That(evaluated.GetProperty("IsTestProject")).IsEqualTo("true");
+        await Assert.That(evaluated.GetProperty("IsPublishable")).IsEqualTo("false");
     }
 
     [Test]
