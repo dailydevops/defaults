@@ -13,6 +13,11 @@
     <IsTestProject>false</IsTestProject>
     <WarnOnPackingNonPackableProject>false</WarnOnPackingNonPackableProject>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(IsToolProject)' == 'true' and '$(IsTestableProject)' == 'false' and '$(IsXampleProject)' == 'false' and '$(PackAsTool)' != 'true' ">
+    <IsPackable>false</IsPackable>
+    <IsPublishable>true</IsPublishable>
+    <WarnOnPackingNonPackableProject>false</WarnOnPackingNonPackableProject>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="$(MSBuildProjectDirectory)/*.sarif" />
     <None Remove="$(MSBuildProjectDirectory)/**/*.sarif" />

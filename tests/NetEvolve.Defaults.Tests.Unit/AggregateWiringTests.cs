@@ -51,6 +51,18 @@ internal class AggregateWiringTests
     }
 
     [Test]
+    public async Task ToolProject_EndToEnd_IsNotPackableButPublishable()
+    {
+        using var evaluated = MSBuildProjectFixture.Evaluate("Foo.Tools.License", [BuildProps, BuildTargets]);
+
+        await Assert.That(evaluated.GetProperty("IsToolProject")).IsEqualTo("true");
+        await Assert.That(evaluated.GetProperty("IsPackable")).IsEqualTo("false");
+        await Assert.That(evaluated.GetProperty("IsPublishable")).IsEqualTo("true");
+        await Assert.That(evaluated.GetProperty("IsTestProject")).IsEqualTo("false");
+        await Assert.That(evaluated.GetProperty("WarnOnPackingNonPackableProject")).IsEqualTo("false");
+    }
+
+    [Test]
     public async Task DisableSupportPackageInformation_SkipsPackageInformationImports()
     {
         var globalProperties = new Dictionary<string, string> { ["DisableSupportPackageInformation"] = "true" };

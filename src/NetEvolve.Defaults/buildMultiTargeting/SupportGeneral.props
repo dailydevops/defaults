@@ -4,6 +4,8 @@
     <IsTestableProject Condition=" $(MSBuildProjectName.Contains('.Tests.')) ">true</IsTestableProject>
     <IsXampleProject>false</IsXampleProject>
     <IsXampleProject Condition=" $(MSBuildProjectName.Contains('.Xample')) or $(MSBuildProjectName.StartsWith('Xample.')) ">true</IsXampleProject>
+    <IsToolProject>false</IsToolProject>
+    <IsToolProject Condition=" $(MSBuildProjectName.Contains('.Tools.')) and '$(IsTestableProject)' == 'false' and '$(IsXampleProject)' == 'false' ">true</IsToolProject>
   </PropertyGroup>
   <PropertyGroup Label="General Configurations">
     <RootNamespace Condition=" '$(RootNamespace)' == '' ">$(MSBuildProjectName)</RootNamespace>
