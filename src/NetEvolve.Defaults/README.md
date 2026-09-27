@@ -417,6 +417,8 @@ NetEvolve.Defaults includes a comprehensive `.editorconfig` file that enforces:
 
 The `.editorconfig` is automatically deployed to your build output and is applied across all supported IDEs and editors.
 
+Before each build, the `.editorconfig`, `.csharpierignore`, `.gitignore` and `.gitattributes` files next to your `Directory.Packages.props` are synchronized with the templates shipped in the package. A file is only written when its content differs from the template, and then atomically (via a temporary file that is renamed over the destination), so projects building in parallel never read a truncated file. Set `DisableSupportAdditionalFiles` to `true` to stop the synchronization and maintain these files yourself.
+
 ## MSBuild Integration
 
 All NetEvolve.Defaults settings are implemented as MSBuild properties and can be overridden at any level:
@@ -452,6 +454,14 @@ Disable package information generation:
 ```xml
 <PropertyGroup>
   <DisableSupportPackageInformation>true</DisableSupportPackageInformation>
+</PropertyGroup>
+```
+
+Disable the synchronization of `.editorconfig`, `.csharpierignore`, `.gitignore` and `.gitattributes`:
+
+```xml
+<PropertyGroup>
+  <DisableSupportAdditionalFiles>true</DisableSupportAdditionalFiles>
 </PropertyGroup>
 ```
 
