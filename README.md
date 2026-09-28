@@ -16,6 +16,7 @@ This repository contains a complete infrastructure for maintaining code quality 
 
 - **Centralized Build Configuration**: Unified project settings and compilation options for single and multi-targeted projects
 - **Code Analysis & Quality Enforcement**: Automated static analysis with Roslyn analyzers and code style enforcement via `.editorconfig`
+- **Shared Configuration Files**: `.editorconfig`, `.csharpierrc.yaml`, `.csharpierignore`, `.gitignore` and `.gitattributes`, synchronized into the repository root before each build
 - **Modern Language Features**: C# 13 language features with nullable reference types, implicit usings, and file-scoped namespaces
 - **Continuous Integration Support**: Automatic detection and optimization for CI/CD environments with GitVersion integration
 - **NuGet Security Auditing**: Integrated vulnerability scanning for package dependencies via NuGet Audit
@@ -78,7 +79,7 @@ defaults/
 The foundational package providing standardized build settings:
 
 - **MSBuild Properties & Targets**: Consistent compilation configuration across all projects
-- **Editor Configuration**: Standardized code style rules via `.editorconfig`
+- **Shared Configuration Files**: `.editorconfig`, `.csharpierrc.yaml`, `.csharpierignore`, `.gitignore` and `.gitattributes`, synchronized into the repository root before each build
 - **Analyzer Settings**: Pre-configured Roslyn analyzer rules matching enterprise standards
 - **NuGet Audit Integration**: Automated security vulnerability scanning
 - **Language Configuration**: Modern C# language features with sensible defaults
@@ -110,7 +111,7 @@ All settings can be customized through:
 
 1. **Project File Properties**: Override specific settings in individual `.csproj` files
 2. **Directory.Build.props**: Apply settings across all projects in a solution
-3. **.editorconfig**: Customize code style and formatting rules
+3. **Shared configuration files** (`.editorconfig`, `.csharpierrc.yaml`, `.csharpierignore`, `.gitignore`, `.gitattributes`): These files are overwritten on every build. To customize them, set `<DisableSupportAdditionalFiles>true</DisableSupportAdditionalFiles>` and maintain them in your repository (see [Shared Configuration Files](https://github.com/dailydevops/defaults/tree/main/src/NetEvolve.Defaults#shared-configuration-files))
 4. **.github/instructions**: Apply project-specific guidelines and conventions
 
 ### Common Customizations

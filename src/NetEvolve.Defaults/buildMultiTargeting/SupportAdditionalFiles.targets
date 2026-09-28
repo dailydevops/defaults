@@ -3,11 +3,18 @@
     <IsCrossTargetingProject>false</IsCrossTargetingProject>
     <IsCrossTargetingProject Condition="$(TargetFrameworks) != ''">true</IsCrossTargetingProject>
   </PropertyGroup>
+  <!--
+    Projects build in parallel and every project runs this target, while other projects may already read these
+    files (e.g. `csharpier check` reading .editorconfig). Therefore a file is only written when its content differs
+    from the template, and then atomically: copied to a process-unique temporary file in the same directory and
+    renamed over the destination. Readers never observe a truncated or partially written file.
+  -->
   <Target
     Name="UpdateEditorConfig"
     BeforeTargets="DispatchToInnerBuilds;BeforeBuild;CSharpierFormat"
-    Condition=" ('$(IsCrossTargetingProject)' == 'true' and '$(IsCrossTargetingBuild)' == 'true')
-                    or ('$(IsCrossTargetingProject)' == 'false' and '$(IsCrossTargetingBuild)' != 'true') "
+    Condition=" '$(DisableSupportAdditionalFiles)' != 'true'
+                and (('$(IsCrossTargetingProject)' == 'true' and '$(IsCrossTargetingBuild)' == 'true')
+                    or ('$(IsCrossTargetingProject)' == 'false' and '$(IsCrossTargetingBuild)' != 'true')) "
   >
     <PropertyGroup>
       <ConfigDir>$(SolutionDir)</ConfigDir>
@@ -16,39 +23,25 @@
       <ConfigDir Condition=" ('$(ConfigDir)' == '' or '$(ConfigDir)' == '*Undefined*') and '$(ProjectDir)' != '' "
         >$([MSBuild]::GetDirectoryNameOfFileAbove($(ProjectDir), Directory.Packages.props))</ConfigDir>
     </PropertyGroup>
-    <PropertyGroup>
-      <EditorConfigSource>$(MSBuildThisFileDirectory)..\configurations\template.editorconfig</EditorConfigSource>
-      <EditorConfigDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.editorconfig'))</EditorConfigDest>
+    <ItemGroup>
+      <_NetEvolveConfigFile Include="$(MSBuildThisFileDirectory)..\configurations\template.editorconfig" Destination="$([MSBuild]::NormalizePath('$(ConfigDir)', '.editorconfig'))" />
+      <_NetEvolveConfigFile Include="$(MSBuildThisFileDirectory)..\configurations\template.csharpierrc.yaml" Destination="$([MSBuild]::NormalizePath('$(ConfigDir)', '.csharpierrc.yaml'))" />
+      <_NetEvolveConfigFile Include="$(MSBuildThisFileDirectory)..\configurations\template.csharpierignore" Destination="$([MSBuild]::NormalizePath('$(ConfigDir)', '.csharpierignore'))" />
+      <_NetEvolveConfigFile Include="$(MSBuildThisFileDirectory)..\configurations\template.gitignore" Destination="$([MSBuild]::NormalizePath('$(ConfigDir)', '.gitignore'))" />
+      <_NetEvolveConfigFile Include="$(MSBuildThisFileDirectory)..\configurations\template.gitattributes" Destination="$([MSBuild]::NormalizePath('$(ConfigDir)', '.gitattributes'))" />
+    </ItemGroup>
 
-      <EditorConfigCopyCommand Condition="'$(OS)' == 'Windows_NT'"
-        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(EditorConfigSource)' -Destination '$(EditorConfigDest)' -Force -ErrorAction SilentlyContinue"</EditorConfigCopyCommand>
-      <EditorConfigCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(EditorConfigSource)' '$(EditorConfigDest)' 2&gt;/dev/null || true"</EditorConfigCopyCommand>
-
-      <CSharpierIgnoreSource>$(MSBuildThisFileDirectory)..\configurations\template.csharpierignore</CSharpierIgnoreSource>
-      <CSharpierIgnoreDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.csharpierignore'))</CSharpierIgnoreDest>
-
-      <CsharpierIgnoreCopyCommand Condition="'$(OS)' == 'Windows_NT'"
-        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(CsharpierIgnoreSource)' -Destination '$(CsharpierIgnoreDest)' -Force -ErrorAction SilentlyContinue"</CsharpierIgnoreCopyCommand>
-      <CsharpierIgnoreCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(CsharpierIgnoreSource)' '$(CsharpierIgnoreDest)' 2&gt;/dev/null || true"</CsharpierIgnoreCopyCommand>
-
-      <GitIgnoreSource>$(MSBuildThisFileDirectory)..\configurations\template.gitignore</GitIgnoreSource>
-      <GitIgnoreDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.gitignore'))</GitIgnoreDest>
-
-      <GitIgnoreCopyCommand Condition="'$(OS)' == 'Windows_NT'"
-        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(GitIgnoreSource)' -Destination '$(GitIgnoreDest)' -Force -ErrorAction SilentlyContinue"</GitIgnoreCopyCommand>
-      <GitIgnoreCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(GitIgnoreSource)' '$(GitIgnoreDest)' 2&gt;/dev/null || true"</GitIgnoreCopyCommand>
-
-      <GitAttributesSource>$(MSBuildThisFileDirectory)..\configurations\template.gitattributes</GitAttributesSource>
-      <GitAttributesDest>$([MSBuild]::NormalizePath('$(ConfigDir)', '.gitattributes'))</GitAttributesDest>
-
-      <GitAttributesCopyCommand Condition="'$(OS)' == 'Windows_NT'"
-        >pwsh -NoProfile -NonInteractive -Command "Copy-Item -Path '$(GitAttributesSource)' -Destination '$(GitAttributesDest)' -Force -ErrorAction SilentlyContinue"</GitAttributesCopyCommand>
-      <GitAttributesCopyCommand Condition="'$(OS)' != 'Windows_NT'">bash -c "cp -f '$(GitAttributesSource)' '$(GitAttributesDest)' 2&gt;/dev/null || true"</GitAttributesCopyCommand>
-    </PropertyGroup>
-
-    <Exec Command="$(EditorConfigCopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
-    <Exec Command="$(CsharpierIgnoreCopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
-    <Exec Command="$(GitIgnoreCopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
-    <Exec Command="$(GitAttributesCopyCommand)" ContinueOnError="true" IgnoreExitCode="true" />
+    <Exec
+      Condition="'$(OS)' == 'Windows_NT'"
+      Command="pwsh -NoProfile -NonInteractive -Command &quot;$s='%(_NetEvolveConfigFile.FullPath)';$d='%(_NetEvolveConfigFile.Destination)';$t=$d+'.'+$PID+'.tmp';try{if(-not(Test-Path -LiteralPath $d) -or (Get-FileHash -LiteralPath $s -ErrorAction Stop).Hash -ne (Get-FileHash -LiteralPath $d -ErrorAction Stop).Hash){Copy-Item -LiteralPath $s -Destination $t -Force -ErrorAction Stop;[System.IO.File]::Move($t,$d,$true)}}catch{Remove-Item -LiteralPath $t -Force -ErrorAction SilentlyContinue}&quot;"
+      ContinueOnError="true"
+      IgnoreExitCode="true"
+    />
+    <Exec
+      Condition="'$(OS)' != 'Windows_NT'"
+      Command="bash -c &quot;cmp -s '%(_NetEvolveConfigFile.FullPath)' '%(_NetEvolveConfigFile.Destination)' || { cp -f '%(_NetEvolveConfigFile.FullPath)' '%(_NetEvolveConfigFile.Destination).$$.tmp' &amp;&amp; mv -f '%(_NetEvolveConfigFile.Destination).$$.tmp' '%(_NetEvolveConfigFile.Destination)' || rm -f '%(_NetEvolveConfigFile.Destination).$$.tmp'; } 2&gt;/dev/null; true&quot;"
+      ContinueOnError="true"
+      IgnoreExitCode="true"
+    />
   </Target>
 </Project>

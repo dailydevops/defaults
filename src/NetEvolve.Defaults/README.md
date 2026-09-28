@@ -11,7 +11,7 @@ This package encapsulates enterprise-grade configuration standards including:
 - **Language & Compiler Settings**: Modern C# language features with nullable reference types and implicit usings
 - **Continuous Integration Support**: Automatic detection and optimization for CI/CD environments
 - **NuGet Security Auditing**: Integrated vulnerability scanning for package dependencies
-- **Editor Configuration**: Standardized coding styles and formatting rules (`.editorconfig`)
+- **Shared Configuration Files**: `.editorconfig`, `.csharpierrc.yaml`, `.csharpierignore`, `.gitignore` and `.gitattributes`, synchronized into the repository root before each build
 - **Documentation Generation**: Automatic XML documentation file generation for NuGet packages
 
 ## Installation
@@ -406,16 +406,24 @@ To suppress multiple packages, separate their names with semicolons:
 </PropertyGroup>
 ```
 
-## EditorConfig Integration
+## Shared Configuration Files
 
-NetEvolve.Defaults includes a comprehensive `.editorconfig` file that enforces:
+NetEvolve.Defaults ships templates for the following repository configuration files:
 
-- Code formatting standards (indentation, spacing, line lengths)
-- Naming conventions (PascalCase for types, camelCase for locals)
-- Code style rules (var usage, expression preferences)
-- Roslyn analyzer configuration
+| File                | Purpose                                                                                                       |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `.editorconfig`     | Formatting standards, naming conventions, code style rules and Roslyn analyzer severities for IDEs and builds |
+| `.csharpierrc.yaml` | Pinned CSharpier formatting options                                                                           |
+| `.csharpierignore`  | Paths excluded from CSharpier formatting                                                                      |
+| `.gitignore`        | Files and folders excluded from Git                                                                           |
+| `.gitattributes`    | Git line-ending and diff settings                                                                             |
 
-The `.editorconfig` is automatically deployed to your build output and is applied across all supported IDEs and editors.
+Before each build of each project, these files are synchronized into the repository root: the solution directory when building a solution, otherwise the folder of the nearest `Directory.Packages.props` above the project. A file is only written when its content differs from the template, and then atomically (via a temporary file that is renamed over the destination), so projects building in parallel never read a truncated file.
+
+> [!WARNING]
+> Local edits to these files are overwritten on the next build. To maintain them yourself, set `DisableSupportAdditionalFiles` to `true` (see [Disable Specific Features](https://github.com/dailydevops/defaults/tree/main/src/NetEvolve.Defaults#disable-specific-features)).
+
+The `.csharpierrc.yaml` pins the CSharpier options derived from the `.editorconfig` (C#: `printWidth` 120, `indentSize` 4, spaces, `lf`; XML/MSBuild files: `printWidth` 200, `indentSize` 2). CSharpier prefers `.csharpierrc.yaml` over `.editorconfig`, so formatting stays stable even when the `.editorconfig` is unreadable for a moment. Keep both files consistent when overriding either of them.
 
 ## MSBuild Integration
 
@@ -452,6 +460,14 @@ Disable package information generation:
 ```xml
 <PropertyGroup>
   <DisableSupportPackageInformation>true</DisableSupportPackageInformation>
+</PropertyGroup>
+```
+
+Disable the synchronization of `.editorconfig`, `.csharpierrc.yaml`, `.csharpierignore`, `.gitignore` and `.gitattributes`:
+
+```xml
+<PropertyGroup>
+  <DisableSupportAdditionalFiles>true</DisableSupportAdditionalFiles>
 </PropertyGroup>
 ```
 
