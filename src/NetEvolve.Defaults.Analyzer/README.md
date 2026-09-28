@@ -125,7 +125,7 @@ If you need to suppress a specific diagnostic, use the standard Roslyn suppressi
 #pragma warning restore NED0001
 ```
 
-Alternatively, add to your `.editorconfig`:
+Alternatively, add to your `.editorconfig` (with NetEvolve.Defaults, set `DisableSupportAdditionalFiles` to `true` first, otherwise the synchronized `.editorconfig` overwrites the change on the next build):
 
 ```ini
 [*.csproj]
