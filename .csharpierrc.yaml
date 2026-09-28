@@ -1,0 +1,12 @@
+# Mirrors template.editorconfig so CSharpier does not depend on it being readable during parallel builds.
+printWidth: 120
+useTabs: false
+indentSize: 4
+endOfLine: lf
+overrides:
+  - files: "*.{slnx,csproj,props,targets,config,xml}"
+    formatter: "xml"
+    printWidth: 200
+    useTabs: false
+    indentSize: 2
+    endOfLine: lf
