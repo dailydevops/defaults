@@ -10,8 +10,12 @@ internal class SupportAdditionalFilesTests
         "SupportAdditionalFiles.targets"
     );
 
-    private static string Template(string fileName) =>
-        Path.Combine(MSBuildProjectFixture.BuildMultiTargetingDirectory, "..", "configurations", fileName);
+    private static readonly string EditorConfigTemplate = Path.Combine(
+        MSBuildProjectFixture.BuildMultiTargetingDirectory,
+        "..",
+        "configurations",
+        "template.editorconfig"
+    );
 
     [Test]
     public async Task TargetFrameworksSet_IsCrossTargetingProjectIsTrue()
@@ -32,9 +36,7 @@ internal class SupportAdditionalFilesTests
     }
 
     [Test]
-    [Arguments(".editorconfig")]
-    [Arguments(".csharpierrc.yaml")]
-    public async Task TargetFrameworksNotSet_UpdateEditorConfig_CopiesFile(string fileName)
+    public async Task TargetFrameworksNotSet_UpdateEditorConfig_CopiesEditorConfig()
     {
         using var evaluated = MSBuildProjectFixture.Evaluate("Foo", [TargetsFile]);
         await File.WriteAllTextAsync(Path.Combine(evaluated.Directory, "Directory.Packages.props"), "<Project />")
@@ -45,9 +47,7 @@ internal class SupportAdditionalFilesTests
         using (Assert.Multiple())
         {
             _ = await Assert.That(success).IsTrue();
-            _ = await Assert
-                .That(await File.ReadAllTextAsync(Path.Combine(evaluated.Directory, fileName)).ConfigureAwait(false))
-                .IsEqualTo(await File.ReadAllTextAsync(Template($"template{fileName}")).ConfigureAwait(false));
+            _ = await Assert.That(File.Exists(Path.Combine(evaluated.Directory, ".editorconfig"))).IsTrue();
         }
     }
 
@@ -74,14 +74,12 @@ internal class SupportAdditionalFilesTests
     }
 
     [Test]
-    [Arguments(".editorconfig")]
-    [Arguments(".csharpierrc.yaml")]
-    public async Task UpdateEditorConfig_DestinationDiffers_IsReplacedWithoutLeavingTemporaryFiles(string fileName)
+    public async Task UpdateEditorConfig_DestinationDiffers_IsReplacedWithoutLeavingTemporaryFiles()
     {
         using var evaluated = MSBuildProjectFixture.Evaluate("Foo", [TargetsFile]);
         await File.WriteAllTextAsync(Path.Combine(evaluated.Directory, "Directory.Packages.props"), "<Project />")
             .ConfigureAwait(false);
-        var destination = Path.Combine(evaluated.Directory, fileName);
+        var destination = Path.Combine(evaluated.Directory, ".editorconfig");
         await File.WriteAllTextAsync(destination, "root = true").ConfigureAwait(false);
 
         var success = evaluated.BuildTarget("UpdateEditorConfig");
@@ -91,21 +89,19 @@ internal class SupportAdditionalFilesTests
             _ = await Assert.That(success).IsTrue();
             _ = await Assert
                 .That(await File.ReadAllTextAsync(destination).ConfigureAwait(false))
-                .IsEqualTo(await File.ReadAllTextAsync(Template($"template{fileName}")).ConfigureAwait(false));
+                .IsEqualTo(await File.ReadAllTextAsync(EditorConfigTemplate).ConfigureAwait(false));
             _ = await Assert.That(Directory.GetFiles(evaluated.Directory, "*.tmp")).IsEmpty();
         }
     }
 
     [Test]
-    [Arguments(".editorconfig")]
-    [Arguments(".csharpierrc.yaml")]
-    public async Task UpdateEditorConfig_DestinationEqualsTemplate_IsNotRewritten(string fileName)
+    public async Task UpdateEditorConfig_DestinationEqualsTemplate_IsNotRewritten()
     {
         using var evaluated = MSBuildProjectFixture.Evaluate("Foo", [TargetsFile]);
         await File.WriteAllTextAsync(Path.Combine(evaluated.Directory, "Directory.Packages.props"), "<Project />")
             .ConfigureAwait(false);
-        var destination = Path.Combine(evaluated.Directory, fileName);
-        File.Copy(Template($"template{fileName}"), destination);
+        var destination = Path.Combine(evaluated.Directory, ".editorconfig");
+        File.Copy(EditorConfigTemplate, destination);
         var lastWriteTime = new DateTime(2000, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         File.SetLastWriteTimeUtc(destination, lastWriteTime);
 
@@ -119,9 +115,7 @@ internal class SupportAdditionalFilesTests
     }
 
     [Test]
-    [Arguments(".editorconfig")]
-    [Arguments(".csharpierrc.yaml")]
-    public async Task DisableSupportAdditionalFiles_UpdateEditorConfig_DoesNotRun(string fileName)
+    public async Task DisableSupportAdditionalFiles_UpdateEditorConfig_DoesNotRun()
     {
         var globalProperties = new Dictionary<string, string> { ["DisableSupportAdditionalFiles"] = "true" };
 
@@ -134,7 +128,7 @@ internal class SupportAdditionalFilesTests
         using (Assert.Multiple())
         {
             _ = await Assert.That(success).IsTrue();
-            _ = await Assert.That(File.Exists(Path.Combine(evaluated.Directory, fileName))).IsFalse();
+            _ = await Assert.That(File.Exists(Path.Combine(evaluated.Directory, ".editorconfig"))).IsFalse();
         }
     }
 }
