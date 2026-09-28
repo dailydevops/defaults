@@ -25,6 +25,7 @@
     </PropertyGroup>
     <ItemGroup>
       <_NetEvolveConfigFile Include="$(MSBuildThisFileDirectory)..\configurations\template.editorconfig" Destination="$([MSBuild]::NormalizePath('$(ConfigDir)', '.editorconfig'))" />
+      <_NetEvolveConfigFile Include="$(MSBuildThisFileDirectory)..\configurations\template.csharpierrc.yaml" Destination="$([MSBuild]::NormalizePath('$(ConfigDir)', '.csharpierrc.yaml'))" />
       <_NetEvolveConfigFile Include="$(MSBuildThisFileDirectory)..\configurations\template.csharpierignore" Destination="$([MSBuild]::NormalizePath('$(ConfigDir)', '.csharpierignore'))" />
       <_NetEvolveConfigFile Include="$(MSBuildThisFileDirectory)..\configurations\template.gitignore" Destination="$([MSBuild]::NormalizePath('$(ConfigDir)', '.gitignore'))" />
       <_NetEvolveConfigFile Include="$(MSBuildThisFileDirectory)..\configurations\template.gitattributes" Destination="$([MSBuild]::NormalizePath('$(ConfigDir)', '.gitattributes'))" />

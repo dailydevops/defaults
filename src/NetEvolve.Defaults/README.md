@@ -417,7 +417,9 @@ NetEvolve.Defaults includes a comprehensive `.editorconfig` file that enforces:
 
 The `.editorconfig` is automatically deployed to your build output and is applied across all supported IDEs and editors.
 
-Before each build, the `.editorconfig`, `.csharpierignore`, `.gitignore` and `.gitattributes` files next to your `Directory.Packages.props` are synchronized with the templates shipped in the package. A file is only written when its content differs from the template, and then atomically (via a temporary file that is renamed over the destination), so projects building in parallel never read a truncated file. Set `DisableSupportAdditionalFiles` to `true` to stop the synchronization and maintain these files yourself.
+Before each build, the `.editorconfig`, `.csharpierrc.yaml`, `.csharpierignore`, `.gitignore` and `.gitattributes` files next to your `Directory.Packages.props` are synchronized with the templates shipped in the package. A file is only written when its content differs from the template, and then atomically (via a temporary file that is renamed over the destination), so projects building in parallel never read a truncated file. Set `DisableSupportAdditionalFiles` to `true` to stop the synchronization and maintain these files yourself.
+
+The `.csharpierrc.yaml` pins the CSharpier options derived from the `.editorconfig` (C#: `printWidth` 120, `indentSize` 4, spaces, `lf`; XML/MSBuild files: `printWidth` 200, `indentSize` 2). CSharpier prefers `.csharpierrc.yaml` over `.editorconfig`, so formatting stays stable even when the `.editorconfig` is unreadable for a moment. Keep both files consistent when overriding either of them.
 
 ## MSBuild Integration
 
@@ -457,7 +459,7 @@ Disable package information generation:
 </PropertyGroup>
 ```
 
-Disable the synchronization of `.editorconfig`, `.csharpierignore`, `.gitignore` and `.gitattributes`:
+Disable the synchronization of `.editorconfig`, `.csharpierrc.yaml`, `.csharpierignore`, `.gitignore` and `.gitattributes`:
 
 ```xml
 <PropertyGroup>
