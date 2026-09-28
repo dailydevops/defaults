@@ -192,38 +192,14 @@ internal partial class CSharpierRcDistributionTests
     {
         var sections = new List<(string[] Extensions, Dictionary<string, string> Settings)>();
         Dictionary<string, string>? current = null;
-        foreach (var raw in lines)
+        foreach (var line in lines.Select(l => l.Trim()).Where(l => l.Length > 0 && l[0] is not ('#' or ';')))
         {
-            var line = raw.Trim();
-            if (line.Length == 0 || line[0] is '#' or ';')
-            {
-                continue;
-            }
-
             if (line[0] == '[')
             {
-                var glob = line[1..^1];
-                // Only plain `*` and `*.ext` / `*.{a,b}` sections apply to every file of an extension.
-                string[]? extensions = null;
-                if (string.Equals(glob, "*", StringComparison.Ordinal))
-                {
-                    extensions = ["*"];
-                }
-                else if (SimpleGlob().IsMatch(glob))
-                {
-                    extensions = Extensions(glob);
-                }
-
-                current = extensions is null ? null : new Dictionary<string, string>(StringComparer.Ordinal);
-                if (extensions is not null)
-                {
-                    sections.Add((extensions, current!));
-                }
-
-                continue;
+                current = new Dictionary<string, string>(StringComparer.Ordinal);
+                sections.Add((SectionExtensions(line[1..^1]), current));
             }
-
-            if (current is not null && line.Contains('=', StringComparison.Ordinal))
+            else if (current is not null)
             {
                 var separator = line.IndexOf('=', StringComparison.Ordinal);
                 current[line[..separator].Trim()] = line[(separator + 1)..].Trim();
@@ -254,6 +230,15 @@ internal partial class CSharpierRcDistributionTests
 
     private static string UseTabs(Dictionary<string, string> settings) =>
         string.Equals(settings["indent_style"], "tab", StringComparison.Ordinal) ? "true" : "false";
+
+    // Only `*` and plain `*.ext` / `*.{a,b}` sections apply to every file of an extension; others match nothing here.
+    private static string[] SectionExtensions(string glob) =>
+        glob switch
+        {
+            "*" => ["*"],
+            _ when SimpleGlob().IsMatch(glob) => Extensions(glob),
+            _ => [],
+        };
 
     private static string[] Extensions(string glob) =>
         glob.TrimStart('*', '.').Trim('{', '}').Split(',', StringSplitOptions.TrimEntries);
