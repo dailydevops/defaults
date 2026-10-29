@@ -26,6 +26,7 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/NetEvolve.Defaults.Analyzer.Tests.Unit/NetEvolve.Defaults.Analyzer.Tests.Unit.csproj" />
+    <Project Path="tests/NetEvolve.Defaults.Analyzer.Tests.Unit.Roslyn4_4/NetEvolve.Defaults.Analyzer.Tests.Unit.Roslyn4_4.csproj" />
     <Project Path="tests/NetEvolve.Defaults.Tests.Unit/NetEvolve.Defaults.Tests.Unit.csproj" />
   </Folder>
 </Solution>

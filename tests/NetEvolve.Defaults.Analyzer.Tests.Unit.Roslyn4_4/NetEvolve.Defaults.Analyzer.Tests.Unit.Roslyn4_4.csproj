@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- Runs the shared analyzer tests against the Roslyn 4.4 baseline variant, which the multi-targeted test project cannot select. -->
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>NetEvolve.Defaults.Analyzer.Tests.Unit</RootNamespace>
+    <UseAppHost>false</UseAppHost>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <NoWarn>$(NoWarn);VSTHRD200;</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\NetEvolve.Defaults.Analyzer.Tests.Unit\**\*.cs" Exclude="..\NetEvolve.Defaults.Analyzer.Tests.Unit\obj\**;..\NetEvolve.Defaults.Analyzer.Tests.Unit\bin\**" LinkBase="." />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" VersionOverride="4.4.*" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" />
+    <PackageReference Include="NetEvolve.Extensions.TUnit" />
+    <PackageReference Include="TUnit" />
+  </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="NetEvolve.Extensions.TUnit.UnitTestAttribute" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NetEvolve.Defaults.Analyzer\NetEvolve.Defaults.Analyzer.Roslyn4_4.csproj" />
+  </ItemGroup>
+</Project>

@@ -26,6 +26,7 @@
   <ItemGroup Label="Test access to internals">
     <InternalsVisibleTo Include="NetEvolve.Defaults.Analyzer.Tests.Architecture" />
     <InternalsVisibleTo Include="NetEvolve.Defaults.Analyzer.Tests.Unit" />
+    <InternalsVisibleTo Include="NetEvolve.Defaults.Analyzer.Tests.Unit.Roslyn4_4" />
     <InternalsVisibleTo Include="NetEvolve.Defaults.Analyzer.Tests.Integration" />
   </ItemGroup>
 
