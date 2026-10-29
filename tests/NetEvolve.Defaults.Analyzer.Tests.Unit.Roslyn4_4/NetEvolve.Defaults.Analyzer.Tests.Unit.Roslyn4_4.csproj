@@ -2,8 +2,6 @@
   <PropertyGroup>
     <!-- Runs the shared analyzer tests against the Roslyn 4.4 baseline variant, which the multi-targeted test project cannot select. -->
     <TargetFramework>net8.0</TargetFramework>
-    <!-- Keeps access to the analyzer internals (InternalsVisibleTo). -->
-    <AssemblyName>NetEvolve.Defaults.Analyzer.Tests.Unit</AssemblyName>
     <RootNamespace>NetEvolve.Defaults.Analyzer.Tests.Unit</RootNamespace>
     <UseAppHost>false</UseAppHost>
     <Nullable>enable</Nullable>
