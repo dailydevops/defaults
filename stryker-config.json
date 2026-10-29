@@ -4,7 +4,7 @@
     "mutation-level": "Advanced",
     "reporters": ["html", "json", "dashboard", "progress"],
     "project-info": { "name": "github.com/dailydevops/defaults" },
-    "thresholds": { "high": 80, "low": 60, "break": 0 },
+    "thresholds": { "high": 80, "low": 60, "break": 30 },
     "test-projects": [
       "tests/NetEvolve.Defaults.Analyzer.Tests.Unit/NetEvolve.Defaults.Analyzer.Tests.Unit.csproj",
       "tests/NetEvolve.Defaults.Tests.Unit/NetEvolve.Defaults.Tests.Unit.csproj"
