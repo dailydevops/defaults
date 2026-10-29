@@ -2,12 +2,10 @@
 
 using System.Collections.Immutable;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-[ExcludeFromCodeCoverage]
 internal sealed class OldProjectSupportDiagnosticAnalyzer : DiagnosticAnalyzer
 {
     internal static readonly DiagnosticDescriptor _ruleOLD0001 = Helper.CreateUsageDescriptor(

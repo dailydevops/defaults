@@ -3,13 +3,11 @@
 using System;
 using System.Collections.Immutable;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-[ExcludeFromCodeCoverage]
 internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
 {
     internal static readonly DiagnosticDescriptor _ruleNED0001 = Helper.CreateUsageDescriptor(
