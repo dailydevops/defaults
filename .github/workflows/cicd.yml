@@ -18,6 +18,12 @@ on:
           - detailed
           - diagnostic
 
+permissions:
+  actions: read
+  contents: read
+  pull-requests: write
+  security-events: write
+
 jobs:
   all:
     name: Build & Tests
