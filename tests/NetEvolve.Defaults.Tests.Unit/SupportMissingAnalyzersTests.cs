@@ -24,7 +24,6 @@ internal class SupportMissingAnalyzersTests
         _ = await Assert.That(recommended).Contains("Roslynator.CodeAnalysis.Analyzers");
         _ = await Assert.That(recommended).Contains("Roslynator.CodeFixes");
         _ = await Assert.That(recommended).Contains("Roslynator.Refactorings");
-        _ = await Assert.That(recommended).Contains("SonarAnalyzer.CSharp");
-        _ = await Assert.That(recommended.Count).IsEqualTo(12);
+        _ = await Assert.That(recommended.Count).IsEqualTo(11);
     }
 }

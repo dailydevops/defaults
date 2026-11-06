@@ -340,7 +340,6 @@ NetEvolve.Defaults recommends the following analyzer packages for maximum code q
 | `Roslynator.CodeFixes`                       | Automated code fixes for Roslynator diagnostics           |
 | `Roslynator.Formatting.Analyzers`            | Code formatting diagnostics via Roslynator                |
 | `Roslynator.Refactorings`                    | Roslyn-based refactoring suggestions                      |
-| `SonarAnalyzer.CSharp`                       | SonarQube static analysis rules for C#                    |
 
 ### Suppressing NED0010
 
@@ -348,7 +347,7 @@ To suppress the warning for a specific package, add its name to the `DisableReco
 
 ```xml
 <PropertyGroup>
-  <DisableRecommendedPackage>SonarAnalyzer.CSharp</DisableRecommendedPackage>
+  <DisableRecommendedPackage>Roslynator.Refactorings</DisableRecommendedPackage>
 </PropertyGroup>
 ```
 
@@ -356,7 +355,7 @@ To suppress multiple packages, separate their names with semicolons:
 
 ```xml
 <PropertyGroup>
-  <DisableRecommendedPackage>SonarAnalyzer.CSharp;Microsoft.VisualStudio.Threading.Analyzers</DisableRecommendedPackage>
+  <DisableRecommendedPackage>Roslynator.Refactorings;Microsoft.VisualStudio.Threading.Analyzers</DisableRecommendedPackage>
 </PropertyGroup>
 ```
 
