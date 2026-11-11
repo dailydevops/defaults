@@ -189,15 +189,13 @@ tests/                 # Test projects
 ├── Unit/             # Unit tests
 └── Integration/      # Integration tests
 
-decisions/            # Architecture Decision Records (ADRs)
 templates/            # Documentation and file templates
 ```
 
 ## Architecture
 
 <!--
-Provide an overview of the architectural patterns and design decisions.
-Reference specific Architecture Decision Records (ADRs) where applicable.
+Provide an overview of the architectural patterns.
 Include diagrams if available.
 Remove this section if not applicable.
 -->
@@ -208,8 +206,6 @@ This solution follows modern .NET architectural patterns and best practices:
 - **Dependency Injection**: Built-in .NET dependency injection throughout
 - **Repository Pattern**: Abstraction over data access logic
 - **SOLID Principles**: Object-oriented design with SOLID principles
-
-For detailed architectural decisions, see the [Architecture Decision Records](decisions/).
 
 ## Contributing
 
@@ -242,7 +238,6 @@ Link to additional documentation resources.
 Include links to wikis, external docs sites, or specific documentation files.
 -->
 
-- **[Architecture Decision Records](decisions/)** - Detailed architectural decisions and rationale
 - **[Contributing Guidelines](CONTRIBUTING.md)** - How to contribute to this project
 - **[Code of Conduct](CODE_OF_CONDUCT.md)** - Community standards and expectations
 - **[License](LICENSE)** - Project licensing information
