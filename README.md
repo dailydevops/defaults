@@ -64,7 +64,6 @@ defaults/
 │   └── NetEvolve.Defaults.Tests.Integration/  # Integration tests
 ├── docs/
 │   └── usage/                        # Diagnostic rule documentation
-├── decisions/                        # Architectural decision records
 ├── .github/                          # GitHub workflows and instructions
 ├── Directory.Packages.props          # Centralized NuGet version management
 ├── Directory.Build.props             # Global MSBuild properties
@@ -149,19 +148,6 @@ All settings can be customized through:
 5. **Run Analyzers Regularly**: Address diagnostics during development, not at release time
 6. **Test Multi-Framework Projects**: Verify code works across all target frameworks
 
-## Architectural Decisions
-
-This project follows architectural principles documented in the [decisions/](https://github.com/dailydevops/defaults/tree/main/decisions) folder. Key decision areas include:
-
-- **Folder Structure & Naming Conventions**: Consistent project organization
-- **Centralized Package Management**: Single source of truth for NuGet versions
-- **English as Project Language**: All code, documentation, and comments in English
-- **.NET 10 & C# 13 Adoption**: Modern language features and runtime support
-- **Conventional Commits**: Structured commit messages for automated versioning
-- **GitVersion Integration**: Automated semantic versioning from git history
-
-For more details, see [Architectural Decisions](https://github.com/dailydevops/defaults/tree/main/decisions).
-
 ## Contributing
 
 Contributions are welcome! When contributing to this project:
@@ -184,7 +170,6 @@ For issues, feature requests, or questions:
 - [NetEvolve.Defaults Documentation](https://www.nuget.org/packages/NetEvolve.Defaults)
 - [NetEvolve.Defaults.Analyzer Documentation](https://www.nuget.org/packages/NetEvolve.Defaults.Analyzer)
 - [Diagnostic Rules Reference](https://github.com/dailydevops/defaults/tree/main/docs/usage)
-- [Architectural Decisions](https://github.com/dailydevops/defaults/tree/main/decisions)
 
 ## License
 

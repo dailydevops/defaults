@@ -121,7 +121,6 @@ description: 'Ensure that C# types are documented with XML comments following Mi
 * MUST use `NotNullAttribute` and related nullable attributes in public API documentation when appropriate.
 * MUST use `nameof()` operator in examples instead of string literals when referring to member names.
 * MUST ensure that documentation examples properly demonstrate null-checking patterns using `is null` and `is not null`.
-* SHOULD reference related decisions or architectural guidelines when relevant to the API's design or usage.
 
 ## Accessibility and Localization
 
