@@ -94,15 +94,10 @@ internal sealed class IsPackableProjectDiagnosticAnalyzer : DiagnosticAnalyzer
             AnalyzeIsKeySet(ctx, options, _ruleNED0006, "build_property.repositoryurl");
             AnalyzeIsKeySet(ctx, options, _ruleNED0007, "build_property.authors");
             AnalyzeIsKeySet(ctx, options, _ruleNED0008, "build_property.company");
-            AnalyzeIsKeySet(
-                ctx,
-                options,
-                _ruleNED0009,
-                "build_property.copyrightyearstart",
-                propertyValue =>
-                    int.TryParse(propertyValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out var year)
-                    && year >= 1900
-                    && year <= 9999
+            AnalyzeIsKeySet(ctx, options, _ruleNED0009, "build_property.copyrightyearstart", propertyValue =>
+                int.TryParse(propertyValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out var year)
+                && year >= 1900
+                && year <= 9999
             );
         });
     }
