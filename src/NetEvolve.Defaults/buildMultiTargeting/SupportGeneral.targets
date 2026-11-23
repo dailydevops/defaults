@@ -18,6 +18,9 @@
     <IsPublishable>true</IsPublishable>
     <WarnOnPackingNonPackableProject>false</WarnOnPackingNonPackableProject>
   </PropertyGroup>
+  <PropertyGroup Label="NoWarn for unsupported TargetFramework" Condition=" '$(TargetFramework)' != '' ">
+    <NoWarn Condition=" $([MSBuild]::IsTargetFrameworkCompatible($(TargetFramework), 'net5.0')) == 'false' ">$(NoWarn);CA1062;</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="$(MSBuildProjectDirectory)/*.sarif" />
     <None Remove="$(MSBuildProjectDirectory)/**/*.sarif" />
