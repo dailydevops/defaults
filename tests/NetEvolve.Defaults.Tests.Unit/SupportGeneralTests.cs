@@ -1,4 +1,4 @@
-namespace NetEvolve.Defaults.Tests.Unit;
+﻿namespace NetEvolve.Defaults.Tests.Unit;
 
 using System;
 using System.Collections.Generic;
@@ -215,6 +215,38 @@ internal class SupportGeneralTests
         await Assert.That(noWarn).Contains("CS8604");
         await Assert.That(noWarn).Contains("CA2007");
         await Assert.That(noWarn).Contains("S4144");
+    }
+
+    [Test]
+    [Arguments("netstandard2.0")]
+    [Arguments("netstandard2.1")]
+    [Arguments("net48")]
+    [Arguments("netcoreapp3.1")]
+    public async Task NoWarn_UnsupportedTargetFramework_ContainsCA1062(string targetFramework)
+    {
+        var globalProperties = new Dictionary<string, string> { ["TargetFramework"] = targetFramework };
+        var preSetProperties = new Dictionary<string, string> { ["NoWarn"] = "CA1810" };
+
+        using var evaluated = MSBuildProjectFixture.Evaluate("Foo", [TargetsFile], globalProperties, preSetProperties);
+
+        var noWarn = evaluated.GetProperty("NoWarn");
+
+        _ = await Assert.That(noWarn).Contains("CA1062");
+        _ = await Assert.That(noWarn).Contains("CA1810");
+    }
+
+    [Test]
+    [Arguments("net5.0")]
+    [Arguments("net8.0")]
+    [Arguments("net10.0")]
+    [Arguments("")]
+    public async Task NoWarn_SupportedOrMissingTargetFramework_DoesNotContainCA1062(string targetFramework)
+    {
+        var globalProperties = new Dictionary<string, string> { ["TargetFramework"] = targetFramework };
+
+        using var evaluated = MSBuildProjectFixture.Evaluate("Foo", [TargetsFile], globalProperties);
+
+        _ = await Assert.That(evaluated.GetProperty("NoWarn")).DoesNotContain("CA1062");
     }
 
     [Test]
